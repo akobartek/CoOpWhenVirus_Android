@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.preference.PreferenceCategory>
+        <SwitchPreference
+            android:background="?attr/colorBackground"
+            android:defaultValue="false"
+            android:key="@string/night_mode_key"
+            android:summary="@string/night_mode_summary"
+            android:textColor="?attr/colorText"
+            android:title="@string/night_mode_title"
+            app:iconSpaceReserved="false" />
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory>
+        <Preference
+            android:background="?attr/colorBackground"
+            android:key="signOut"
+            android:textColor="?attr/colorText"
+            android:title="@string/sign_out"
+            app:iconSpaceReserved="false" />
+    </androidx.preference.PreferenceCategory>
+</androidx.preference.PreferenceScreen>

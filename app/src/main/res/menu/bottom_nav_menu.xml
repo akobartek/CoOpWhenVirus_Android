@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_map"
+        android:icon="@drawable/menu_map_selector"
+        android:title="@string/map"/>
+
+    <item
+        android:id="@+id/navigation_safety"
+        android:icon="@drawable/menu_safety_selector"
+        android:title="@string/safety"/>
+
+    <item
+        android:id="@+id/navigation_service"
+        android:icon="@drawable/menu_service_selector"
+        android:title="@string/service"/>
+</menu>

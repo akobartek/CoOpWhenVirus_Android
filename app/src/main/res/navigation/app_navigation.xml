@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@+id/safetyFragment">
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="pl.pomocnawirus.view.fragments.WebsiteFragment"
+        tools:layout="@layout/fragment_website">
+
+        <action
+            android:id="@+id/showSafetyFragment"
+            app:destination="@+id/safetyFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showSignInFragment"
+            app:destination="@+id/signInFragment"
+            app:enterAnim="@anim/slide_in_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/safetyFragment"
+        android:name="pl.pomocnawirus.view.fragments.SafetyFragment"
+        tools:layout="@layout/fragment_safety">
+
+        <action
+            android:id="@+id/showMapFragment"
+            app:destination="@+id/mapFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/showSignInFragment"
+            app:destination="@+id/signInFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showSettingsFragment"
+            app:destination="@+id/settingsFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:popEnterAnim="@anim/slide_in_top" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="pl.pomocnawirus.view.fragments.SignInFragment"
+        tools:layout="@layout/fragment_sign_in">
+
+        <action
+            android:id="@+id/showMapFragment"
+            app:destination="@+id/mapFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/showSafetyFragment"
+            app:destination="@+id/safetyFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/showSignUpFragment"
+            app:destination="@+id/signUpFragment"
+            app:enterAnim="@anim/slide_in_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="pl.pomocnawirus.view.fragments.SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
+
+        <action
+            android:id="@+id/showSignInFragment"
+            app:destination="@+id/signInFragment"
+            app:enterAnim="@anim/slide_in_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="pl.pomocnawirus.view.fragments.SettingsFragment" />
+
+</navigation>

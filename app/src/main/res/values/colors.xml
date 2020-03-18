@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="swipe_refresh_color_1">#FA3647</color>
+    <color name="swipe_refresh_color_2">#FFD200</color>
+    <color name="swipe_refresh_color_3">#00CBFF</color>
+    <color name="swipe_refresh_color_4">#00F076</color>
 </resources>
