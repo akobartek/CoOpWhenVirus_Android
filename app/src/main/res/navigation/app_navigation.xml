@@ -18,6 +18,18 @@
             android:id="@+id/showSignInFragment"
             app:destination="@+id/signInFragment"
             app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showGroupJoinFragment"
+            app:destination="@+id/groupJoinFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showOrdersListFragment"
+            app:destination="@+id/ordersListFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showTaskListFragment"
+            app:destination="@+id/taskListFragment"
+            app:enterAnim="@anim/slide_in_right" />
     </fragment>
 
     <fragment
@@ -38,6 +50,18 @@
             app:destination="@+id/settingsFragment"
             app:enterAnim="@anim/slide_in_bottom"
             app:popEnterAnim="@anim/slide_in_top" />
+        <action
+            android:id="@+id/showGroupJoinFragment"
+            app:destination="@+id/groupJoinFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showOrdersListFragment"
+            app:destination="@+id/ordersListFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showTaskListFragment"
+            app:destination="@+id/taskListFragment"
+            app:enterAnim="@anim/slide_in_right" />
     </fragment>
 
     <fragment
@@ -57,6 +81,18 @@
             android:id="@+id/showSignUpFragment"
             app:destination="@+id/signUpFragment"
             app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showGroupJoinFragment"
+            app:destination="@+id/groupJoinFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showOrdersListFragment"
+            app:destination="@+id/ordersListFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showTaskListFragment"
+            app:destination="@+id/taskListFragment"
+            app:enterAnim="@anim/slide_in_right" />
     </fragment>
 
     <fragment
@@ -68,6 +104,84 @@
             android:id="@+id/showSignInFragment"
             app:destination="@+id/signInFragment"
             app:enterAnim="@anim/slide_in_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/groupJoinFragment"
+        android:name="pl.pomocnawirus.view.fragments.GroupJoinFragment"
+        tools:layout="@layout/fragment_group_join">
+
+        <action
+            android:id="@+id/showMapFragment"
+            app:destination="@+id/mapFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/showSafetyFragment"
+            app:destination="@+id/safetyFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/showGroupFindFragment"
+            app:destination="@+id/groupFindFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:popEnterAnim="@anim/slide_in_top" />
+        <action
+            android:id="@+id/showOrdersListFragment"
+            app:destination="@+id/ordersListFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showTaskListFragment"
+            app:destination="@+id/taskListFragment"
+            app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showSettingsFragment"
+            app:destination="@+id/settingsFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:popEnterAnim="@anim/slide_in_bottom" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/groupFindFragment"
+        android:name="pl.pomocnawirus.view.fragments.GroupFindFragment"
+        tools:layout="@layout/fragment_group_find" />
+
+    <fragment
+        android:id="@+id/ordersListFragment"
+        android:name="pl.pomocnawirus.view.fragments.OrdersListFragment"
+        tools:layout="@layout/fragment_orders_list">
+
+        <action
+            android:id="@+id/showMapFragment"
+            app:destination="@+id/mapFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/showSafetyFragment"
+            app:destination="@+id/safetyFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/showSettingsFragment"
+            app:destination="@+id/settingsFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:popEnterAnim="@anim/slide_in_top" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskListFragment"
+        android:name="pl.pomocnawirus.view.fragments.TaskListFragment"
+        tools:layout="@layout/fragment_task_list">
+
+        <action
+            android:id="@+id/showMapFragment"
+            app:destination="@+id/mapFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/showSafetyFragment"
+            app:destination="@+id/safetyFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/showSettingsFragment"
+            app:destination="@+id/settingsFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:popEnterAnim="@anim/slide_in_top" />
     </fragment>
 
     <fragment

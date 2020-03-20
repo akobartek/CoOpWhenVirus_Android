@@ -19,6 +19,8 @@ import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.User
 import pl.pomocnawirus.utils.FirestoreUtils.firestoreCollectionUsers
+import pl.pomocnawirus.utils.isValidEmail
+import pl.pomocnawirus.utils.isValidPhoneNumber
 import java.util.regex.Pattern
 
 class SignUpFragment : Fragment() {
@@ -45,7 +47,7 @@ class SignUpFragment : Fragment() {
             val name = view.nameET.text.toString().trim()
             val phoneNumber = view.phoneET.text.toString().trim()
 
-            if (!areValuesValid(email, password, name)) {
+            if (!areValuesValid(email, password, name, phoneNumber)) {
                 view.signUpBtn.isEnabled = true
                 return@setOnClickListener
             }
@@ -54,7 +56,7 @@ class SignUpFragment : Fragment() {
                 .addOnCompleteListener(activity!!) { task ->
                     if (task.isSuccessful) {
                         mAuth.currentUser?.sendEmailVerification()
-                        val user = User("", email, name, phoneNumber, "", "")
+                        val user = User("", email, name, User.USER_TYPE_USER, phoneNumber, "")
 
                         FirebaseFirestore.getInstance().collection(firestoreCollectionUsers)
                             .document(mAuth.currentUser!!.uid)
@@ -70,7 +72,11 @@ class SignUpFragment : Fragment() {
                             view.emailET.requestFocus()
                         } else {
                             view.signUpBtn.isEnabled = true
-                            Snackbar.make(view.signUpLayout, R.string.sign_up_error, Snackbar.LENGTH_LONG).show()
+                            Snackbar.make(
+                                view.signUpLayout,
+                                R.string.sign_up_error,
+                                Snackbar.LENGTH_LONG
+                            ).show()
                         }
                     }
                 }
@@ -94,17 +100,17 @@ class SignUpFragment : Fragment() {
             .show()
     }
 
-    private fun areValuesValid(email: String, password: String, name: String): Boolean {
+    private fun areValuesValid(email: String, pass: String, name: String, phone: String): Boolean {
         var isValid = true
 
-        if (!isEmailValid(email)) {
+        if (!email.isValidEmail()) {
             view!!.emailET.error = getString(R.string.email_error)
             isValid = false
         }
-        if (password.length < 6) {
+        if (pass.length < 6) {
             view!!.passwordET.error = getString(R.string.password_error_too_short)
             isValid = false
-        } else if (!isValidPassword(password)) {
+        } else if (!isValidPassword(pass)) {
             view!!.passwordET.error = getString(R.string.password_error_wrong)
             isValid = false
         }
@@ -112,11 +118,12 @@ class SignUpFragment : Fragment() {
             view!!.nameET.error = getString(R.string.name_error_too_short)
             isValid = false
         }
+        if (phone.isNotEmpty() && !phone.isValidPhoneNumber()) {
+            view!!.phoneET.error = getString(R.string.phone_error_incorrect)
+            isValid = false
+        }
         return isValid
     }
-
-    private fun isEmailValid(email: CharSequence): Boolean =
-        android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
     private fun isValidPassword(password: CharSequence): Boolean {
         val passwordRegex = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z]).{6,20})"

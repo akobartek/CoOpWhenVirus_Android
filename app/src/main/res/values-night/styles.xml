@@ -12,8 +12,6 @@
         <item name="colorMenuIcons">#FFFFFF</item>
         <item name="colorBackground">#28292e</item>
         <item name="colorListItemBackground">#232428</item>
-        <item name="colorControlLight">#2EFFFFFF</item>
-        <item name="colorIndicatorInactive">#BBBBBB</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

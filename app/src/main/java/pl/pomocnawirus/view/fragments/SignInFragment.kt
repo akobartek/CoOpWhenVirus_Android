@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.dialog_reset_password.view.*
 import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.utils.createUnderlinedString
+import pl.pomocnawirus.view.activities.MainActivity
 
 class SignInFragment : Fragment() {
 
@@ -61,8 +62,7 @@ class SignInFragment : Fragment() {
                             view.signInBtn.isEnabled = true
                         } else {
                             Toast.makeText(context, R.string.signed_in, Toast.LENGTH_SHORT).show()
-                            // TODO() -> Navigate to account fragment
-//                            findNavController().navigateUp()
+                            (requireActivity() as MainActivity).navigateToCorrectServiceFragment()
                         }
                     } else {
                         Log.d("SignInFailed", task.exception.toString())

@@ -10,7 +10,5 @@
         <attr name="colorMenuIcons" format="color"/>
         <attr name="colorBackground" format="color"/>
         <attr name="colorListItemBackground" format="color"/>
-        <attr name="colorControlLight" format="color"/>
-        <attr name="colorIndicatorInactive" format="color" />
     </declare-styleable>
 </resources>

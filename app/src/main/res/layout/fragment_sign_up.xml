@@ -33,10 +33,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-
         android:layout_marginTop="48dp"
         android:layout_marginEnd="48dp"
-        android:textColorHint="?attr/colorAccent"
+        android:textColorHint="?attr/colorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUpAppBar">
@@ -48,7 +47,7 @@
             android:backgroundTint="?attr/colorBackground"
             android:hint="@string/email_address"
             android:inputType="textEmailAddress"
-            android:textColor="?attr/colorAccent" />
+            android:textColor="?attr/colorText" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,7 +55,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColorHint="?attr/colorAccent"
+        android:textColorHint="?attr/colorText"
         app:layout_constraintEnd_toEndOf="@+id/emailInputLayout"
         app:layout_constraintStart_toStartOf="@+id/emailInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/emailInputLayout">
@@ -68,7 +67,7 @@
             android:backgroundTint="?attr/colorBackground"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:textColor="?attr/colorAccent" />
+            android:textColor="?attr/colorText" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -76,7 +75,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColorHint="?attr/colorAccent"
+        android:textColorHint="?attr/colorText"
         app:layout_constraintEnd_toEndOf="@+id/emailInputLayout"
         app:layout_constraintStart_toStartOf="@+id/emailInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout">
@@ -88,7 +87,7 @@
             android:backgroundTint="?attr/colorBackground"
             android:hint="@string/name"
             android:inputType="textPersonName|textCapWords"
-            android:textColor="?attr/colorAccent" />
+            android:textColor="?attr/colorText" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -96,7 +95,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColorHint="?attr/colorAccent"
+        android:textColorHint="?attr/colorText"
         app:layout_constraintEnd_toEndOf="@+id/emailInputLayout"
         app:layout_constraintStart_toStartOf="@+id/emailInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/nameInputLayout">
@@ -108,17 +107,21 @@
             android:backgroundTint="?attr/colorBackground"
             android:hint="@string/phone_number"
             android:inputType="phone|numberSigned"
-            android:textColor="?attr/colorAccent" />
+            android:textColor="?attr/colorText" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/signUpBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
         android:backgroundTint="?attr/colorAccent"
         android:text="@string/sign_up"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
         android:textColor="?attr/colorBackground"
+        app:cornerRadius="4dp"
         app:layout_constraintEnd_toEndOf="@+id/emailInputLayout"
         app:layout_constraintStart_toStartOf="@+id/emailInputLayout"
         app:layout_constraintTop_toBottomOf="@id/phoneInputLayout" />

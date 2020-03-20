@@ -86,3 +86,21 @@ fun Date.format(): String {
     val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
     return simpleDateFormat.format(this)
 }
+
+fun Context.showBasicAlertDialog(titleId: Int, messageId: Int) {
+    AlertDialog.Builder(this)
+        .setTitle(titleId)
+        .setMessage(messageId)
+        .setCancelable(false)
+        .setPositiveButton(R.string.ok) { dialog, _ ->
+            dialog.dismiss()
+        }
+        .create()
+        .show()
+}
+
+fun String.isValidEmail(): Boolean =
+    android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+fun String.isValidPhoneNumber(): Boolean =
+    android.util.Patterns.PHONE.matcher(this).matches()

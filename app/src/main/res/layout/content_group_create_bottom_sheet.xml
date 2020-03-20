@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheetView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".view.fragments.GroupCreateBottomSheetFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/groupNameInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="48dp"
+            android:textColorHint="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <pl.pomocnawirus.view.ui.MyTextInputEditText
+                android:id="@+id/groupNameET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorBackground"
+                android:hint="@string/group_name"
+                android:inputType="textCapSentences"
+                android:textColor="?attr/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/groupCityInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/groupNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/groupNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/groupNameInputLayout">
+
+            <pl.pomocnawirus.view.ui.MyTextInputEditText
+                android:id="@+id/groupCityET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorBackground"
+                android:hint="@string/city"
+                android:inputType="textCapWords"
+                android:textColor="?attr/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/groupPhoneInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/groupNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/groupNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/groupCityInputLayout">
+
+            <pl.pomocnawirus.view.ui.MyTextInputEditText
+                android:id="@+id/groupPhoneET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorBackground"
+                android:hint="@string/phone_number"
+                android:inputType="phone|numberSigned"
+                android:textColor="?attr/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/groupEmailInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/groupNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/groupNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/groupPhoneInputLayout">
+
+            <pl.pomocnawirus.view.ui.MyTextInputEditText
+                android:id="@+id/groupEmailET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorBackground"
+                android:hint="@string/email_address"
+                android:inputType="textEmailAddress"
+                android:textColor="?attr/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/groupEmailCheckBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:buttonTint="?attr/colorMenuIcons"
+            android:gravity="center"
+            android:text="@string/use_same_email_as_account"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/groupNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/groupNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/groupEmailInputLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

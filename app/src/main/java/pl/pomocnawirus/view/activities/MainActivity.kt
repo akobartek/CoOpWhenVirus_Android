@@ -10,22 +10,25 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.pomocnawirus.R
+import pl.pomocnawirus.model.User
 import pl.pomocnawirus.utils.PreferencesManager
 import pl.pomocnawirus.utils.isChromeCustomTabsSupported
-import pl.pomocnawirus.view.fragments.SafetyFragmentDirections
-import pl.pomocnawirus.view.fragments.SignInFragmentDirections
-import pl.pomocnawirus.view.fragments.SignUpFragmentDirections
-import pl.pomocnawirus.view.fragments.WebsiteFragmentDirections
+import pl.pomocnawirus.view.fragments.*
+import pl.pomocnawirus.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var mMainViewModel: MainViewModel
+    private lateinit var mLoadingDialog: AlertDialog
     private var mCurrentFragmentId: Int? = null
     private var mBackPressed = 0L
 
@@ -43,42 +46,54 @@ class MainActivity : AppCompatActivity() {
                         }.build().launchUrl(this@MainActivity, Uri.parse("https://korona.ws/"))
                     } else {
                         when (mCurrentFragmentId) {
-                            R.id.navigation_safety ->
-                                findNavController(R.id.navHostFragment).navigate(
-                                    SafetyFragmentDirections.showMapFragment()
-                                )
-                            R.id.navigation_service ->
-                                findNavController(R.id.navHostFragment).navigate(
-                                    SignInFragmentDirections.showMapFragment()
-                                )
+                            R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
+                                SafetyFragmentDirections.showMapFragment()
+                            )
+                            R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
+                                SignInFragmentDirections.showMapFragment()
+                            )
+                            R.id.groupJoinFragment -> findNavController(R.id.navHostFragment).navigate(
+                                GroupJoinFragmentDirections.showMapFragment()
+                            )
+                            R.id.ordersListFragment -> findNavController(R.id.navHostFragment).navigate(
+                                OrdersListFragmentDirections.showMapFragment()
+                            )
+                            R.id.taskListFragment -> findNavController(R.id.navHostFragment).navigate(
+                                TaskListFragmentDirections.showMapFragment()
+                            )
                         }
                     }
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_safety -> {
                     when (mCurrentFragmentId) {
-                        R.id.mapFragment ->
-                            findNavController(R.id.navHostFragment).navigate(
-                                WebsiteFragmentDirections.showSafetyFragment()
-                            )
-                        R.id.signInFragment ->
-                            findNavController(R.id.navHostFragment).navigate(
-                                SignInFragmentDirections.showSafetyFragment()
-                            )
+                        R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
+                            WebsiteFragmentDirections.showSafetyFragment()
+                        )
+                        R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
+                            SignInFragmentDirections.showSafetyFragment()
+                        )
+                        R.id.groupJoinFragment -> findNavController(R.id.navHostFragment).navigate(
+                            GroupJoinFragmentDirections.showSafetyFragment()
+                        )
+                        R.id.ordersListFragment -> findNavController(R.id.navHostFragment).navigate(
+                            OrdersListFragmentDirections.showSafetyFragment()
+                        )
+                        R.id.taskListFragment -> findNavController(R.id.navHostFragment).navigate(
+                            TaskListFragmentDirections.showSafetyFragment()
+                        )
                     }
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_service -> {
-                    // TODO() -> If signed in show different fragment
-                    when (mCurrentFragmentId) {
-                        R.id.mapFragment ->
-                            findNavController(R.id.navHostFragment).navigate(
-                                WebsiteFragmentDirections.showSignInFragment()
-                            )
-                        R.id.safetyFragment ->
-                            findNavController(R.id.navHostFragment).navigate(
-                                SafetyFragmentDirections.showSignInFragment()
-                            )
+                    if (mAuth.currentUser != null) navigateToCorrectServiceFragment()
+                    else when (mCurrentFragmentId) {
+                        R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
+                            WebsiteFragmentDirections.showSignInFragment()
+                        )
+                        R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
+                            SafetyFragmentDirections.showSignInFragment()
+                        )
                     }
                     return@OnNavigationItemSelectedListener true
                 }
@@ -101,6 +116,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         mAuth = FirebaseAuth.getInstance()
+        mMainViewModel = ViewModelProvider(this@MainActivity).get(MainViewModel::class.java)
+        mLoadingDialog = AlertDialog.Builder(this@MainActivity)
+            .setView(R.layout.dialog_loading)
+            .setCancelable(false)
+            .create()
+
         val navController = (navHostFragment as NavHostFragment? ?: return).navController
         navController.addOnDestinationChangedListener { _, destination, _ ->
             mCurrentFragmentId = destination.id
@@ -109,12 +130,63 @@ class MainActivity : AppCompatActivity() {
             else bottomNavView.visibility = View.VISIBLE
         }
 
+        mMainViewModel.currentUser.observe(this@MainActivity, Observer { user ->
+            if (mLoadingDialog.isShowing) mLoadingDialog.hide()
+            if (user != null && bottomNavView.selectedItemId == R.id.navigation_service)
+                navigateToCorrectServiceFragment()
+        })
+
         bottomNavView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
     override fun onResume() {
         super.onResume()
         bottomNavView.selectedItemId = R.id.navigation_safety
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (mLoadingDialog.isShowing) mLoadingDialog.hide()
+    }
+
+    fun getCurrentUser(): User? {
+        return if (mAuth.currentUser != null) mMainViewModel.currentUser.value
+        else null
+    }
+
+    fun navigateToCorrectServiceFragment() {
+        if (mMainViewModel.currentUser.value == null) {
+            mLoadingDialog.show()
+            mMainViewModel.fetchUser()
+            return
+        }
+        val isAdmin = mMainViewModel.currentUser.value?.userType == User.USER_TYPE_ADMIN
+        if (mMainViewModel.currentUser.value?.groupId?.isEmpty() == true)
+            when (mCurrentFragmentId) {
+                R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
+                    SafetyFragmentDirections.showGroupJoinFragment()
+                )
+                R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
+                    WebsiteFragmentDirections.showGroupJoinFragment()
+                )
+                R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
+                    SignInFragmentDirections.showGroupJoinFragment()
+                )
+            }
+        else when (mCurrentFragmentId) {
+            R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
+                if (isAdmin) SafetyFragmentDirections.showOrdersListFragment()
+                else SafetyFragmentDirections.showTaskListFragment()
+            )
+            R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
+                if (isAdmin) WebsiteFragmentDirections.showOrdersListFragment()
+                else WebsiteFragmentDirections.showTaskListFragment()
+            )
+            R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
+                if (isAdmin) SignInFragmentDirections.showOrdersListFragment()
+                else SignInFragmentDirections.showTaskListFragment()
+            )
+        }
     }
 
     override fun onBackPressed() {

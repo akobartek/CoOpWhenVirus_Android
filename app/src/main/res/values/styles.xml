@@ -6,14 +6,12 @@
         <item name="colorPrimary">#402222</item>
         <item name="colorPrimaryDark">#391e1e</item>
         <item name="colorAccent">#391e1e</item>
-        <item name="colorText">#391e1e</item>
+        <item name="colorText">#191919</item>
         <item name="colorButtonText">#000000</item>
         <item name="colorIcons">#4e342e</item>
         <item name="colorMenuIcons">#777777</item>
         <item name="colorBackground">#FFFFFF</item>
         <item name="colorListItemBackground">#FFFFFF</item>
-        <item name="colorControlLight">#39000000</item>
-        <item name="colorIndicatorInactive">#BBBBBB</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
