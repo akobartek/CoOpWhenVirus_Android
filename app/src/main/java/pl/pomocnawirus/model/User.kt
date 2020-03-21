@@ -9,7 +9,7 @@ data class User(
     var name: String = "",
     var userType: String = USER_TYPE_USER,
     var phone: String = "",
-    var groupId: String = "",
+    var teamId: String = "",
     val tasksToDo: ArrayList<String> = arrayListOf()
 ) {
     companion object {
@@ -22,7 +22,7 @@ data class User(
         FirestoreUtils.firestoreKeyName to this.name,
         FirestoreUtils.firestoreKeyPhone to this.phone,
         FirestoreUtils.firestoreKeyUserType to this.userType,
-        FirestoreUtils.firestoreKeyGroupId to this.groupId,
+        FirestoreUtils.firestoreKeyTeamId to this.teamId,
         FirestoreUtils.firestoreKeyTasksToDo to this.tasksToDo
     )
 }

@@ -52,8 +52,8 @@ class MainActivity : AppCompatActivity() {
                             R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
                                 SignInFragmentDirections.showMapFragment()
                             )
-                            R.id.groupJoinFragment -> findNavController(R.id.navHostFragment).navigate(
-                                GroupJoinFragmentDirections.showMapFragment()
+                            R.id.teamJoinFragment -> findNavController(R.id.navHostFragment).navigate(
+                                TeamJoinFragmentDirections.showMapFragment()
                             )
                             R.id.ordersListFragment -> findNavController(R.id.navHostFragment).navigate(
                                 OrdersListFragmentDirections.showMapFragment()
@@ -73,8 +73,8 @@ class MainActivity : AppCompatActivity() {
                         R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
                             SignInFragmentDirections.showSafetyFragment()
                         )
-                        R.id.groupJoinFragment -> findNavController(R.id.navHostFragment).navigate(
-                            GroupJoinFragmentDirections.showSafetyFragment()
+                        R.id.teamJoinFragment -> findNavController(R.id.navHostFragment).navigate(
+                            TeamJoinFragmentDirections.showSafetyFragment()
                         )
                         R.id.ordersListFragment -> findNavController(R.id.navHostFragment).navigate(
                             OrdersListFragmentDirections.showSafetyFragment()
@@ -126,6 +126,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             mCurrentFragmentId = destination.id
             if (mCurrentFragmentId == R.id.signUpFragment
+                || mCurrentFragmentId == R.id.settingsFragment
             ) bottomNavView.visibility = View.GONE
             else bottomNavView.visibility = View.VISIBLE
         }
@@ -161,16 +162,16 @@ class MainActivity : AppCompatActivity() {
             return
         }
         val isAdmin = mMainViewModel.currentUser.value?.userType == User.USER_TYPE_ADMIN
-        if (mMainViewModel.currentUser.value?.groupId?.isEmpty() == true)
+        if (mMainViewModel.currentUser.value?.teamId?.isEmpty() == true)
             when (mCurrentFragmentId) {
                 R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
-                    SafetyFragmentDirections.showGroupJoinFragment()
+                    SafetyFragmentDirections.showTeamJoinFragment()
                 )
                 R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
-                    WebsiteFragmentDirections.showGroupJoinFragment()
+                    WebsiteFragmentDirections.showTeamJoinFragment()
                 )
                 R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
-                    SignInFragmentDirections.showGroupJoinFragment()
+                    SignInFragmentDirections.showTeamJoinFragment()
                 )
             }
         else when (mCurrentFragmentId) {
@@ -193,12 +194,14 @@ class MainActivity : AppCompatActivity() {
         when (mCurrentFragmentId) {
             R.id.signUpFragment ->
                 findNavController(R.id.navHostFragment).navigate(SignUpFragmentDirections.showSignInFragment())
+            R.id.settingsFragment, R.id.teamFindFragment ->
+                findNavController(R.id.navHostFragment).navigateUp()
             else -> doubleBackPressToExit()
         }
     }
 
     private fun doubleBackPressToExit() {
-        if (mBackPressed + 2000 > System.currentTimeMillis()) super.onBackPressed()
+        if (mBackPressed + 2000 > System.currentTimeMillis()) finish()
         else Toast.makeText(
             baseContext,
             getString(R.string.press_to_exit),

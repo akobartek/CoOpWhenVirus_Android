@@ -8,14 +8,14 @@
     android:background="?attr/colorBackground"
     android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".view.fragments.GroupCreateBottomSheetFragment">
+    tools:context=".view.fragments.TeamCreateBottomSheetFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/groupNameInputLayout"
+            android:id="@+id/teamNameInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -27,27 +27,27 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <pl.pomocnawirus.view.ui.MyTextInputEditText
-                android:id="@+id/groupNameET"
+                android:id="@+id/teamNameET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?attr/colorBackground"
-                android:hint="@string/group_name"
+                android:hint="@string/team_name"
                 android:inputType="textCapSentences"
                 android:textColor="?attr/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/groupCityInputLayout"
+            android:id="@+id/teamCityInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textColorHint="?attr/colorText"
-            app:layout_constraintEnd_toEndOf="@+id/groupNameInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/groupNameInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/groupNameInputLayout">
+            app:layout_constraintEnd_toEndOf="@+id/teamNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/teamNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/teamNameInputLayout">
 
             <pl.pomocnawirus.view.ui.MyTextInputEditText
-                android:id="@+id/groupCityET"
+                android:id="@+id/teamCityET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?attr/colorBackground"
@@ -57,17 +57,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/groupPhoneInputLayout"
+            android:id="@+id/teamPhoneInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textColorHint="?attr/colorText"
-            app:layout_constraintEnd_toEndOf="@+id/groupNameInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/groupNameInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/groupCityInputLayout">
+            app:layout_constraintEnd_toEndOf="@+id/teamNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/teamNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/teamCityInputLayout">
 
             <pl.pomocnawirus.view.ui.MyTextInputEditText
-                android:id="@+id/groupPhoneET"
+                android:id="@+id/teamPhoneET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?attr/colorBackground"
@@ -77,17 +77,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/groupEmailInputLayout"
+            android:id="@+id/teamEmailInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textColorHint="?attr/colorText"
-            app:layout_constraintEnd_toEndOf="@+id/groupNameInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/groupNameInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/groupPhoneInputLayout">
+            app:layout_constraintEnd_toEndOf="@+id/teamNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/teamNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/teamPhoneInputLayout">
 
             <pl.pomocnawirus.view.ui.MyTextInputEditText
-                android:id="@+id/groupEmailET"
+                android:id="@+id/teamEmailET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?attr/colorBackground"
@@ -97,7 +97,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/groupEmailCheckBox"
+            android:id="@+id/teamEmailCheckBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -106,8 +106,8 @@
             android:text="@string/use_same_email_as_account"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="?attr/colorText"
-            app:layout_constraintEnd_toEndOf="@+id/groupNameInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/groupNameInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/groupEmailInputLayout" />
+            app:layout_constraintEnd_toEndOf="@+id/teamNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/teamNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/teamEmailInputLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

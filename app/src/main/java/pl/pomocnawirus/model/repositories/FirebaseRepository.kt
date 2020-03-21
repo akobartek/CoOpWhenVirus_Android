@@ -5,7 +5,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import pl.pomocnawirus.model.Group
+import com.google.firebase.firestore.Query
+import pl.pomocnawirus.model.Team
 import pl.pomocnawirus.model.User
 import pl.pomocnawirus.utils.FirestoreUtils
 
@@ -34,27 +35,39 @@ class FirebaseRepository(val app: Application) {
         return isOperationSuccessful
     }
 
-    fun checkIfGroupExists(groupId: String): MutableLiveData<Boolean> {
+    fun checkIfTeamExists(teamId: String): MutableLiveData<Boolean> {
         val liveData = MutableLiveData<Boolean>()
-        mFirestore.collection(FirestoreUtils.firestoreCollectionGroups)
-            .document(groupId)
-            .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
+            .document(teamId)
+            .addSnapshotListener { _, firebaseFirestoreException ->
                 if (firebaseFirestoreException != null) {
                     Log.e("FirebaseRepository", firebaseFirestoreException.toString())
                     liveData.postValue(false)
                 }
-                Log.d("xDDDD", querySnapshot.toString())
                 liveData.postValue(true)
             }
         return liveData
     }
 
-    fun createNewGroup(group: Group): MutableLiveData<Boolean> {
+    fun createNewTeam(team: Team): MutableLiveData<Boolean> {
         val isOperationSuccessful = MutableLiveData<Boolean>()
-        mFirestore.collection(FirestoreUtils.firestoreCollectionGroups)
-            .add(group.createGroupHashMap())
+        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
+            .add(team.createTeamHashMap())
             .addOnSuccessListener { isOperationSuccessful.postValue(true) }
             .addOnFailureListener { isOperationSuccessful.postValue(false) }
         return isOperationSuccessful
     }
+
+    fun getAllTeams(teamsLiveData: MutableLiveData<List<Team>>) {
+        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
+            .orderBy(FirestoreUtils.firestoreKeyCity, Query.Direction.ASCENDING)
+            .orderBy(FirestoreUtils.firestoreKeyName, Query.Direction.ASCENDING)
+            .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                if (firebaseFirestoreException != null) {
+                    Log.e("FirebaseRepository", firebaseFirestoreException.toString())
+                }
+                teamsLiveData.postValue(querySnapshot!!.toObjects(Team::class.java))
+            }
+    }
+
 }

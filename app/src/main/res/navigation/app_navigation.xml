@@ -19,8 +19,8 @@
             app:destination="@+id/signInFragment"
             app:enterAnim="@anim/slide_in_right" />
         <action
-            android:id="@+id/showGroupJoinFragment"
-            app:destination="@+id/groupJoinFragment"
+            android:id="@+id/showTeamJoinFragment"
+            app:destination="@+id/teamJoinFragment"
             app:enterAnim="@anim/slide_in_right" />
         <action
             android:id="@+id/showOrdersListFragment"
@@ -51,8 +51,8 @@
             app:enterAnim="@anim/slide_in_bottom"
             app:popEnterAnim="@anim/slide_in_top" />
         <action
-            android:id="@+id/showGroupJoinFragment"
-            app:destination="@+id/groupJoinFragment"
+            android:id="@+id/showTeamJoinFragment"
+            app:destination="@+id/teamJoinFragment"
             app:enterAnim="@anim/slide_in_right" />
         <action
             android:id="@+id/showOrdersListFragment"
@@ -82,8 +82,8 @@
             app:destination="@+id/signUpFragment"
             app:enterAnim="@anim/slide_in_right" />
         <action
-            android:id="@+id/showGroupJoinFragment"
-            app:destination="@+id/groupJoinFragment"
+            android:id="@+id/showTeamJoinFragment"
+            app:destination="@+id/teamJoinFragment"
             app:enterAnim="@anim/slide_in_right" />
         <action
             android:id="@+id/showOrdersListFragment"
@@ -107,9 +107,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/groupJoinFragment"
-        android:name="pl.pomocnawirus.view.fragments.GroupJoinFragment"
-        tools:layout="@layout/fragment_group_join">
+        android:id="@+id/teamJoinFragment"
+        android:name="pl.pomocnawirus.view.fragments.TeamJoinFragment"
+        tools:layout="@layout/fragment_team_join">
 
         <action
             android:id="@+id/showMapFragment"
@@ -120,8 +120,8 @@
             app:destination="@+id/safetyFragment"
             app:enterAnim="@anim/slide_in_left" />
         <action
-            android:id="@+id/showGroupFindFragment"
-            app:destination="@+id/groupFindFragment"
+            android:id="@+id/showTeamFindFragment"
+            app:destination="@+id/teamFindFragment"
             app:enterAnim="@anim/slide_in_bottom"
             app:popEnterAnim="@anim/slide_in_top" />
         <action
@@ -140,9 +140,9 @@
     </fragment>
 
     <fragment
-        android:id="@+id/groupFindFragment"
-        android:name="pl.pomocnawirus.view.fragments.GroupFindFragment"
-        tools:layout="@layout/fragment_group_find" />
+        android:id="@+id/teamFindFragment"
+        android:name="pl.pomocnawirus.view.fragments.TeamFindFragment"
+        tools:layout="@layout/fragment_team_find" />
 
     <fragment
         android:id="@+id/ordersListFragment"

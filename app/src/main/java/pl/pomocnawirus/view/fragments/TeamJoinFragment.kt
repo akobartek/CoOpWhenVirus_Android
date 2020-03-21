@@ -11,66 +11,66 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.content_group_join.view.*
-import kotlinx.android.synthetic.main.fragment_group_join.view.*
+import kotlinx.android.synthetic.main.content_team_join.view.*
+import kotlinx.android.synthetic.main.fragment_team_join.view.*
 import pl.pomocnawirus.R
-import pl.pomocnawirus.model.Group
+import pl.pomocnawirus.model.Team
 import pl.pomocnawirus.utils.showBasicAlertDialog
 import pl.pomocnawirus.view.activities.MainActivity
-import pl.pomocnawirus.viewmodel.GroupJoinViewModel
+import pl.pomocnawirus.viewmodel.TeamJoinViewModel
 
-class GroupJoinFragment : Fragment() {
+class TeamJoinFragment : Fragment() {
 
-    private lateinit var mViewModel: GroupJoinViewModel
+    private lateinit var mViewModel: TeamJoinViewModel
     private lateinit var mLoadingDialog: AlertDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_group_join, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_team_join, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         inflateToolbarMenu()
 
-        mViewModel = ViewModelProvider(requireActivity()).get(GroupJoinViewModel::class.java)
+        mViewModel = ViewModelProvider(requireActivity()).get(TeamJoinViewModel::class.java)
         mLoadingDialog = AlertDialog.Builder(requireContext())
             .setView(R.layout.dialog_loading)
             .setCancelable(false)
             .create()
 
-        view.browseGroupsBtn.setOnClickListener {
-            findNavController().navigate(GroupJoinFragmentDirections.showGroupFindFragment())
+        view.browseTeamsBtn.setOnClickListener {
+            findNavController().navigate(TeamJoinFragmentDirections.showTeamFindFragment())
         }
 
-        view.createGroupBtn.setOnClickListener {
-            val createGroupBottomSheet = GroupCreateBottomSheetFragment(this@GroupJoinFragment)
-            createGroupBottomSheet.show(childFragmentManager, createGroupBottomSheet.tag)
+        view.createTeamBtn.setOnClickListener {
+            val createTeamBottomSheet = TeamCreateBottomSheetFragment(this@TeamJoinFragment)
+            createTeamBottomSheet.show(childFragmentManager, createTeamBottomSheet.tag)
         }
 
-        view.joinGroupBtn.setOnClickListener {
-            val groupCode = view.groupCodeET.text.toString().trim()
-            if (groupCode.isEmpty()) {
-                view.groupCodeET.error = getString(R.string.group_code_empty_error)
-                view.groupCodeET.requestFocus()
+        view.joinTeamBtn.setOnClickListener {
+            val teamCode = view.teamCodeET.text.toString().trim()
+            if (teamCode.isEmpty()) {
+                view.teamCodeET.error = getString(R.string.team_code_empty_error)
+                view.teamCodeET.requestFocus()
                 return@setOnClickListener
             }
             mLoadingDialog.show()
-            mViewModel.checkIfGroupExists(groupCode)
-                .observe(viewLifecycleOwner, Observer { groupExists ->
-                    if (groupExists) {
+            mViewModel.checkIfTeamExists(teamCode)
+                .observe(viewLifecycleOwner, Observer { teamExists ->
+                    if (teamExists) {
                         val currentUser = (requireActivity() as MainActivity).getCurrentUser()
                         currentUser?.let { user ->
-                            user.groupId = groupCode
+                            user.teamId = teamCode
                             mViewModel.updateUser(currentUser)
                                 .observe(viewLifecycleOwner, Observer { userUpdated ->
                                     if (userUpdated) {
                                         if (mLoadingDialog.isShowing) mLoadingDialog.hide()
                                         Toast.makeText(
                                             requireContext(),
-                                            R.string.added_to_group_successful,
+                                            R.string.added_to_team_successful,
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                        findNavController().navigate(GroupJoinFragmentDirections.showTaskListFragment())
+                                        findNavController().navigate(TeamJoinFragmentDirections.showTaskListFragment())
                                     } else requireContext().showBasicAlertDialog(
                                         R.string.update_error_title,
                                         R.string.update_error_message
@@ -78,8 +78,8 @@ class GroupJoinFragment : Fragment() {
                                 })
                         }
                     } else requireContext().showBasicAlertDialog(
-                        R.string.group_not_found,
-                        R.string.group_code_invalid_error
+                        R.string.team_not_found,
+                        R.string.team_code_invalid_error
                     )
                 })
         }
@@ -90,17 +90,17 @@ class GroupJoinFragment : Fragment() {
         if (mLoadingDialog.isShowing) mLoadingDialog.hide()
     }
 
-    fun createNewGroup(group: Group) {
+    fun createNewTeam(team: Team) {
         mLoadingDialog.show()
-        mViewModel.createNewGroup(group).observe(viewLifecycleOwner, Observer { groupCreated ->
-            if (groupCreated) {
+        mViewModel.createNewTeam(team).observe(viewLifecycleOwner, Observer { teamCreated ->
+            if (teamCreated) {
                 if (mLoadingDialog.isShowing) mLoadingDialog.hide()
                 Toast.makeText(
                     requireContext(),
-                    R.string.group_created_successful,
+                    R.string.team_created_successful,
                     Toast.LENGTH_SHORT
                 ).show()
-                findNavController().navigate(GroupJoinFragmentDirections.showOrdersListFragment())
+                findNavController().navigate(TeamJoinFragmentDirections.showOrdersListFragment())
             } else requireContext().showBasicAlertDialog(
                 R.string.update_error_title,
                 R.string.update_error_message
@@ -109,16 +109,16 @@ class GroupJoinFragment : Fragment() {
     }
 
     private fun inflateToolbarMenu() {
-        view?.groupJoinToolbar?.inflateMenu(R.menu.basic_menu)
-        view?.groupJoinToolbar?.setOnMenuItemClickListener {
+        view?.teamJoinToolbar?.inflateMenu(R.menu.basic_menu)
+        view?.teamJoinToolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_settings -> {
-                    findNavController().navigate(GroupJoinFragmentDirections.showSettingsFragment())
+                    findNavController().navigate(TeamJoinFragmentDirections.showSettingsFragment())
                     true
                 }
                 R.id.action_sign_out -> {
                     FirebaseAuth.getInstance().signOut()
-                    findNavController().navigate(GroupJoinFragmentDirections.showSafetyFragment())
+                    findNavController().navigate(TeamJoinFragmentDirections.showSafetyFragment())
                     true
                 }
                 else -> true

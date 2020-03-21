@@ -4,10 +4,10 @@
     android:id="@+id/bottomSheetLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.GroupCreateBottomSheetFragment">
+    tools:context=".view.fragments.TeamCreateBottomSheetFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/groupCreateAppBarLayout"
+        android:id="@+id/teamCreateAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorBackground"
@@ -23,7 +23,7 @@
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/close_new_group_btn_description"
+                android:contentDescription="@string/close_new_team_btn_description"
                 android:src="@drawable/ic_close"
                 android:tint="?attr/colorMenuIcons" />
 
@@ -35,7 +35,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                android:text="@string/create_group"
+                android:text="@string/create_team"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="?attr/colorMenuIcons" />
 
@@ -44,12 +44,12 @@
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/save_new_group_btn_description"
+                android:contentDescription="@string/save_new_team_btn_description"
                 android:src="@drawable/ic_done"
                 android:tint="?attr/colorMenuIcons" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_group_create_bottom_sheet" />
+    <include layout="@layout/content_team_create_bottom_sheet" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

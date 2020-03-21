@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -35,7 +34,7 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         view.signUpToolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         view.signUpToolbar.setNavigationOnClickListener {
-            view.findNavController().navigate(SignUpFragmentDirections.showSignInFragment())
+            findNavController().navigate(SignUpFragmentDirections.showSignInFragment())
         }
 
         mAuth = FirebaseAuth.getInstance()

@@ -7,21 +7,21 @@
     android:background="?attr/colorBackground"
     android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".view.fragments.GroupJoinFragment">
+    tools:context=".view.fragments.TeamJoinFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/groupCodeTV"
+            android:id="@+id/teamCodeTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="48dp"
             android:layout_marginEnd="32dp"
             android:gravity="center"
-            android:text="@string/group_code_have"
+            android:text="@string/team_code_have"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColor="?attr/colorText"
             android:textStyle="italic"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/groupCodeInputLayout"
+            android:id="@+id/teamCodeInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
@@ -39,20 +39,20 @@
             android:textColorHint="?attr/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/groupCodeTV">
+            app:layout_constraintTop_toBottomOf="@+id/teamCodeTV">
 
             <pl.pomocnawirus.view.ui.MyTextInputEditText
-                android:id="@+id/groupCodeET"
+                android:id="@+id/teamCodeET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="?attr/colorBackground"
-                android:hint="@string/group_code"
+                android:hint="@string/team_code"
                 android:inputType="textEmailAddress"
                 android:textColor="?attr/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/joinGroupBtn"
+            android:id="@+id/joinTeamBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -63,52 +63,52 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:textColor="?attr/colorBackground"
             app:cornerRadius="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/groupCodeInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/groupCodeInputLayout"
-            app:layout_constraintTop_toBottomOf="@id/groupCodeInputLayout" />
+            app:layout_constraintEnd_toEndOf="@+id/teamCodeInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/teamCodeInputLayout"
+            app:layout_constraintTop_toBottomOf="@id/teamCodeInputLayout" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/groupCodeDontHaveTV"
+            android:id="@+id/teamCodeDontHaveTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:gravity="center"
-            android:text="@string/group_code_dont_have"
+            android:text="@string/team_code_dont_have"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColor="?attr/colorText"
             android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="@+id/groupCodeTV"
-            app:layout_constraintStart_toStartOf="@+id/groupCodeTV"
-            app:layout_constraintTop_toBottomOf="@+id/joinGroupBtn" />
+            app:layout_constraintEnd_toEndOf="@+id/teamCodeTV"
+            app:layout_constraintStart_toStartOf="@+id/teamCodeTV"
+            app:layout_constraintTop_toBottomOf="@+id/joinTeamBtn" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/browseGroupsBtn"
+            android:id="@+id/browseTeamsBtn"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/browse_groups"
+            android:text="@string/browse_teams"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:textColor="?colorAccent"
             app:cornerRadius="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/joinGroupBtn"
-            app:layout_constraintStart_toStartOf="@+id/joinGroupBtn"
-            app:layout_constraintTop_toBottomOf="@id/groupCodeDontHaveTV"
+            app:layout_constraintEnd_toEndOf="@+id/joinTeamBtn"
+            app:layout_constraintStart_toStartOf="@+id/joinTeamBtn"
+            app:layout_constraintTop_toBottomOf="@id/teamCodeDontHaveTV"
             app:strokeColor="?colorAccent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/createGroupBtn"
+            android:id="@+id/createTeamBtn"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/create_group"
+            android:text="@string/create_team"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:textColor="?colorAccent"
             app:cornerRadius="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/joinGroupBtn"
-            app:layout_constraintStart_toStartOf="@+id/joinGroupBtn"
-            app:layout_constraintTop_toBottomOf="@id/browseGroupsBtn"
+            app:layout_constraintEnd_toEndOf="@+id/joinTeamBtn"
+            app:layout_constraintStart_toStartOf="@+id/joinTeamBtn"
+            app:layout_constraintTop_toBottomOf="@id/browseTeamsBtn"
             app:strokeColor="?colorAccent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

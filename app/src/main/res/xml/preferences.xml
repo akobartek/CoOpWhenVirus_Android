@@ -12,13 +12,4 @@
             android:title="@string/night_mode_title"
             app:iconSpaceReserved="false" />
     </androidx.preference.PreferenceCategory>
-
-    <androidx.preference.PreferenceCategory>
-        <Preference
-            android:background="?attr/colorBackground"
-            android:key="signOut"
-            android:textColor="?attr/colorText"
-            android:title="@string/sign_out"
-            app:iconSpaceReserved="false" />
-    </androidx.preference.PreferenceCategory>
 </androidx.preference.PreferenceScreen>

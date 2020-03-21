@@ -9,10 +9,10 @@ object FirestoreUtils {
 
     const val firestoreCollectionUsers = "users"
     const val firestoreKeyUserType = "userType"
-    const val firestoreKeyGroupId = "groupId"
+    const val firestoreKeyTeamId = "teamId"
     const val firestoreKeyTasksToDo = "tasksToDo"
 
-    const val firestoreCollectionGroups = "groups"
+    const val firestoreCollectionTeams = "teams"
     const val firestoreKeyAdmins = "admins"
     const val firestoreKeyOrders = "orders"
 

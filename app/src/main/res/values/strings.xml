@@ -61,26 +61,28 @@
     <string name="reset_password_error">Operation failed, please check connection and the input!</string>
     <string name="message_sent">Message sent</string>
 
-    <!-- GROUP STRINGS -->
-    <string name="group_name">Group name</string>
+    <!-- TEAM STRINGS -->
+    <string name="team_name">Team name</string>
     <string name="city">City</string>
-    <string name="group_joining">Group joining</string>
+    <string name="team_joining">Team joining</string>
     <string name="join">Join</string>
-    <string name="group_code_have">If you have your group code, you can type it below:</string>
-    <string name="group_code">Group code</string>
-    <string name="group_code_dont_have">Otherwise:</string>
-    <string name="browse_groups">Browse groups</string>
-    <string name="create_group">Create group</string>
-    <string name="group_code_empty_error">Group code cannot be empty!</string>
-    <string name="group_not_found">Group not found</string>
-    <string name="group_code_invalid_error">No group with the given code was found! Please check if the correct code has been entered!</string>
-    <string name="added_to_group_successful">You have been added to group!</string>
-    <string name="group_created_successful">Your group has been created!</string>
-    <string name="save_new_group_btn_description">Press this icon to create new group</string>
-    <string name="close_new_group_btn_description">Press this icon to close this window</string>
+    <string name="team_code_have">If you have your team code, you can type it below:</string>
+    <string name="team_code">Team code</string>
+    <string name="team_code_dont_have">Otherwise:</string>
+    <string name="browse_teams">Browse teams</string>
+    <string name="create_team">Create team</string>
+    <string name="team_code_empty_error">Team code cannot be empty!</string>
+    <string name="team_not_found">Team not found</string>
+    <string name="team_code_invalid_error">No team with the given code was found! Please check if the correct code has been entered!</string>
+    <string name="added_to_team_successful">You have been added to team!</string>
+    <string name="team_created_successful">Your team has been created!</string>
+    <string name="save_new_team_btn_description">Press this icon to create new team</string>
+    <string name="close_new_team_btn_description">Press this icon to close this window</string>
     <string name="use_same_email_as_account">Use the email address that is assigned to my account</string>
     <string name="city_error_empty">City cannot be empty.</string>
     <string name="phone_error_empty">Phone number cannot be empty.</string>
+    <string name="existing_teams">Existing teams</string>
+    <string name="empty_teams_list">There are no teams created yet!\nYou can create team on your own!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
