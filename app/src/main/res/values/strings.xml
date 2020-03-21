@@ -76,13 +76,18 @@
     <string name="team_code_invalid_error">No team with the given code was found! Please check if the correct code has been entered!</string>
     <string name="added_to_team_successful">You have been added to team!</string>
     <string name="team_created_successful">Your team has been created!</string>
-    <string name="save_new_team_btn_description">Press this icon to create new team</string>
-    <string name="close_new_team_btn_description">Press this icon to close this window</string>
+    <string name="save_new_team_btn_description">Press here to create new team</string>
+    <string name="close_window_btn_description">Press here to close this window</string>
     <string name="use_same_email_as_account">Use the email address that is assigned to my account</string>
     <string name="city_error_empty">City cannot be empty.</string>
     <string name="phone_error_empty">Phone number cannot be empty.</string>
     <string name="existing_teams">Existing teams</string>
     <string name="empty_teams_list">There are no teams created yet!\nYou can create team on your own!</string>
+    <string name="team_details">Team details</string>
+    <string name="email_btn_description">Press here to send email to leader of this team quickly</string>
+    <string name="send_email_chooser">Send mail via:</string>
+    <string name="send_email_error">There is no email client installed!</string>
+    <string name="sms_btn_description">Press here to send sms to leader of this team quickly</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

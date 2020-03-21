@@ -13,7 +13,7 @@ object FirestoreUtils {
     const val firestoreKeyTasksToDo = "tasksToDo"
 
     const val firestoreCollectionTeams = "teams"
-    const val firestoreKeyAdmins = "admins"
+    const val firestoreKeyLeaders = "admins"
     const val firestoreKeyOrders = "orders"
 
     const val firestoreCollectionTasks = "tasks"

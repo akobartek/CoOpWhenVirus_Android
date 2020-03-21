@@ -16,14 +16,12 @@ class FirebaseRepository(val app: Application) {
     private val mFirestore = FirebaseFirestore.getInstance()
 
     fun getCurrentUser(userMutableLiveData: MutableLiveData<User>) =
-        mFirestore.collection(FirestoreUtils.firestoreCollectionUsers)
-            .document(mAuth.currentUser!!.uid)
-            .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-                if (firebaseFirestoreException != null) {
-                    Log.e("FirebaseRepository", firebaseFirestoreException.toString())
-                }
-                userMutableLiveData.postValue(querySnapshot!!.toObject(User::class.java))
+        getCurrentUserDocument().addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            if (firebaseFirestoreException != null) {
+                Log.e("FirebaseRepository", firebaseFirestoreException.toString())
             }
+            userMutableLiveData.postValue(querySnapshot!!.toObject(User::class.java))
+        }
 
     fun updateUserData(user: User): MutableLiveData<Boolean> {
         val isOperationSuccessful = MutableLiveData<Boolean>()
@@ -35,25 +33,38 @@ class FirebaseRepository(val app: Application) {
         return isOperationSuccessful
     }
 
-    fun checkIfTeamExists(teamId: String): MutableLiveData<Boolean> {
-        val liveData = MutableLiveData<Boolean>()
-        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
-            .document(teamId)
-            .addSnapshotListener { _, firebaseFirestoreException ->
-                if (firebaseFirestoreException != null) {
-                    Log.e("FirebaseRepository", firebaseFirestoreException.toString())
-                    liveData.postValue(false)
-                }
-                liveData.postValue(true)
+    fun addUserToTeam(teamId: String): MutableLiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+        val teamDocument =
+            mFirestore.collection(FirestoreUtils.firestoreCollectionTeams).document(teamId)
+        mFirestore.runTransaction { transaction ->
+            val snapshot = transaction.get(teamDocument)
+            if (snapshot.exists()) {
+                transaction.update(
+                    getCurrentUserDocument(),
+                    FirestoreUtils.firestoreKeyTeamId,
+                    teamId
+                )
+            } else {
+                throw Exception("Group don't exists")
             }
-        return liveData
+        }.addOnSuccessListener { result.postValue(true) }
+            .addOnFailureListener { result.postValue(false) }
+        return result
     }
 
     fun createNewTeam(team: Team): MutableLiveData<Boolean> {
         val isOperationSuccessful = MutableLiveData<Boolean>()
-        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
-            .add(team.createTeamHashMap())
-            .addOnSuccessListener { isOperationSuccessful.postValue(true) }
+        val teamDocument =
+            mFirestore.collection(FirestoreUtils.firestoreCollectionTeams).document()
+        mFirestore.runBatch { batch ->
+            batch.set(teamDocument, team.createTeamHashMap())
+            batch.update(
+                getCurrentUserDocument(),
+                FirestoreUtils.firestoreKeyTeamId,
+                teamDocument.id
+            )
+        }.addOnSuccessListener { isOperationSuccessful.postValue(true) }
             .addOnFailureListener { isOperationSuccessful.postValue(false) }
         return isOperationSuccessful
     }
@@ -61,7 +72,6 @@ class FirebaseRepository(val app: Application) {
     fun getAllTeams(teamsLiveData: MutableLiveData<List<Team>>) {
         mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
             .orderBy(FirestoreUtils.firestoreKeyCity, Query.Direction.ASCENDING)
-            .orderBy(FirestoreUtils.firestoreKeyName, Query.Direction.ASCENDING)
             .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 if (firebaseFirestoreException != null) {
                     Log.e("FirebaseRepository", firebaseFirestoreException.toString())
@@ -70,4 +80,7 @@ class FirebaseRepository(val app: Application) {
             }
     }
 
+    private fun getCurrentUserDocument() =
+        mFirestore.collection(FirestoreUtils.firestoreCollectionUsers)
+            .document(mAuth.currentUser!!.uid)
 }

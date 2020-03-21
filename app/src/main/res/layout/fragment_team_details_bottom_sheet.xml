@@ -4,10 +4,10 @@
     android:id="@+id/bottomSheetLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.TeamCreateBottomSheetFragment">
+    tools:context=".view.fragments.TeamDetailsBottomSheetFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/teamCreateAppBarLayout"
+        android:id="@+id/teamInfoAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorBackground"
@@ -32,25 +32,34 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:text="@string/create_team"
+                android:text="@string/team_details"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="?attr/colorMenuIcons" />
 
             <ImageButton
-                android:id="@+id/toolbarSaveBtn"
+                android:id="@+id/toolbarEmailBtn"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/save_new_team_btn_description"
-                android:src="@drawable/ic_done"
+                android:contentDescription="@string/email_btn_description"
+                android:src="@drawable/ic_menu_email"
+                android:tint="?attr/colorMenuIcons" />
+
+            <ImageButton
+                android:id="@+id/toolbarSmsBtn"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/sms_btn_description"
+                android:src="@drawable/ic_menu_message"
                 android:tint="?attr/colorMenuIcons" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_team_create_bottom_sheet" />
+    <include layout="@layout/content_team_info_bottom_sheet" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

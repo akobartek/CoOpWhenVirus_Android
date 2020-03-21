@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheetView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".view.fragments.TeamDetailsBottomSheetFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/teamNameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+            android:textColor="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Bardzo długa nazwa zespołu, która nie mieści się w jednej linii" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/teamCityTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="?attr/colorText"
+            app:drawableTopCompat="@drawable/ic_city"
+            app:layout_constraintEnd_toEndOf="@+id/teamNameTV"
+            app:layout_constraintStart_toStartOf="@+id/teamNameTV"
+            app:layout_constraintTop_toBottomOf="@+id/teamNameTV"
+            tools:text="Bardzo długa nazwa miasta" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/teamPhoneTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="?attr/colorText"
+            app:drawableTopCompat="@drawable/ic_phone"
+            app:layout_constraintEnd_toEndOf="@+id/teamNameTV"
+            app:layout_constraintStart_toStartOf="@+id/teamNameTV"
+            app:layout_constraintTop_toBottomOf="@+id/teamCityTV"
+            tools:text="+48 123456789" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/teamEmailTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="?attr/colorText"
+            app:drawableTopCompat="@drawable/ic_email"
+            app:layout_constraintEnd_toEndOf="@+id/teamNameTV"
+            app:layout_constraintStart_toStartOf="@+id/teamNameTV"
+            app:layout_constraintTop_toBottomOf="@+id/teamPhoneTV"
+            tools:text="bardzodlugiemail@gmail.com" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
             mMainViewModel.fetchUser()
             return
         }
-        val isAdmin = mMainViewModel.currentUser.value?.userType == User.USER_TYPE_ADMIN
+        val isLeader = mMainViewModel.currentUser.value?.userType == User.USER_TYPE_LEADER
         if (mMainViewModel.currentUser.value?.teamId?.isEmpty() == true)
             when (mCurrentFragmentId) {
                 R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
@@ -176,15 +176,15 @@ class MainActivity : AppCompatActivity() {
             }
         else when (mCurrentFragmentId) {
             R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
-                if (isAdmin) SafetyFragmentDirections.showOrdersListFragment()
+                if (isLeader) SafetyFragmentDirections.showOrdersListFragment()
                 else SafetyFragmentDirections.showTaskListFragment()
             )
             R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
-                if (isAdmin) WebsiteFragmentDirections.showOrdersListFragment()
+                if (isLeader) WebsiteFragmentDirections.showOrdersListFragment()
                 else WebsiteFragmentDirections.showTaskListFragment()
             )
             R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
-                if (isAdmin) SignInFragmentDirections.showOrdersListFragment()
+                if (isLeader) SignInFragmentDirections.showOrdersListFragment()
                 else SignInFragmentDirections.showTaskListFragment()
             )
         }

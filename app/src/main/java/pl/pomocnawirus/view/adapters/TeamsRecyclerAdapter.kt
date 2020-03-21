@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_team.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Team
+import pl.pomocnawirus.view.fragments.TeamFindFragment
 
-class TeamsRecyclerAdapter : RecyclerView.Adapter<TeamsRecyclerAdapter.TeamViewHolder>() {
+class TeamsRecyclerAdapter(val fragment: TeamFindFragment) :
+    RecyclerView.Adapter<TeamsRecyclerAdapter.TeamViewHolder>() {
 
     private var mTeamsList = listOf<Team>()
 
@@ -33,9 +35,7 @@ class TeamsRecyclerAdapter : RecyclerView.Adapter<TeamsRecyclerAdapter.TeamViewH
             itemView.teamCityTV.text = team.city
 
             itemView.setOnClickListener {
-                // TODO() -> Show bottom sheet on click
-//                if (mFragment.selectedDeparture == null) mFragment.expandBottomSheet(departure)
-//                else mFragment.hideBottomSheet()
+                fragment.openTeamDetailsBottomSheet(team)
             }
         }
     }

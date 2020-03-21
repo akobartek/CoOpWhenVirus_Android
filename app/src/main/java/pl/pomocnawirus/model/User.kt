@@ -13,7 +13,7 @@ data class User(
     val tasksToDo: ArrayList<String> = arrayListOf()
 ) {
     companion object {
-        const val USER_TYPE_ADMIN = "ADMIN"
+        const val USER_TYPE_LEADER = "ADMIN"
         const val USER_TYPE_USER = "USER"
     }
 

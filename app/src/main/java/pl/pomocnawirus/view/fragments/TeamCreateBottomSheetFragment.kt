@@ -16,10 +16,10 @@ import pl.pomocnawirus.utils.enable
 import pl.pomocnawirus.utils.isValidEmail
 import pl.pomocnawirus.utils.isValidPhoneNumber
 
-class TeamCreateBottomSheetFragment(val teamJoinFragment: TeamJoinFragment) :
+class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragment) :
     BottomSheetDialogFragment() {
 
-    lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
+    private lateinit var mBottomSheetBehavior: BottomSheetBehavior<View>
     private lateinit var mAuth: FirebaseAuth
     private var isEmailCheckBoxChecked = false
 
@@ -29,8 +29,8 @@ class TeamCreateBottomSheetFragment(val teamJoinFragment: TeamJoinFragment) :
         mAuth = FirebaseAuth.getInstance()
         val view = View.inflate(requireContext(), R.layout.fragment_team_create_bottom_sheet, null)
         bottomSheet.setContentView(view)
-        bottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
-        bottomSheetBehavior.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
+        mBottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
+        mBottomSheetBehavior.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
 
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
         view.toolbarSaveBtn.setOnClickListener {
@@ -67,7 +67,7 @@ class TeamCreateBottomSheetFragment(val teamJoinFragment: TeamJoinFragment) :
 
     override fun onStart() {
         super.onStart()
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     private fun areValuesValid(name: String, city: String, phone: String, email: String?): Boolean {

@@ -1,6 +1,7 @@
 package pl.pomocnawirus.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,12 +17,11 @@ import kotlinx.android.synthetic.main.fragment_team_join.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Team
 import pl.pomocnawirus.utils.showBasicAlertDialog
-import pl.pomocnawirus.view.activities.MainActivity
-import pl.pomocnawirus.viewmodel.TeamJoinViewModel
+import pl.pomocnawirus.viewmodel.TeamsViewModel
 
 class TeamJoinFragment : Fragment() {
 
-    private lateinit var mViewModel: TeamJoinViewModel
+    private lateinit var mViewModel: TeamsViewModel
     private lateinit var mLoadingDialog: AlertDialog
 
     override fun onCreateView(
@@ -32,7 +32,7 @@ class TeamJoinFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         inflateToolbarMenu()
 
-        mViewModel = ViewModelProvider(requireActivity()).get(TeamJoinViewModel::class.java)
+        mViewModel = ViewModelProvider(requireActivity()).get(TeamsViewModel::class.java)
         mLoadingDialog = AlertDialog.Builder(requireContext())
             .setView(R.layout.dialog_loading)
             .setCancelable(false)
@@ -55,28 +55,17 @@ class TeamJoinFragment : Fragment() {
                 return@setOnClickListener
             }
             mLoadingDialog.show()
-            mViewModel.checkIfTeamExists(teamCode)
-                .observe(viewLifecycleOwner, Observer { teamExists ->
-                    if (teamExists) {
-                        val currentUser = (requireActivity() as MainActivity).getCurrentUser()
-                        currentUser?.let { user ->
-                            user.teamId = teamCode
-                            mViewModel.updateUser(currentUser)
-                                .observe(viewLifecycleOwner, Observer { userUpdated ->
-                                    if (userUpdated) {
-                                        if (mLoadingDialog.isShowing) mLoadingDialog.hide()
-                                        Toast.makeText(
-                                            requireContext(),
-                                            R.string.added_to_team_successful,
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                        findNavController().navigate(TeamJoinFragmentDirections.showTaskListFragment())
-                                    } else requireContext().showBasicAlertDialog(
-                                        R.string.update_error_title,
-                                        R.string.update_error_message
-                                    )
-                                })
-                        }
+            mViewModel.addUserToTeam(teamCode)
+                .observe(viewLifecycleOwner, Observer { addedToTeam ->
+                    if (mLoadingDialog.isShowing) mLoadingDialog.hide()
+                    Log.d("WTF", addedToTeam.toString())
+                    if (addedToTeam) {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.added_to_team_successful,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        findNavController().navigate(TeamJoinFragmentDirections.showTaskListFragment())
                     } else requireContext().showBasicAlertDialog(
                         R.string.team_not_found,
                         R.string.team_code_invalid_error

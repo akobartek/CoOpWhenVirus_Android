@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,12 +12,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_team_find.view.*
 import pl.pomocnawirus.R
+import pl.pomocnawirus.model.Team
 import pl.pomocnawirus.view.adapters.TeamsRecyclerAdapter
-import pl.pomocnawirus.viewmodel.TeamJoinViewModel
+import pl.pomocnawirus.viewmodel.TeamsViewModel
 
 class TeamFindFragment : Fragment() {
 
-    private lateinit var mViewModel: TeamJoinViewModel
+    private lateinit var mViewModel: TeamsViewModel
     private lateinit var mAdapter: TeamsRecyclerAdapter
 
     override fun onCreateView(
@@ -30,12 +30,12 @@ class TeamFindFragment : Fragment() {
         view.teamFindToolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         view.teamFindToolbar.setNavigationOnClickListener { findNavController().navigateUp() }
 
-        mAdapter = TeamsRecyclerAdapter()
+        mAdapter = TeamsRecyclerAdapter(this@TeamFindFragment)
         view.teamsRecyclerView.layoutManager = LinearLayoutManager(view.context)
         view.teamsRecyclerView.itemAnimator = DefaultItemAnimator()
         view.teamsRecyclerView.adapter = mAdapter
 
-        mViewModel = ViewModelProvider(requireActivity()).get(TeamJoinViewModel::class.java)
+        mViewModel = ViewModelProvider(requireActivity()).get(TeamsViewModel::class.java)
         mViewModel.fetchTeams()
         mViewModel.existingTeams.observe(viewLifecycleOwner, Observer { teams ->
             mAdapter.setTeamsList(teams)
@@ -47,5 +47,10 @@ class TeamFindFragment : Fragment() {
                 view.emptyTeamsView.visibility = View.INVISIBLE
             }
         })
+    }
+
+    fun openTeamDetailsBottomSheet(team: Team) {
+        val teamDetailsBottomSheet = TeamDetailsBottomSheetFragment(team)
+        teamDetailsBottomSheet.show(childFragmentManager, teamDetailsBottomSheet.tag)
     }
 }
