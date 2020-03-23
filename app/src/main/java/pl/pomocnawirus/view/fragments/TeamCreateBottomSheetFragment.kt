@@ -3,6 +3,7 @@ package pl.pomocnawirus.view.fragments
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -11,10 +12,7 @@ import kotlinx.android.synthetic.main.content_team_create_bottom_sheet.view.*
 import kotlinx.android.synthetic.main.fragment_team_create_bottom_sheet.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Team
-import pl.pomocnawirus.utils.disable
-import pl.pomocnawirus.utils.enable
-import pl.pomocnawirus.utils.isValidEmail
-import pl.pomocnawirus.utils.isValidPhoneNumber
+import pl.pomocnawirus.utils.*
 
 class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragment) :
     BottomSheetDialogFragment() {
@@ -24,13 +22,18 @@ class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragme
     private var isEmailCheckBoxChecked = false
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheet = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
 
         mAuth = FirebaseAuth.getInstance()
         val view = View.inflate(requireContext(), R.layout.fragment_team_create_bottom_sheet, null)
-        bottomSheet.setContentView(view)
-        mBottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
-        mBottomSheetBehavior.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
+        bottomSheetDialog.setContentView(view)
+        bottomSheetDialog.setOnShowListener { dialog ->
+            val bottomSheet = (dialog as BottomSheetDialog)
+                .findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+            mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
+            requireActivity().setLayoutFullHeight(bottomSheet)
+            mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        }
 
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
         view.toolbarSaveBtn.setOnClickListener {
@@ -62,12 +65,7 @@ class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragme
             } else view.teamEmailET.enable()
         }
 
-        return bottomSheet
-    }
-
-    override fun onStart() {
-        super.onStart()
-        mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        return bottomSheetDialog
     }
 
     private fun areValuesValid(name: String, city: String, phone: String, email: String?): Boolean {

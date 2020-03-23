@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -12,19 +13,25 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.content_team_info_bottom_sheet.view.*
 import kotlinx.android.synthetic.main.fragment_team_details_bottom_sheet.view.*
 import pl.pomocnawirus.R
-import pl.pomocnawirus.model.Team
+import pl.pomocnawirus.model.TeamSimple
+import pl.pomocnawirus.utils.setLayoutFullHeight
 
-class TeamDetailsBottomSheetFragment(private val mTeam: Team) : BottomSheetDialogFragment() {
+class TeamDetailsBottomSheetFragment(private val mTeam: TeamSimple) : BottomSheetDialogFragment() {
 
     private lateinit var mBottomSheetBehavior: BottomSheetBehavior<View>
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheet = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
 
         val view = View.inflate(requireContext(), R.layout.fragment_team_details_bottom_sheet, null)
-        bottomSheet.setContentView(view)
-        mBottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
-        mBottomSheetBehavior.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
+        bottomSheetDialog.setContentView(view)
+        bottomSheetDialog.setOnShowListener { dialog ->
+            val bottomSheet = (dialog as BottomSheetDialog)
+                .findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+            mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
+            requireActivity().setLayoutFullHeight(bottomSheet)
+            mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        }
 
         view.teamNameTV.text = mTeam.name
         view.teamCityTV.text = mTeam.city
@@ -39,9 +46,15 @@ class TeamDetailsBottomSheetFragment(private val mTeam: Team) : BottomSheetDialo
             emailIntent.type = "message/rfc822"
             emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(mTeam.email))
             try {
-                startActivity(Intent.createChooser(emailIntent, getString(R.string.send_email_chooser)))
+                startActivity(
+                    Intent.createChooser(
+                        emailIntent,
+                        getString(R.string.send_email_chooser)
+                    )
+                )
             } catch (ex: android.content.ActivityNotFoundException) {
-                Toast.makeText(context, getString(R.string.send_email_error), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.send_email_error), Toast.LENGTH_SHORT)
+                    .show()
             }
         }
         view.toolbarSmsBtn.setOnClickListener {
@@ -50,11 +63,6 @@ class TeamDetailsBottomSheetFragment(private val mTeam: Team) : BottomSheetDialo
             startActivity(smsIntent)
         }
 
-        return bottomSheet
-    }
-
-    override fun onStart() {
-        super.onStart()
-        mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        return bottomSheetDialog
     }
 }

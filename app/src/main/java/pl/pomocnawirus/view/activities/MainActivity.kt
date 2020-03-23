@@ -150,13 +150,16 @@ class MainActivity : AppCompatActivity() {
         if (mLoadingDialog.isShowing) mLoadingDialog.hide()
     }
 
-    fun getCurrentUser(): User? {
-        return if (mAuth.currentUser != null) mMainViewModel.currentUser.value
-        else null
+    fun signOut() {
+        mMainViewModel.unregisterUserListener()
+        mMainViewModel.currentUser.postValue(null)
+        mAuth.signOut()
+        bottomNavView.selectedItemId = R.id.navigation_safety
     }
 
     fun navigateToCorrectServiceFragment() {
-        if (mMainViewModel.currentUser.value == null) {
+        if (mAuth.currentUser == null) return
+        else if (mMainViewModel.currentUser.value == null) {
             mLoadingDialog.show()
             mMainViewModel.fetchUser()
             return
@@ -174,19 +177,22 @@ class MainActivity : AppCompatActivity() {
                     SignInFragmentDirections.showTeamJoinFragment()
                 )
             }
-        else when (mCurrentFragmentId) {
-            R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
-                if (isLeader) SafetyFragmentDirections.showOrdersListFragment()
-                else SafetyFragmentDirections.showTaskListFragment()
-            )
-            R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
-                if (isLeader) WebsiteFragmentDirections.showOrdersListFragment()
-                else WebsiteFragmentDirections.showTaskListFragment()
-            )
-            R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
-                if (isLeader) SignInFragmentDirections.showOrdersListFragment()
-                else SignInFragmentDirections.showTaskListFragment()
-            )
+        else {
+            val teamId = mMainViewModel.currentUser.value!!.teamId
+            when (mCurrentFragmentId) {
+                R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
+                    if (isLeader) SafetyFragmentDirections.showOrdersListFragment(teamId)
+                    else SafetyFragmentDirections.showTaskListFragment(teamId)
+                )
+                R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
+                    if (isLeader) WebsiteFragmentDirections.showOrdersListFragment(teamId)
+                    else WebsiteFragmentDirections.showTaskListFragment(teamId)
+                )
+                R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
+                    if (isLeader) SignInFragmentDirections.showOrdersListFragment(teamId)
+                    else SignInFragmentDirections.showTaskListFragment(teamId)
+                )
+            }
         }
     }
 
@@ -194,8 +200,12 @@ class MainActivity : AppCompatActivity() {
         when (mCurrentFragmentId) {
             R.id.signUpFragment ->
                 findNavController(R.id.navHostFragment).navigate(SignUpFragmentDirections.showSignInFragment())
-            R.id.settingsFragment, R.id.teamFindFragment ->
+            R.id.settingsFragment ->
                 findNavController(R.id.navHostFragment).navigateUp()
+            R.id.teamFindFragment ->
+                if ((supportFragmentManager.findFragmentById(R.id.navHostFragment)!!
+                        .childFragmentManager.fragments[0] as TeamFindFragment).onBackPressed()
+                ) findNavController(R.id.navHostFragment).navigateUp()
             else -> doubleBackPressToExit()
         }
     }

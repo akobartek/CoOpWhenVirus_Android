@@ -8,6 +8,7 @@
     <string name="send">Send</string>
     <string name="cancel">Cancel</string>
     <string name="loading">Loading…</string>
+    <string name="search">Search</string>
     <string name="no_internet_title">No internet connection</string>
     <string name="no_internet_reconnect_message">An error with connection occurred, do you want to try again?</string>
     <string name="press_to_exit">Press once again to exit!</string>
@@ -26,7 +27,8 @@
     <string name="night_mode_title">Night mode</string>
     <string name="night_mode_summary">Turn on night mode in the app</string>
 
-    <!-- LOGIN STRINGS -->
+    <!-- AUTH STRINGS -->
+    <string name="my_account">My account</string>
     <string name="email_address">E-mail address</string>
     <string name="password">Password</string>
     <string name="name">Name</string>
@@ -62,6 +64,7 @@
     <string name="message_sent">Message sent</string>
 
     <!-- TEAM STRINGS -->
+    <string name="teams">Teams</string>
     <string name="team_name">Team name</string>
     <string name="city">City</string>
     <string name="team_joining">Team joining</string>
@@ -82,12 +85,20 @@
     <string name="city_error_empty">City cannot be empty.</string>
     <string name="phone_error_empty">Phone number cannot be empty.</string>
     <string name="existing_teams">Existing teams</string>
+    <string name="city_search">City where you want to help</string>
     <string name="empty_teams_list">There are no teams created yet!\nYou can create team on your own!</string>
     <string name="team_details">Team details</string>
     <string name="email_btn_description">Press here to send email to leader of this team quickly</string>
     <string name="send_email_chooser">Send mail via:</string>
     <string name="send_email_error">There is no email client installed!</string>
     <string name="sms_btn_description">Press here to send sms to leader of this team quickly</string>
+    <string name="leave_team">Leave team</string>
+
+    <!-- TASK STRINGS -->
+    <string name="tasks">Tasks</string>
+    <string name="empty_tasks_list">There are no tasks to do!\nYour team is doing great job!</string>
+    <string name="filter">Filter</string>
+    <string name="task_type_image_description">Icon that represents type of the task</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -1,7 +1,6 @@
 package pl.pomocnawirus.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.content_team_join.view.*
 import kotlinx.android.synthetic.main.fragment_team_join.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Team
 import pl.pomocnawirus.utils.showBasicAlertDialog
+import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.viewmodel.TeamsViewModel
 
 class TeamJoinFragment : Fragment() {
@@ -58,14 +57,15 @@ class TeamJoinFragment : Fragment() {
             mViewModel.addUserToTeam(teamCode)
                 .observe(viewLifecycleOwner, Observer { addedToTeam ->
                     if (mLoadingDialog.isShowing) mLoadingDialog.hide()
-                    Log.d("WTF", addedToTeam.toString())
                     if (addedToTeam) {
                         Toast.makeText(
                             requireContext(),
                             R.string.added_to_team_successful,
                             Toast.LENGTH_SHORT
                         ).show()
-                        findNavController().navigate(TeamJoinFragmentDirections.showTaskListFragment())
+                        findNavController().navigate(
+                            TeamJoinFragmentDirections.showTaskListFragment(teamCode)
+                        )
                     } else requireContext().showBasicAlertDialog(
                         R.string.team_not_found,
                         R.string.team_code_invalid_error
@@ -81,15 +81,17 @@ class TeamJoinFragment : Fragment() {
 
     fun createNewTeam(team: Team) {
         mLoadingDialog.show()
-        mViewModel.createNewTeam(team).observe(viewLifecycleOwner, Observer { teamCreated ->
-            if (teamCreated) {
+        mViewModel.createNewTeam(team).observe(viewLifecycleOwner, Observer { teamId ->
+            if (teamId.isNotEmpty()) {
                 if (mLoadingDialog.isShowing) mLoadingDialog.hide()
                 Toast.makeText(
                     requireContext(),
                     R.string.team_created_successful,
                     Toast.LENGTH_SHORT
                 ).show()
-                findNavController().navigate(TeamJoinFragmentDirections.showOrdersListFragment())
+                findNavController().navigate(
+                    TeamJoinFragmentDirections.showOrdersListFragment(teamId)
+                )
             } else requireContext().showBasicAlertDialog(
                 R.string.update_error_title,
                 R.string.update_error_message
@@ -106,8 +108,7 @@ class TeamJoinFragment : Fragment() {
                     true
                 }
                 R.id.action_sign_out -> {
-                    FirebaseAuth.getInstance().signOut()
-                    findNavController().navigate(TeamJoinFragmentDirections.showSafetyFragment())
+                    (requireActivity() as MainActivity).signOut()
                     true
                 }
                 else -> true

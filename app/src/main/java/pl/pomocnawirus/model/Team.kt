@@ -21,3 +21,11 @@ data class Team(
         FirestoreUtils.firestoreKeyOrders to this.orders
     )
 }
+
+data class TeamSimple(
+    @DocumentId var id: String = "",
+    var name: String = "",
+    var city: String = "",
+    var email: String = "",
+    var phone: String = ""
+)

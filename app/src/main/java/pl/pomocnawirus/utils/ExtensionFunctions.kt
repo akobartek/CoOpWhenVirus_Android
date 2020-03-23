@@ -7,7 +7,9 @@ import android.net.ConnectivityManager
 import android.os.Build
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
+import android.util.DisplayMetrics
 import android.widget.EditText
+import android.widget.FrameLayout
 import androidx.appcompat.app.AlertDialog
 import pl.pomocnawirus.R
 import java.text.SimpleDateFormat
@@ -20,11 +22,29 @@ fun Context.isChromeCustomTabsSupported(): Boolean {
     return resolveInfos.isNotEmpty()
 }
 
+fun Context.showBasicAlertDialog(titleId: Int, messageId: Int) {
+    AlertDialog.Builder(this)
+        .setTitle(titleId)
+        .setMessage(messageId)
+        .setCancelable(false)
+        .setPositiveButton(R.string.ok) { dialog, _ ->
+            dialog.dismiss()
+        }
+        .create()
+        .show()
+}
+
 fun String.createUnderlinedString(): SpannableString {
     val spannable = SpannableString(this)
     spannable.setSpan(UnderlineSpan(), 0, this.length, 0)
     return spannable
 }
+
+fun String.isValidEmail(): Boolean =
+    android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+fun String.isValidPhoneNumber(): Boolean =
+    android.util.Patterns.PHONE.matcher(this).matches()
 
 fun Activity.showNoInternetDialogWithTryAgain(
     function: () -> Unit,
@@ -70,6 +90,18 @@ fun Activity.tryToRunFunctionOnInternet(function: () -> Unit, functionCancel: ()
     else showNoInternetDialogWithTryAgain(function, functionCancel)
 }
 
+fun Activity.setLayoutFullHeight(layout: FrameLayout) {
+    val layoutParams = layout.layoutParams
+    if (layoutParams != null) layoutParams.height = this.getWindowHeight()
+    layout.layoutParams = layoutParams
+}
+
+fun Activity.getWindowHeight(): Int {
+    val displayMetrics = DisplayMetrics()
+    this.windowManager.defaultDisplay.getMetrics(displayMetrics)
+    return displayMetrics.heightPixels
+}
+
 fun EditText.enable() {
     isFocusable = true
     isEnabled = true
@@ -86,21 +118,3 @@ fun Date.format(): String {
     val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
     return simpleDateFormat.format(this)
 }
-
-fun Context.showBasicAlertDialog(titleId: Int, messageId: Int) {
-    AlertDialog.Builder(this)
-        .setTitle(titleId)
-        .setMessage(messageId)
-        .setCancelable(false)
-        .setPositiveButton(R.string.ok) { dialog, _ ->
-            dialog.dismiss()
-        }
-        .create()
-        .show()
-}
-
-fun String.isValidEmail(): Boolean =
-    android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
-
-fun String.isValidPhoneNumber(): Boolean =
-    android.util.Patterns.PHONE.matcher(this).matches()

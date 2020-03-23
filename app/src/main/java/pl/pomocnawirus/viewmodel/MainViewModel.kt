@@ -16,5 +16,7 @@ class MainViewModel(val app: Application) : AndroidViewModel(app) {
         currentUser.postValue(null)
     }
 
-    fun fetchUser() = mFirebaseRepository.getCurrentUser(currentUser)
+    fun fetchUser() = mFirebaseRepository.fetchCurrentUser(currentUser)
+
+    fun unregisterUserListener() = mFirebaseRepository.unregisterUserListener()
 }
