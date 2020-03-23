@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_change_password"
+        android:title="@string/change_password"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_change_email"
+        android:title="@string/change_email_address"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_leave_team"
+        android:title="@string/leave_team"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_delete_account"
+        android:title="@string/delete_account"
+        app:showAsAction="never" />
+</menu>

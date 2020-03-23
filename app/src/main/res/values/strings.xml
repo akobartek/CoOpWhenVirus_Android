@@ -6,6 +6,7 @@
     <string name="ok" translatable="false">OK</string>
     <string name="try_again">Try again</string>
     <string name="send">Send</string>
+    <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="loading">Loading…</string>
     <string name="search">Search</string>
@@ -20,6 +21,7 @@
     <string name="data_saved">Data successfully saved!</string>
     <string name="update_error_title">Data not saved!</string>
     <string name="update_error_message">There was an error with saving the data, please check connection and try again!</string>
+    <string name="operation_failed_message">Operation failed, please check connection and try again later!</string>
 
     <!-- PREFERENCES STRINGS -->
     <string name="preferences">Preferences</string>
@@ -27,7 +29,7 @@
     <string name="night_mode_title">Night mode</string>
     <string name="night_mode_summary">Turn on night mode in the app</string>
 
-    <!-- AUTH STRINGS -->
+    <!-- ACCOUNT STRINGS -->
     <string name="my_account">My account</string>
     <string name="email_address">E-mail address</string>
     <string name="password">Password</string>
@@ -41,7 +43,7 @@
     <string name="back_to_sign_in">Return to sign in</string>
     <string name="email_error">Incorrect email address.</string>
     <string name="phone_error_incorrect">Incorrect phone number.</string>
-    <string name="password_error_empty">Password can not be empty!</string>
+    <string name="password_error_empty">Password cannot be empty!</string>
     <string name="password_error_too_short">Password must contain at least 6 signs.</string>
     <string name="password_error_wrong">Password must contain upper/lowercase and number.</string>
     <string name="name_error_too_short">Name must contain at least 3 signs.</string>
@@ -58,10 +60,33 @@
     <string name="verify_email_dialog_title">Verify email</string>
     <string name="verify_email_dialog_message">In order to use your account, you must verify your account.</string>
     <string name="verify_email_send_again">Send again</string>
-    <string name="reset_password_dialog_title">Reset Password</string>
+    <string name="reset_password_dialog_title">Reset password</string>
     <string name="reset_password_dialog_message">Enter the email address:</string>
-    <string name="reset_password_error">Operation failed, please check connection and the input!</string>
+    <string name="operation_failed_error">Operation failed, please check connection and the input!</string>
     <string name="message_sent">Message sent</string>
+    <string name="change_password">Change password</string>
+    <string name="change_email_address">Change e-mail address</string>
+    <string name="leave_team">Leave team</string>
+    <string name="leave_team_dialog_title">Leaving team</string>
+    <string name="leave_team_dialog_message">Are you sure you want to leave your team?</string>
+    <string name="leave">Leave</string>
+    <string name="leave_successful">Leaving successful</string>
+    <string name="leave_failed_title">Leaving failed</string>
+    <string name="leave_failed_message_leader">You cannot leave your group without finding a new leader!</string>
+    <string name="delete_account">Delete account</string>
+    <string name="current_password">Current password</string>
+    <string name="new_password">New password</string>
+    <string name="repeat_new_password">Repeat new password</string>
+    <string name="repeated_password_error">Passwords do not match</string>
+    <string name="authenticate_failed">Wrong password, please check the input</string>
+    <string name="change_password_successful">Password changed!</string>
+    <string name="new_email_address">New e-mail address</string>
+    <string name="change_email_successful">E-mail address changed!</string>
+    <string name="delete_account_dialog_title">Deleting user</string>
+    <string name="delete_account_dialog_message">If you want to delete your account, verify your password below</string>
+    <string name="delete_successful">Account deleted</string>
+    <string name="delete_failed_title">Deleting failed</string>
+    <string name="delete_failed_message_leader">You cannot delete your account without finding a new leader!</string>
 
     <!-- TEAM STRINGS -->
     <string name="teams">Teams</string>
@@ -92,11 +117,10 @@
     <string name="send_email_chooser">Send mail via:</string>
     <string name="send_email_error">There is no email client installed!</string>
     <string name="sms_btn_description">Press here to send sms to leader of this team quickly</string>
-    <string name="leave_team">Leave team</string>
 
     <!-- TASK STRINGS -->
     <string name="tasks">Tasks</string>
-    <string name="empty_tasks_list">There are no tasks to do!\nYour team is doing great job!</string>
+    <string name="empty_tasks_list">There are no tasks to show!\nYour team is doing great job!</string>
     <string name="filter">Filter</string>
     <string name="task_type_image_description">Icon that represents type of the task</string>
 

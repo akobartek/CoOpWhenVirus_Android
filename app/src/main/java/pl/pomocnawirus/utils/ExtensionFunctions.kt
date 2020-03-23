@@ -10,10 +10,12 @@ import android.text.style.UnderlineSpan
 import android.util.DisplayMetrics
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import pl.pomocnawirus.R
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.regex.Pattern
 
 fun Context.isChromeCustomTabsSupported(): Boolean {
     val serviceIntent = Intent("android.support.customtabs.action.CustomTabsService")
@@ -22,17 +24,20 @@ fun Context.isChromeCustomTabsSupported(): Boolean {
     return resolveInfos.isNotEmpty()
 }
 
-fun Context.showBasicAlertDialog(titleId: Int, messageId: Int) {
-    AlertDialog.Builder(this)
-        .setTitle(titleId)
+fun Context.showBasicAlertDialog(titleId: Int?, messageId: Int) {
+    val alertDialog = AlertDialog.Builder(this)
         .setMessage(messageId)
         .setCancelable(false)
         .setPositiveButton(R.string.ok) { dialog, _ ->
             dialog.dismiss()
         }
         .create()
-        .show()
+    titleId?.let { alertDialog.setTitle(titleId) }
+    alertDialog.show()
 }
+
+fun Context.showShortToast(messageId: Int) =
+    Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show()
 
 fun String.createUnderlinedString(): SpannableString {
     val spannable = SpannableString(this)
@@ -42,6 +47,13 @@ fun String.createUnderlinedString(): SpannableString {
 
 fun String.isValidEmail(): Boolean =
     android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+fun String.isValidPassword(): Boolean {
+    val passwordRegex = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z]).{6,20})"
+    val pattern = Pattern.compile(passwordRegex)
+    val matcher = pattern.matcher(this)
+    return matcher.matches()
+}
 
 fun String.isValidPhoneNumber(): Boolean =
     android.util.Patterns.PHONE.matcher(this).matches()

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="?attr/colorText">
+
+        <pl.pomocnawirus.view.ui.MyTextInputEditText
+            android:id="@+id/deleteAccountPasswordET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFF"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textColor="#28292e"
+            android:textColorHint="#28292e" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</FrameLayout>

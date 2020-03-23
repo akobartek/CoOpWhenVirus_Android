@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,6 +19,7 @@ import kotlinx.android.synthetic.main.dialog_reset_password.view.*
 import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.utils.createUnderlinedString
+import pl.pomocnawirus.utils.showShortToast
 import pl.pomocnawirus.view.activities.MainActivity
 
 class SignInFragment : Fragment() {
@@ -61,7 +61,7 @@ class SignInFragment : Fragment() {
                             mAuth.signOut()
                             view.signInBtn.isEnabled = true
                         } else {
-                            Toast.makeText(context, R.string.signed_in, Toast.LENGTH_SHORT).show()
+                            requireContext().showShortToast(R.string.signed_in)
                             (requireActivity() as MainActivity).navigateToCorrectServiceFragment()
                         }
                     } else {
@@ -119,9 +119,9 @@ class SignInFragment : Fragment() {
             }
             .setNeutralButton(getString(R.string.verify_email_send_again)) { dialog, _ ->
                 dialog.dismiss()
+                mAuth.useAppLanguage()
                 mAuth.currentUser?.sendEmailVerification()
-                Toast.makeText(context!!, getString(R.string.message_sent), Toast.LENGTH_SHORT)
-                    .show()
+                requireContext().showShortToast(R.string.message_sent)
             }
             .create()
             .show()
@@ -147,6 +147,7 @@ class SignInFragment : Fragment() {
                     dialogView.resetPasswordET.error = getString(R.string.email_error)
                     return@setOnClickListener
                 } else {
+                    mAuth.useAppLanguage()
                     mAuth.sendPasswordResetEmail(email)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
@@ -158,7 +159,7 @@ class SignInFragment : Fragment() {
                                 ).show()
                             } else {
                                 dialogView.resetPasswordET.error =
-                                    getString(R.string.reset_password_error)
+                                    getString(R.string.operation_failed_error)
                             }
                         }
                 }

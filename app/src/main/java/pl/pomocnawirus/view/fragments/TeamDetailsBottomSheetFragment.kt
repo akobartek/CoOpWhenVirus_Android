@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -15,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_team_details_bottom_sheet.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.TeamSimple
 import pl.pomocnawirus.utils.setLayoutFullHeight
+import pl.pomocnawirus.utils.showShortToast
 
 class TeamDetailsBottomSheetFragment(private val mTeam: TeamSimple) : BottomSheetDialogFragment() {
 
@@ -53,8 +53,7 @@ class TeamDetailsBottomSheetFragment(private val mTeam: TeamSimple) : BottomShee
                     )
                 )
             } catch (ex: android.content.ActivityNotFoundException) {
-                Toast.makeText(context, getString(R.string.send_email_error), Toast.LENGTH_SHORT)
-                    .show()
+                requireContext().showShortToast(R.string.send_email_error)
             }
         }
         view.toolbarSmsBtn.setOnClickListener {

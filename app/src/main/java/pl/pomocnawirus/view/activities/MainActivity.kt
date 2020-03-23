@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -21,6 +20,7 @@ import pl.pomocnawirus.R
 import pl.pomocnawirus.model.User
 import pl.pomocnawirus.utils.PreferencesManager
 import pl.pomocnawirus.utils.isChromeCustomTabsSupported
+import pl.pomocnawirus.utils.showShortToast
 import pl.pomocnawirus.view.fragments.*
 import pl.pomocnawirus.viewmodel.MainViewModel
 
@@ -127,6 +127,7 @@ class MainActivity : AppCompatActivity() {
             mCurrentFragmentId = destination.id
             if (mCurrentFragmentId == R.id.signUpFragment
                 || mCurrentFragmentId == R.id.settingsFragment
+                || mCurrentFragmentId == R.id.accountFragment
             ) bottomNavView.visibility = View.GONE
             else bottomNavView.visibility = View.VISIBLE
         }
@@ -149,6 +150,8 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
         if (mLoadingDialog.isShowing) mLoadingDialog.hide()
     }
+
+    fun getCurrenUser(): User? = mMainViewModel.currentUser.value
 
     fun signOut() {
         mMainViewModel.unregisterUserListener()
@@ -200,7 +203,7 @@ class MainActivity : AppCompatActivity() {
         when (mCurrentFragmentId) {
             R.id.signUpFragment ->
                 findNavController(R.id.navHostFragment).navigate(SignUpFragmentDirections.showSignInFragment())
-            R.id.settingsFragment ->
+            R.id.settingsFragment, R.id.accountFragment ->
                 findNavController(R.id.navHostFragment).navigateUp()
             R.id.teamFindFragment ->
                 if ((supportFragmentManager.findFragmentById(R.id.navHostFragment)!!
@@ -212,11 +215,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun doubleBackPressToExit() {
         if (mBackPressed + 2000 > System.currentTimeMillis()) finish()
-        else Toast.makeText(
-            baseContext,
-            getString(R.string.press_to_exit),
-            Toast.LENGTH_SHORT
-        ).show()
+        baseContext.showShortToast(R.string.press_to_exit)
         mBackPressed = System.currentTimeMillis()
     }
 

@@ -165,6 +165,10 @@
             app:destination="@+id/settingsFragment"
             app:enterAnim="@anim/slide_in_bottom"
             app:popEnterAnim="@anim/slide_in_top" />
+        <action
+            android:id="@+id/showAccountFragment"
+            app:destination="@+id/accountFragment"
+            app:enterAnim="@anim/slide_in_right" />
     </fragment>
 
     <fragment
@@ -188,6 +192,25 @@
             app:destination="@+id/settingsFragment"
             app:enterAnim="@anim/slide_in_bottom"
             app:popEnterAnim="@anim/slide_in_top" />
+        <action
+            android:id="@+id/showAccountFragment"
+            app:destination="@+id/accountFragment"
+            app:enterAnim="@anim/slide_in_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="pl.pomocnawirus.view.fragments.AccountFragment"
+        tools:layout="@layout/fragment_account">
+
+        <action
+            android:id="@+id/showSignInFragment"
+            app:destination="@+id/signInFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/showTeamJoinFragment"
+            app:destination="@+id/teamJoinFragment"
+            app:enterAnim="@anim/slide_in_left" />
     </fragment>
 
     <fragment

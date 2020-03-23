@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_team_join.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Team
 import pl.pomocnawirus.utils.showBasicAlertDialog
+import pl.pomocnawirus.utils.showShortToast
 import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.viewmodel.TeamsViewModel
 
@@ -58,11 +58,7 @@ class TeamJoinFragment : Fragment() {
                 .observe(viewLifecycleOwner, Observer { addedToTeam ->
                     if (mLoadingDialog.isShowing) mLoadingDialog.hide()
                     if (addedToTeam) {
-                        Toast.makeText(
-                            requireContext(),
-                            R.string.added_to_team_successful,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        requireContext().showShortToast(R.string.added_to_team_successful)
                         findNavController().navigate(
                             TeamJoinFragmentDirections.showTaskListFragment(teamCode)
                         )
@@ -84,11 +80,7 @@ class TeamJoinFragment : Fragment() {
         mViewModel.createNewTeam(team).observe(viewLifecycleOwner, Observer { teamId ->
             if (teamId.isNotEmpty()) {
                 if (mLoadingDialog.isShowing) mLoadingDialog.hide()
-                Toast.makeText(
-                    requireContext(),
-                    R.string.team_created_successful,
-                    Toast.LENGTH_SHORT
-                ).show()
+                requireContext().showShortToast(R.string.team_created_successful)
                 findNavController().navigate(
                     TeamJoinFragmentDirections.showOrdersListFragment(teamId)
                 )

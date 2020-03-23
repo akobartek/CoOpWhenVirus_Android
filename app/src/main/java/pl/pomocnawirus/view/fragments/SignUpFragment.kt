@@ -19,8 +19,8 @@ import pl.pomocnawirus.R
 import pl.pomocnawirus.model.User
 import pl.pomocnawirus.utils.FirestoreUtils.firestoreCollectionUsers
 import pl.pomocnawirus.utils.isValidEmail
+import pl.pomocnawirus.utils.isValidPassword
 import pl.pomocnawirus.utils.isValidPhoneNumber
-import java.util.regex.Pattern
 
 class SignUpFragment : Fragment() {
 
@@ -54,6 +54,7 @@ class SignUpFragment : Fragment() {
             mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity!!) { task ->
                     if (task.isSuccessful) {
+                        mAuth.useAppLanguage()
                         mAuth.currentUser?.sendEmailVerification()
                         val user = User("", email, name, User.USER_TYPE_USER, phoneNumber, "")
 
@@ -109,7 +110,7 @@ class SignUpFragment : Fragment() {
         if (pass.length < 6) {
             view!!.passwordET.error = getString(R.string.password_error_too_short)
             isValid = false
-        } else if (!isValidPassword(pass)) {
+        } else if (!pass.isValidPassword()) {
             view!!.passwordET.error = getString(R.string.password_error_wrong)
             isValid = false
         }
@@ -122,12 +123,5 @@ class SignUpFragment : Fragment() {
             isValid = false
         }
         return isValid
-    }
-
-    private fun isValidPassword(password: CharSequence): Boolean {
-        val passwordRegex = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z]).{6,20})"
-        val pattern = Pattern.compile(passwordRegex)
-        val matcher = pattern.matcher(password)
-        return matcher.matches()
     }
 }

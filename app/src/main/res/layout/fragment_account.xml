@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground"
+    tools:context=".view.fragments.AccountFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/accountAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorBackground"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/accountToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorBackground"
+            app:layout_scrollFlags="enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/my_account"
+            app:titleTextColor="?attr/colorMenuIcons" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_account" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
