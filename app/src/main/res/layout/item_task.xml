@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_task_pets" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/taskDescriptionTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Bardzo długi opis zadania, które należy jak najszybciej wykonać" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/taskRealizationDateTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

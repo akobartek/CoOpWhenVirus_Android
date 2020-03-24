@@ -12,7 +12,7 @@ import pl.pomocnawirus.model.Task.Companion.TASK_TYPE_PETS
 import pl.pomocnawirus.model.Task.Companion.TASK_TYPE_SHOPPING
 import pl.pomocnawirus.utils.format
 
-class TasksRecyclerAdapter(val openBottomSheetFunction: () -> Unit) :
+class TasksRecyclerAdapter(val openBottomSheetFunction: (Task) -> Unit) :
     RecyclerView.Adapter<TasksRecyclerAdapter.TaskViewHolder>() {
 
     private var mTasks = listOf<Task>()
@@ -39,17 +39,10 @@ class TasksRecyclerAdapter(val openBottomSheetFunction: () -> Unit) :
             itemView.taskRealizationDateTV.visibility =
                 if (task.realizationDate != null) View.VISIBLE else View.GONE
 
-            itemView.taskTypeImage.setImageResource(
-                when (task.type) {
-                    TASK_TYPE_SHOPPING -> R.drawable.ic_task_shopping
-                    TASK_TYPE_PETS -> R.drawable.ic_task_pets
-                    TASK_TYPE_HOME -> R.drawable.ic_task_home
-                    else -> R.drawable.ic_task_other
-                }
-            )
+            itemView.taskTypeImage.setImageResource(task.getIconDrawableId())
 
             itemView.setOnClickListener {
-                openBottomSheetFunction()
+                openBottomSheetFunction(task)
             }
         }
     }

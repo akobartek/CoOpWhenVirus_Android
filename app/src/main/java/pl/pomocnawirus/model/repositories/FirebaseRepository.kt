@@ -6,13 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.firestore.Query
-import pl.pomocnawirus.model.Task
-import pl.pomocnawirus.model.Team
-import pl.pomocnawirus.model.TeamSimple
-import pl.pomocnawirus.model.User
+import com.google.firebase.firestore.*
+import pl.pomocnawirus.model.*
 import pl.pomocnawirus.utils.FirestoreUtils
 
 class FirebaseRepository(val app: Application) {
@@ -24,7 +19,6 @@ class FirebaseRepository(val app: Application) {
     private lateinit var mTeamSnapshot: ListenerRegistration
 
     // region USERS
-
     fun fetchCurrentUser(userMutableLiveData: MutableLiveData<User>) {
         mCurrentUserSnapshot =
             getCurrentUserDocument().addSnapshotListener { querySnapshot, firebaseFirestoreException ->
@@ -49,10 +43,8 @@ class FirebaseRepository(val app: Application) {
 
     fun addUserToTeam(teamId: String): MutableLiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
-        val teamDocument =
-            mFirestore.collection(FirestoreUtils.firestoreCollectionTeams).document(teamId)
         mFirestore.runTransaction { transaction ->
-            val snapshot = transaction.get(teamDocument)
+            val snapshot = transaction.get(getTeamDocument(teamId))
             if (snapshot.exists()) {
                 transaction.update(
                     getCurrentUserDocument(),
@@ -107,7 +99,6 @@ class FirebaseRepository(val app: Application) {
 
 
     //region TEAMS
-
     fun createNewTeam(team: Team): MutableLiveData<String> {
         val isOperationSuccessful = MutableLiveData<String>()
         val teamDocument =
@@ -140,35 +131,35 @@ class FirebaseRepository(val app: Application) {
             }
     }
 
-    fun fetchTeam(teamMutableLiveData: MutableLiveData<Team>, teamId: String) {
-        mTeamSnapshot =
-            mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
-                .document(teamId)
-                .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-                    if (firebaseFirestoreException != null) {
-                        Log.e("FirebaseRepository", firebaseFirestoreException.toString())
-                    }
-                    teamMutableLiveData.postValue(querySnapshot!!.toObject(Team::class.java))
-                }
+    fun fetchOrders(ordersMutableLiveData: MutableLiveData<ArrayList<Order>>, teamId: String) {
+        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+            .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
+            .get()
+            .addOnSuccessListener { orders ->
+                val arrayList = arrayListOf<Order>()
+                arrayList.addAll(orders!!.toObjects(Order::class.java))
+                ordersMutableLiveData.postValue(arrayList)
+            }
+            .addOnFailureListener { ordersMutableLiveData.postValue(arrayListOf()) }
+    }
+
+    fun updateOrder(order: Order): MutableLiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+            .document(order.id)
+            .set(order.createOrderHashMap())
+            .addOnSuccessListener { result.postValue(true) }
+            .addOnFailureListener { result.postValue(false) }
+        return result
     }
 
     fun leaveTeam(isLeader: Boolean, teamId: String): MutableLiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
-        val teamDocument =
-            mFirestore.collection(FirestoreUtils.firestoreCollectionTeams).document(teamId)
+        val teamDocument = mFirestore.collection(FirestoreUtils.firestoreCollectionTeams).document()
         mFirestore.runTransaction { transaction ->
             val team = transaction.get(teamDocument).toObject(Team::class.java)!!
-            team.orders.forEach { order ->
-                order.tasks.forEach { task ->
-                    if (task.volunteerId == mAuth.currentUser!!.uid) {
-                        task.volunteerId = ""
-                        if (task.status == Task.TASK_STATUS_ACCEPTED)
-                            task.status = Task.TASK_STATUS_ADDED
-                    }
-                }
-            }
-            transaction.update(teamDocument, FirestoreUtils.firestoreKeyOrders, team.orders)
             if (!isLeader) {
+                Tasks.await(resetUserActivities(teamId, transaction))
                 unregisterTeamListener()
                 transaction.update(
                     getCurrentUserDocument(),
@@ -176,6 +167,7 @@ class FirebaseRepository(val app: Application) {
                     ""
                 )
             } else if (team.leaders.size > 1) {
+                Tasks.await(resetUserActivities(teamId, transaction))
                 unregisterTeamListener()
                 transaction.update(
                     teamDocument,
@@ -190,10 +182,14 @@ class FirebaseRepository(val app: Application) {
             } else {
                 val usersSnap =
                     Tasks.await(mFirestore.collection(FirestoreUtils.firestoreCollectionUsers)
-                        .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
-                        .get()
+                        .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId).get()
                         .addOnFailureListener { throw Exception("Something went wrong") })
                 if (usersSnap.documents.size == 1) {
+                    mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+                        .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
+                        .addSnapshotListener { querySnapshot, _ ->
+                            querySnapshot?.documents?.forEach { transaction.delete(it.reference) }
+                        }
                     unregisterTeamListener()
                     transaction.delete(teamDocument)
                     transaction.update(
@@ -203,13 +199,42 @@ class FirebaseRepository(val app: Application) {
                     )
                 } else throw Exception("User in the only leader in the group!")
             }
-        }.addOnSuccessListener {
-            result.postValue(true)
-        }
+        }.addOnSuccessListener { result.postValue(true) }
             .addOnFailureListener { result.postValue(false) }
         return result
     }
 
-    fun unregisterTeamListener() = mTeamSnapshot.remove()
+    fun unregisterTeamListener() {
+        if (::mTeamSnapshot.isInitialized) mTeamSnapshot.remove()
+    }
+
+    private fun resetUserActivities(
+        teamId: String,
+        transaction: Transaction
+    ): com.google.android.gms.tasks.Task<QuerySnapshot> {
+        val ordersDocument = mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+        return ordersDocument
+            .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
+            .get()
+            .addOnSuccessListener {
+                it.toObjects(Order::class.java).forEach { order ->
+                    order.tasks.forEach { task ->
+                        if (task.volunteerId == mAuth.currentUser!!.uid) {
+                            task.volunteerId = ""
+                            if (task.status == Task.TASK_STATUS_ACCEPTED)
+                                task.status = Task.TASK_STATUS_ADDED
+                        }
+                    }
+                    transaction.update(
+                        ordersDocument.document(order.id),
+                        FirestoreUtils.firestoreKeyTasks,
+                        order.tasks
+                    )
+                }
+            }
+    }
+
+    private fun getTeamDocument(teamId: String) =
+        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams).document(teamId)
     // endregion TEAMS
 }

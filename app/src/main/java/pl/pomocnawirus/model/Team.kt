@@ -9,16 +9,14 @@ data class Team(
     var city: String = "",
     var leaders: ArrayList<String> = arrayListOf(),
     var email: String = "",
-    var phone: String = "",
-    var orders: ArrayList<Order> = arrayListOf()
+    var phone: String = ""
 ) {
     fun createTeamHashMap(): HashMap<String, Any> = hashMapOf(
         FirestoreUtils.firestoreKeyName to this.name,
         FirestoreUtils.firestoreKeyCity to this.city,
         FirestoreUtils.firestoreKeyLeaders to this.leaders,
         FirestoreUtils.firestoreKeyEmail to this.email,
-        FirestoreUtils.firestoreKeyPhone to this.phone,
-        FirestoreUtils.firestoreKeyOrders to this.orders
+        FirestoreUtils.firestoreKeyPhone to this.phone
     )
 }
 

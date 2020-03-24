@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_sign_out"
+        android:title="@string/sign_out"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_change_password"
         android:title="@string/change_password"
         app:showAsAction="never" />

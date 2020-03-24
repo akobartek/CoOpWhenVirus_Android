@@ -99,6 +99,11 @@ class AccountFragment : Fragment() {
         view?.accountToolbar?.inflateMenu(R.menu.tasks_menu)
         view?.accountToolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
+                R.id.action_sign_out -> {
+                    mViewModel.unregisterTeamListener()
+                    (requireActivity() as MainActivity).signOut()
+                    true
+                }
                 R.id.action_change_password -> {
                     showChangePasswordDialog()
                     true

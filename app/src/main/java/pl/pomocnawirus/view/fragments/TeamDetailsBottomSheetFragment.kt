@@ -9,7 +9,7 @@ import android.widget.FrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.content_team_info_bottom_sheet.view.*
+import kotlinx.android.synthetic.main.content_team_details_bottom_sheet.view.*
 import kotlinx.android.synthetic.main.fragment_team_details_bottom_sheet.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.TeamSimple
@@ -47,10 +47,7 @@ class TeamDetailsBottomSheetFragment(private val mTeam: TeamSimple) : BottomShee
             emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(mTeam.email))
             try {
                 startActivity(
-                    Intent.createChooser(
-                        emailIntent,
-                        getString(R.string.send_email_chooser)
-                    )
+                    Intent.createChooser(emailIntent, getString(R.string.send_email_chooser))
                 )
             } catch (ex: android.content.ActivityNotFoundException) {
                 requireContext().showShortToast(R.string.send_email_error)

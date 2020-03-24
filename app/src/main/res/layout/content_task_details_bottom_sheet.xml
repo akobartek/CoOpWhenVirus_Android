@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheetView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".view.fragments.TaskDetailsBottomSheetFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/taskRealizationDateTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="sans-serif"
+            android:gravity="end"
+            android:paddingBottom="4dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textColor="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="11.09.2001" />
+
+        <ImageView
+            android:id="@+id/taskTypeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/ic_task_background"
+            android:contentDescription="@string/task_type_image_description"
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/taskDescriptionTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/taskDescriptionTV"
+            tools:src="@drawable/ic_task_pets" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/taskDescriptionTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="sans-serif"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/taskTypeImage"
+            app:layout_constraintTop_toBottomOf="@+id/taskRealizationDateTV"
+            tools:text="Bardzo długi opis bardzo wymagającego zadania, które musi być wykonane" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/taskPersonName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="?attr/colorText"
+            app:drawableTopCompat="@drawable/ic_person"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskDescriptionTV"
+            tools:text="Bardzo długie imię i nazwisko" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/taskAddressTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="?attr/colorText"
+            app:drawableTopCompat="@drawable/ic_city"
+            app:layout_constraintEnd_toEndOf="@+id/taskPersonName"
+            app:layout_constraintStart_toStartOf="@+id/taskPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/taskPersonName"
+            tools:text="Bardzo długi adres, który nie zmieści się w jednej linii" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/taskPhoneTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="?attr/colorText"
+            app:drawableTopCompat="@drawable/ic_phone"
+            app:layout_constraintEnd_toEndOf="@+id/taskPersonName"
+            app:layout_constraintStart_toStartOf="@+id/taskPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/taskAddressTV"
+            tools:text="+48 123456789" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/taskEmailTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="?attr/colorText"
+            app:drawableTopCompat="@drawable/ic_email"
+            app:layout_constraintEnd_toEndOf="@+id/taskPersonName"
+            app:layout_constraintStart_toStartOf="@+id/taskPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/taskPhoneTV"
+            tools:text="bardzodlugiemail@gmail.com" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

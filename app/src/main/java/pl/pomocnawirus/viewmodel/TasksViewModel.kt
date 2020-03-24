@@ -3,16 +3,16 @@ package pl.pomocnawirus.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import pl.pomocnawirus.model.Team
+import pl.pomocnawirus.model.Order
 import pl.pomocnawirus.model.repositories.FirebaseRepository
 
 class TasksViewModel(val app: Application) : AndroidViewModel(app) {
 
     private val mFirebaseRepository = FirebaseRepository(app)
 
-    val team = MutableLiveData<Team>()
+    val orders = MutableLiveData<ArrayList<Order>>()
 
-    fun fetchTeam(teamId: String) = mFirebaseRepository.fetchTeam(team, teamId)
+    fun fetchOrders(teamId: String) = mFirebaseRepository.fetchOrders(orders, teamId)
 
-    fun unregisterTeamListener() = mFirebaseRepository.unregisterTeamListener()
+    fun updateOrder(order: Order) = mFirebaseRepository.updateOrder(order)
 }

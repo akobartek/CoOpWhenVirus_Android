@@ -120,9 +120,16 @@
 
     <!-- TASK STRINGS -->
     <string name="tasks">Tasks</string>
+    <string name="task_details">Task details</string>
     <string name="empty_tasks_list">There are no tasks to show!\nYour team is doing great job!</string>
     <string name="filter">Filter</string>
     <string name="task_type_image_description">Icon that represents type of the task</string>
+    <string name="accept_task_btn_description">Press here to accept this task</string>
+    <string name="abandon_task_btn_description">Press here to abandon this task</string>
+    <string name="completed_task_btn_description">Press here to mark this task as completed</string>
+    <string name="task_accepted">Task accepted</string>
+    <string name="task_abandoned">Task abandoned</string>
+    <string name="task_completed">Task mark as completed</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

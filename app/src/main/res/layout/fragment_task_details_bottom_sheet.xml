@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/bottom_sheet_behavior"
-    tools:context=".view.fragments.TeamDetailsBottomSheetFragment">
+    tools:context=".view.fragments.TaskDetailsBottomSheetFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/teamInfoAppBarLayout"
+        android:id="@+id/taskDetailsAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorBackground"
@@ -38,30 +38,39 @@
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:text="@string/team_details"
+                android:text="@string/task_details"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="?attr/colorMenuIcons" />
 
             <ImageButton
-                android:id="@+id/toolbarEmailBtn"
+                android:id="@+id/toolbarAcceptTaskBtn"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/email_btn_description"
-                android:src="@drawable/ic_menu_email"
+                android:contentDescription="@string/accept_task_btn_description"
+                android:src="@drawable/ic_menu_apply"
                 android:tint="?attr/colorMenuIcons" />
 
             <ImageButton
-                android:id="@+id/toolbarSmsBtn"
+                android:id="@+id/toolbarAbandonTaskBtn"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/sms_btn_description"
-                android:src="@drawable/ic_menu_message"
+                android:contentDescription="@string/abandon_task_btn_description"
+                android:src="@drawable/ic_menu_abandon_task"
+                android:tint="?attr/colorMenuIcons" />
+
+            <ImageButton
+                android:id="@+id/toolbarCompleteTaskBtn"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/completed_task_btn_description"
+                android:src="@drawable/ic_menu_completed_task"
                 android:tint="?attr/colorMenuIcons" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_team_details_bottom_sheet" />
+    <include layout="@layout/content_task_details_bottom_sheet" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

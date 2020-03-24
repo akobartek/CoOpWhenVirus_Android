@@ -6,22 +6,14 @@ object FirestoreUtils {
     const val firestoreKeyName = "name"
     const val firestoreKeyPhone = "phone"
     const val firestoreKeyCity = "city"
+    const val firestoreKeyTeamId = "teamId"
 
     const val firestoreCollectionUsers = "users"
     const val firestoreKeyUserType = "userType"
-    const val firestoreKeyTeamId = "teamId"
     const val firestoreKeyTasksToDo = "tasksToDo"
 
     const val firestoreCollectionTeams = "teams"
     const val firestoreKeyLeaders = "admins"
-    const val firestoreKeyOrders = "orders"
-
-    const val firestoreCollectionTasks = "tasks"
-    const val firestoreKeyType = "type"
-    const val firestoreKeyDescription = "description"
-    const val firestoreKeyStatus = "status"
-    const val firestoreKeyRealizationDate = "realizationDate"
-    const val firestoreKeyVolunteerId = "volunteerId"
 
     const val firestoreCollectionOrders = "orders"
     const val firestoreKeyNeedyName = "needyName"

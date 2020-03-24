@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.content_task_list.view.*
 import kotlinx.android.synthetic.main.fragment_task_list.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Task
-import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.view.adapters.TasksRecyclerAdapter
 import pl.pomocnawirus.viewmodel.MainViewModel
 import pl.pomocnawirus.viewmodel.TasksViewModel
@@ -33,10 +32,11 @@ class TaskListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         inflateToolbarMenu()
 
-        mAdapter = TasksRecyclerAdapter() {
-            // TODO() -> Open bottom sheet with task information
-//            val createTeamBottomSheet = TeamCreateBottomSheetFragment(this@TaskListFragment)
-//            createTeamBottomSheet.show(childFragmentManager, createTeamBottomSheet.tag)
+        mAdapter = TasksRecyclerAdapter() { task ->
+            val taskDetailsBottomSheet = TaskDetailsBottomSheetFragment(
+                mViewModel.orders.value!!.first { it.tasks.contains(task) }, task
+            )
+            taskDetailsBottomSheet.show(childFragmentManager, taskDetailsBottomSheet.tag)
         }
         view.tasksRecyclerView.layoutManager = LinearLayoutManager(view.context)
         view.tasksRecyclerView.itemAnimator = DefaultItemAnimator()
@@ -46,13 +46,13 @@ class TaskListFragment : Fragment() {
         val teamId = arguments?.let { TaskListFragmentArgs.fromBundle(it).teamId }
         if (teamId == null)
             ViewModelProvider(requireActivity()).get(MainViewModel::class.java).currentUser.value?.teamId
-        mViewModel.fetchTeam(teamId!!)
-        mViewModel.team.observe(viewLifecycleOwner, Observer { showTasks() })
+        mViewModel.fetchOrders(teamId!!)
+        mViewModel.orders.observe(viewLifecycleOwner, Observer { showTasks() })
     }
 
     private fun showTasks() {
         val tasksToShow = arrayListOf<Task>()
-        mViewModel.team.value?.orders?.forEach { order ->
+        mViewModel.orders.value?.forEach { order ->
             if (!mShowMyTasks)
                 tasksToShow.addAll(order.tasks.filter { it.status == Task.TASK_STATUS_ADDED })
         }
@@ -75,16 +75,11 @@ class TaskListFragment : Fragment() {
                     true
                 }
                 R.id.action_account -> {
-                    // TODO() -> Account details fragment
+                    findNavController().navigate(TaskListFragmentDirections.showAccountFragment())
                     true
                 }
                 R.id.action_settings -> {
                     findNavController().navigate(TaskListFragmentDirections.showSettingsFragment())
-                    true
-                }
-                R.id.action_sign_out -> {
-                    mViewModel.unregisterTeamListener()
-                    (requireActivity() as MainActivity).signOut()
                     true
                 }
                 else -> true

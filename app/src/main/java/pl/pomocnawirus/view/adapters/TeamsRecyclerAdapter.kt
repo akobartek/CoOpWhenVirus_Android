@@ -67,7 +67,7 @@ class TeamsRecyclerAdapter(val fragment: TeamFindFragment) :
 
     inner class TeamViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(team: TeamSimple) {
-            itemView.teamNameTV.text = team.name
+            itemView.taskDescriptionTV.text = team.name
             itemView.teamCityTV.text = team.city
 
             itemView.setOnClickListener {
