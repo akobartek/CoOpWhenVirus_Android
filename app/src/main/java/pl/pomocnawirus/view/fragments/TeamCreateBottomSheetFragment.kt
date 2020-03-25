@@ -35,6 +35,10 @@ class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragme
             mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
 
+        view.teamNameET.markRequiredInRed()
+        view.teamCityET.markRequiredInRed()
+        view.teamPhoneET.markRequiredInRed()
+
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
         view.toolbarSaveBtn.setOnClickListener {
             view.toolbarSaveBtn.isEnabled = false

@@ -127,6 +127,7 @@
     <string name="accept_task_btn_description">Press here to accept this task</string>
     <string name="abandon_task_btn_description">Press here to abandon this task</string>
     <string name="completed_task_btn_description">Press here to mark this task as completed</string>
+    <string name="save_filters_btn_description">Press here to save filters</string>
     <string name="task_accepted">Task accepted</string>
     <string name="task_abandoned">Task abandoned</string>
     <string name="task_completed">Task mark as completed</string>

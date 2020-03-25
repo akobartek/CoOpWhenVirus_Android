@@ -42,6 +42,7 @@ class AccountFragment : Fragment() {
             .create()
         mCurrentUser = (requireActivity() as MainActivity).getCurrenUser()!!
 
+        view.nameET.markRequiredInRed()
         view.nameET.setText(mCurrentUser.name)
         view.phoneET.setText(mCurrentUser.phone)
 

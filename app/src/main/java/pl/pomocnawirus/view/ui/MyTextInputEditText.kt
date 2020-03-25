@@ -1,9 +1,12 @@
 package pl.pomocnawirus.view.ui
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.text.buildSpannedString
+import androidx.core.text.color
 import com.google.android.material.textfield.TextInputEditText
 
 class MyTextInputEditText : TextInputEditText {
@@ -17,6 +20,13 @@ class MyTextInputEditText : TextInputEditText {
             View.AUTOFILL_TYPE_NONE
         } else {
             return super.getAutofillType()
+        }
+    }
+
+    fun markRequiredInRed() {
+        hint = buildSpannedString {
+            append(hint)
+            color(Color.RED) { append(" *") } // Mind the space prefix.
         }
     }
 }

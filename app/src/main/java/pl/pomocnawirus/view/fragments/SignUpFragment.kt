@@ -36,6 +36,9 @@ class SignUpFragment : Fragment() {
         view.signUpToolbar.setNavigationOnClickListener {
             findNavController().navigate(SignUpFragmentDirections.showSignInFragment())
         }
+        view.emailET.markRequiredInRed()
+        view.passwordET.markRequiredInRed()
+        view.nameET.markRequiredInRed()
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -63,7 +66,7 @@ class SignUpFragment : Fragment() {
                             .set(user.createUserHashMap())
 
                         mAuth.signOut()
-                        showSignupSuccessfulDialog()
+                        showSignUpSuccessfulDialog()
                     } else {
                         Log.d("SignUpFailed", task.exception!!.toString())
                         if (task.exception!! is FirebaseAuthUserCollisionException) {
@@ -87,7 +90,7 @@ class SignUpFragment : Fragment() {
         }
     }
 
-    private fun showSignupSuccessfulDialog() {
+    private fun showSignUpSuccessfulDialog() {
         AlertDialog.Builder(context!!)
             .setTitle(R.string.sign_up_successful_dialog_title)
             .setMessage(R.string.sign_up_successful_dialog_message)
