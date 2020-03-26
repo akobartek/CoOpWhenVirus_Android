@@ -13,21 +13,26 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorListItemBackground">
 
-        <ImageView
-            android:id="@+id/taskTypeImage"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/orderNumberOfTasksTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:background="@drawable/ic_round_background"
-            android:contentDescription="@string/task_type_image_description"
-            android:padding="20dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textColor="?attr/colorBackground"
+            app:autoSizeMaxTextSize="100sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeStepGranularity="2sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_task_pets" />
+            tools:text="99+" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/taskDescriptionTV"
+            android:id="@+id/orderNeedyNameTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -35,28 +40,28 @@
             android:layout_marginEnd="12dp"
             android:fontFamily="sans-serif-light"
             android:paddingBottom="4dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColor="?attr/colorText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/taskTypeImage"
+            app:layout_constraintStart_toEndOf="@+id/orderNumberOfTasksTV"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Bardzo długi opis zadania, które należy jak najszybciej wykonać" />
+            tools:text="Długie imię i nazwisko potrzebującej osoby" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/taskRealizationDateTV"
+            android:id="@+id/orderAddressTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="sans-serif-condensed-light"
             android:gravity="end"
             android:paddingBottom="4dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textColor="?attr/colorText"
+            android:textColor="?attr/colorMenuIcons"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/taskTypeImage"
-            app:layout_constraintTop_toBottomOf="@+id/taskDescriptionTV"
-            tools:text="11.09.2001" />
+            app:layout_constraintStart_toEndOf="@+id/orderNumberOfTasksTV"
+            app:layout_constraintTop_toBottomOf="@+id/orderNeedyNameTV"
+            tools:text="wybrzeże Wyspiańskiego 27, Wrocław" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

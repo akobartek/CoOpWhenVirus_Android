@@ -7,9 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_task.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Task
-import pl.pomocnawirus.model.Task.Companion.TASK_TYPE_HOME
-import pl.pomocnawirus.model.Task.Companion.TASK_TYPE_PETS
-import pl.pomocnawirus.model.Task.Companion.TASK_TYPE_SHOPPING
 import pl.pomocnawirus.utils.format
 
 class TasksRecyclerAdapter(val openBottomSheetFunction: (Task) -> Unit) :

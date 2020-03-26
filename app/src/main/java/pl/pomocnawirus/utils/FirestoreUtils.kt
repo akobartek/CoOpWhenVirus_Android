@@ -17,8 +17,7 @@ object FirestoreUtils {
 
     const val firestoreCollectionOrders = "orders"
     const val firestoreKeyNeedyName = "needyName"
-    const val firestoreKeyStreet = "street"
-    const val firestoreKeyBuildingNumber = "buildingNumber"
-    const val firestoreKeyHouseNumber = "houseNumber"
+    const val firestoreKeyAddress = "address"
     const val firestoreKeyTasks = "tasks"
+    const val firestoreKeyDateAdded = "dateAdded"
 }

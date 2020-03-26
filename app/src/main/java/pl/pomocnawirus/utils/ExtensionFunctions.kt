@@ -8,6 +8,10 @@ import android.os.Build
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.util.DisplayMetrics
+import android.view.View
+import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.Transformation
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
@@ -17,6 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
 
+// region CONTEXT
 fun Context.isChromeCustomTabsSupported(): Boolean {
     val serviceIntent = Intent("android.support.customtabs.action.CustomTabsService")
     serviceIntent.setPackage("com.android.chrome")
@@ -38,26 +43,9 @@ fun Context.showBasicAlertDialog(titleId: Int?, messageId: Int) {
 
 fun Context.showShortToast(messageId: Int) =
     Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show()
+// endregion CONTEXT
 
-fun String.createUnderlinedString(): SpannableString {
-    val spannable = SpannableString(this)
-    spannable.setSpan(UnderlineSpan(), 0, this.length, 0)
-    return spannable
-}
-
-fun String.isValidEmail(): Boolean =
-    android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
-
-fun String.isValidPassword(): Boolean {
-    val passwordRegex = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z]).{6,20})"
-    val pattern = Pattern.compile(passwordRegex)
-    val matcher = pattern.matcher(this)
-    return matcher.matches()
-}
-
-fun String.isValidPhoneNumber(): Boolean =
-    android.util.Patterns.PHONE.matcher(this).matches()
-
+// region ACTIVITY
 fun Activity.showNoInternetDialogWithTryAgain(
     function: () -> Unit,
     functionCancel: () -> Unit
@@ -113,7 +101,55 @@ fun Activity.getWindowHeight(): Int {
     this.windowManager.defaultDisplay.getMetrics(displayMetrics)
     return displayMetrics.heightPixels
 }
+// endregion ACTIVITY
 
+// region VIEW
+fun View.expand() {
+    val matchParentMeasureSpec =
+        View.MeasureSpec.makeMeasureSpec((parent as View).width, View.MeasureSpec.EXACTLY)
+    val wrapContentMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+    measure(matchParentMeasureSpec, wrapContentMeasureSpec)
+    val targetHeight = measuredHeight
+
+    visibility = View.VISIBLE
+    val animation = object : Animation() {
+        override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
+            layoutParams.height = if (interpolatedTime == 1f)
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            else
+                (targetHeight * interpolatedTime).toInt()
+            requestLayout()
+        }
+
+        override fun willChangeBounds(): Boolean = true
+    }
+    // Expansion speed of 1dp/ms
+    animation.duration = ((targetHeight / context.resources.displayMetrics.density).toInt()).toLong()
+    startAnimation(animation)
+}
+
+fun View.collapse() {
+    val initialHeight = measuredHeight
+
+    val animation = object : Animation() {
+        override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
+            if (interpolatedTime == 1f) {
+                visibility = View.GONE
+            } else {
+                layoutParams.height = initialHeight - (initialHeight * interpolatedTime).toInt()
+                requestLayout()
+            }
+        }
+
+        override fun willChangeBounds(): Boolean = true
+    }
+    // Collapse speed of 1dp/ms
+    animation.duration = ((initialHeight / context.resources.displayMetrics.density).toInt()).toLong()
+    startAnimation(animation)
+}
+// endregion VIEW
+
+// region EDITTEXT
 fun EditText.enable() {
     isFocusable = true
     isEnabled = true
@@ -125,8 +161,32 @@ fun EditText.disable() {
     isEnabled = false
     isFocusableInTouchMode = false
 }
+// endregion EDITTEXT
 
+// region DATE
 fun Date.format(): String {
     val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
     return simpleDateFormat.format(this)
 }
+// endregion DATE
+
+// region STRING
+fun String.createUnderlinedString(): SpannableString {
+    val spannable = SpannableString(this)
+    spannable.setSpan(UnderlineSpan(), 0, this.length, 0)
+    return spannable
+}
+
+fun String.isValidEmail(): Boolean =
+    android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+fun String.isValidPassword(): Boolean {
+    val passwordRegex = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z]).{6,20})"
+    val pattern = Pattern.compile(passwordRegex)
+    val matcher = pattern.matcher(this)
+    return matcher.matches()
+}
+
+fun String.isValidPhoneNumber(): Boolean =
+    android.util.Patterns.PHONE.matcher(this).matches()
+//endregion STRING

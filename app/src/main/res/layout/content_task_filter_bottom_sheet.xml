@@ -10,9 +10,167 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".view.fragments.TaskFilterBottomSheetFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:id="@+id/filterTaskStatusHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/filterTaskStatusTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/filterTaskStatusBtn"
+                android:fontFamily="sans-serif"
+                android:text="@string/status"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textColor="?attr/colorText" />
+
+            <TextView
+                android:id="@+id/filterTaskStatusSubTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/filterTaskStatusTitle"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/filterTaskStatusBtn"
+                android:fontFamily="sans-serif"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="?attr/colorMenuIcons"
+                android:textStyle="italic"
+                tools:text="Aktywne zadania" />
+
+            <ImageButton
+                android:id="@+id/filterTaskStatusBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/filterTaskStatusTitle"
+                android:layout_alignBottom="@+id/filterTaskStatusSubTitle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/task_filter_part_expand"
+                android:padding="8dp"
+                android:src="@drawable/ic_arrow_down" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/filterTaskStatusOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            tools:visibility="gone">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/taskStatusActiveTasks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="?attr/colorMenuIcons"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/active_tasks"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="?attr/colorText" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/taskStatusMyTasks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="?attr/colorMenuIcons"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/my_tasks"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="?attr/colorText" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/taskStatusBorder"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="?colorMenuIcons"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/filterTaskTypeHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/filterTaskTypeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/filterTaskTypeBtn"
+                android:fontFamily="sans-serif"
+                android:text="@string/types"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textColor="?attr/colorText" />
+
+            <TextView
+                android:id="@+id/filterTaskTypeSubTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/filterTaskTypeTitle"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/filterTaskTypeBtn"
+                android:fontFamily="sans-serif"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="?attr/colorMenuIcons"
+                android:textStyle="italic"
+                tools:text="Wszystkie" />
+
+            <ImageButton
+                android:id="@+id/filterTaskTypeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/filterTaskTypeTitle"
+                android:layout_alignBottom="@+id/filterTaskTypeSubTitle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/task_filter_part_expand"
+                android:padding="8dp"
+                android:src="@drawable/ic_arrow_down"
+                tools:rotation="180" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/filterTaskTypeOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_filter" />
+
+        <View
+            android:id="@+id/taskTypeBorder"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="?colorMenuIcons"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

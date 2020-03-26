@@ -35,9 +35,11 @@ class TeamFindFragment : Fragment() {
         inflateToolbarMenu(view.teamFindToolbar)
 
         mAdapter = TeamsRecyclerAdapter(this@TeamFindFragment)
-        view.teamsRecyclerView.layoutManager = LinearLayoutManager(view.context)
-        view.teamsRecyclerView.itemAnimator = DefaultItemAnimator()
-        view.teamsRecyclerView.adapter = mAdapter
+        view.teamsRecyclerView.apply {
+            layoutManager = LinearLayoutManager(view.context)
+            itemAnimator = DefaultItemAnimator()
+            adapter = mAdapter
+        }
 
         mViewModel = ViewModelProvider(requireActivity()).get(TeamsViewModel::class.java)
         mViewModel.fetchTeams()

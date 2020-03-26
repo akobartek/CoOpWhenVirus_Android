@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:background="@drawable/ic_task_background"
+            android:background="@drawable/ic_round_background"
             android:contentDescription="@string/task_type_image_description"
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/taskDescriptionTV"

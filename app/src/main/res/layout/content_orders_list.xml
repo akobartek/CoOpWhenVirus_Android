@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:background="?attr/colorBackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".view.fragments.TaskListFragment">
+    tools:context=".view.fragments.OrdersListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tasksRecyclerView"
+        android:id="@+id/ordersRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
@@ -17,10 +17,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_task" />
+        tools:listitem="@layout/item_order" />
 
     <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/tasksLoadingIndicator"
+        android:id="@+id/ordersLoadingIndicator"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="42dp"
         android:layout_height="42dp"
@@ -31,13 +31,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/emptyTasksView"
+        android:id="@+id/emptyOrdersView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:drawableTop="@drawable/ic_no_tasks"
-        android:text="@string/empty_tasks_list"
+        android:drawableTop="@drawable/ic_no_orders"
+        android:text="@string/empty_orders_list"
         android:textAlignment="center"
         android:textColor="?attr/colorIcons"
         android:textSize="15sp"

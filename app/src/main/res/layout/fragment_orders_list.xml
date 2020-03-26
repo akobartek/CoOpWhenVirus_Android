@@ -1,13 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorBackground"
     tools:context=".view.fragments.OrdersListFragment">
 
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ordersListAppBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ORDERS LIST FRAGMENT" />
+        android:layout_height="wrap_content"
+        android:background="?attr/colorBackground"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-</FrameLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/ordersListToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorBackground"
+            app:layout_scrollFlags="enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/orders"
+            app:titleTextColor="?attr/colorMenuIcons" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_orders_list" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addOrderBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_plus"
+        app:backgroundTint="?attr/colorAccent"
+        app:tint="?attr/colorBackground" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

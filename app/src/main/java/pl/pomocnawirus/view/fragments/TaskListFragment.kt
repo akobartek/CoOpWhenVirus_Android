@@ -22,7 +22,6 @@ class TaskListFragment : Fragment() {
 
     private lateinit var mViewModel: TasksViewModel
     private lateinit var mAdapter: TasksRecyclerAdapter
-    private var mShowMyTasks = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -38,9 +37,11 @@ class TaskListFragment : Fragment() {
             )
             taskDetailsBottomSheet.show(childFragmentManager, taskDetailsBottomSheet.tag)
         }
-        view.tasksRecyclerView.layoutManager = LinearLayoutManager(view.context)
-        view.tasksRecyclerView.itemAnimator = DefaultItemAnimator()
-        view.tasksRecyclerView.adapter = mAdapter
+        view.tasksRecyclerView.apply {
+            layoutManager = LinearLayoutManager(view.context)
+            itemAnimator = DefaultItemAnimator()
+            adapter = mAdapter
+        }
 
         mViewModel = ViewModelProvider(requireActivity()).get(TasksViewModel::class.java)
         val teamId = arguments?.let { TaskListFragmentArgs.fromBundle(it).teamId }
@@ -48,21 +49,26 @@ class TaskListFragment : Fragment() {
             ViewModelProvider(requireActivity()).get(MainViewModel::class.java).currentUser.value?.teamId
         mViewModel.fetchOrders(teamId!!)
         mViewModel.orders.observe(viewLifecycleOwner, Observer { showTasks() })
+        mViewModel.filters.observe(viewLifecycleOwner, Observer { showTasks() })
     }
 
     private fun showTasks() {
         val tasksToShow = arrayListOf<Task>()
+        val filters = mViewModel.filters.value
         mViewModel.orders.value?.forEach { order ->
-            if (!mShowMyTasks)
-                tasksToShow.addAll(order.tasks.filter { it.status == Task.TASK_STATUS_ADDED })
+            tasksToShow.addAll(order.tasks.filter { task ->
+                filters?.selectedTaskTypes!!.contains(task.type) &&
+                        if (filters.selectedTaskStatus == Task.TASK_STATUS_ADDED) task.status == Task.TASK_STATUS_ADDED
+                        else task.status != Task.TASK_STATUS_ADDED
+            })
         }
         mAdapter.setTasksList(tasksToShow)
         view?.tasksRecyclerView?.scheduleLayoutAnimation()
         view?.tasksLoadingIndicator?.hide()
         if (tasksToShow.isEmpty()) {
-            view?.emptyActiveTasksView?.visibility = View.VISIBLE
+            view?.emptyTasksView?.visibility = View.VISIBLE
         } else {
-            view?.emptyActiveTasksView?.visibility = View.INVISIBLE
+            view?.emptyTasksView?.visibility = View.INVISIBLE
         }
     }
 
@@ -71,7 +77,8 @@ class TaskListFragment : Fragment() {
         view?.taskListToolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_filter -> {
-                    // TODO() -> Filter bottom sheet
+                    val taskFilterBottomSheet = TaskFilterBottomSheetFragment()
+                    taskFilterBottomSheet.show(childFragmentManager, taskFilterBottomSheet.tag)
                     true
                 }
                 R.id.action_account -> {

@@ -134,6 +134,7 @@ class FirebaseRepository(val app: Application) {
     fun fetchOrders(ordersMutableLiveData: MutableLiveData<ArrayList<Order>>, teamId: String) {
         mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
+            .orderBy(FirestoreUtils.firestoreKeyDateAdded, Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { orders ->
                 val arrayList = arrayListOf<Order>()

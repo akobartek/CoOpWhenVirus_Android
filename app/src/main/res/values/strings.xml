@@ -131,8 +131,19 @@
     <string name="task_accepted">Task accepted</string>
     <string name="task_abandoned">Task abandoned</string>
     <string name="task_completed">Task mark as completed</string>
+    <string name="status">Status</string>
+    <string name="active_tasks">Active tasks</string>
+    <string name="my_tasks">My tasks</string>
+    <string name="types">Types</string>
+    <string name="shopping">Shopping</string>
+    <string name="animals_care">Animals care</string>
+    <string name="help_at_home">Help at home</string>
+    <string name="other">Other</string>
+    <string name="task_filter_part_expand">Press here to expand this filter option</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- ORDER STRINGS -->
+    <string name="orders">Orders</string>
+    <string name="order_details">Order details</string>
+    <string name="empty_orders_list">There are no orders yet!\nYou can create one and let your team work!</string>
 
 </resources>
