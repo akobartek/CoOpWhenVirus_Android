@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu>
-    <!-- TODO() -> Menu on order editing -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_save_order"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_delete_order"
+        android:title="@string/delete_order"
+        app:showAsAction="never" />
 </menu>

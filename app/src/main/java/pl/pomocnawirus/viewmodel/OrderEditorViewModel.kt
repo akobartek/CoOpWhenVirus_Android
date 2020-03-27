@@ -14,4 +14,7 @@ class OrderEditorViewModel(val app: Application) : AndroidViewModel(app) {
 
     fun updateOrder(order: Order) =
         mFirebaseRepository.updateOrder(order, app.applicationContext)
+
+    fun deleteOrder(orderId: String) =
+        mFirebaseRepository.deleteOrder(orderId, app.applicationContext)
 }

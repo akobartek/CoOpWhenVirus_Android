@@ -88,11 +88,8 @@ class OrderEditorFragment : Fragment() {
     }
 
     fun onBackPressed() {
-        if (orderChanged) {
-            showUnsavedChangesDialog { findNavController().navigateUp() }
-        } else {
-            findNavController().navigateUp()
-        }
+        if (orderChanged) showUnsavedChangesDialog { findNavController().navigateUp() }
+        else findNavController().navigateUp()
     }
 
     private fun showTasks() {
@@ -118,6 +115,10 @@ class OrderEditorFragment : Fragment() {
             when (it.itemId) {
                 R.id.action_save_order -> {
                     saveOrder()
+                    true
+                }
+                R.id.action_delete_order -> {
+                    showDeleteConfirmationDialog()
                     true
                 }
                 else -> true
@@ -195,6 +196,19 @@ class OrderEditorFragment : Fragment() {
                 discardAction()
             }
             .setNegativeButton(R.string.keep_editing) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
+
+    private fun showDeleteConfirmationDialog() =
+        AlertDialog.Builder(context!!)
+            .setMessage(R.string.order_delete_dialog_msg)
+            .setCancelable(false)
+            .setPositiveButton(R.string.delete) { dialog, _ ->
+                dialog.dismiss()
+                mViewModel.deleteOrder(mOrder!!.id)
+                findNavController().navigateUp()
+            }
+            .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
             .create()
             .show()
 

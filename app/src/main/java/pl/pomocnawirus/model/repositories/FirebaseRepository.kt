@@ -258,5 +258,13 @@ class FirebaseRepository(val app: Application) {
             .addOnSuccessListener { context.showShortToast(R.string.order_saved) }
             .addOnFailureListener { context.showShortToast(R.string.order_save_error_message) }
     }
+
+    fun deleteOrder(orderId: String, context: Context) {
+        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
+            .document(orderId)
+            .delete()
+            .addOnSuccessListener { context.showShortToast(R.string.order_delete_successfully) }
+            .addOnFailureListener { context.showShortToast(R.string.order_delete_error) }
+    }
     // endregion ORDERS
 }
