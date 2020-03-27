@@ -59,7 +59,8 @@
         android:textColorHint="?attr/colorText"
         app:layout_constraintEnd_toEndOf="@+id/emailInputLayout"
         app:layout_constraintStart_toStartOf="@+id/emailInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/emailInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/emailInputLayout"
+        app:passwordToggleEnabled="true">
 
         <pl.pomocnawirus.view.ui.MyTextInputEditText
             android:id="@+id/passwordET"

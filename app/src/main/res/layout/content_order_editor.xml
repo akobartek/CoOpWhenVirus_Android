@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/orderEditorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".view.fragments.OrderEditorFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/needyNameInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="48dp"
+            android:textColorHint="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <pl.pomocnawirus.view.ui.MyTextInputEditText
+                android:id="@+id/needyNameET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorBackground"
+                android:hint="@string/needy_name"
+                android:inputType="textCapWords"
+                android:textColor="?attr/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addressInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/needyNameInputLayout">
+
+            <pl.pomocnawirus.view.ui.MyTextInputEditText
+                android:id="@+id/addressET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorBackground"
+                android:hint="@string/address"
+                android:inputType="textPostalAddress"
+                android:textColor="?attr/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cityInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/addressInputLayout">
+
+            <pl.pomocnawirus.view.ui.MyTextInputEditText
+                android:id="@+id/cityET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorBackground"
+                android:hint="@string/city"
+                android:inputType="textCapWords"
+                android:textColor="?attr/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/cityInputLayout">
+
+            <pl.pomocnawirus.view.ui.MyTextInputEditText
+                android:id="@+id/phoneET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorBackground"
+                android:hint="@string/phone_number"
+                android:inputType="phone|numberSigned"
+                android:textColor="?attr/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="?attr/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/phoneInputLayout">
+
+            <pl.pomocnawirus.view.ui.MyTextInputEditText
+                android:id="@+id/emailET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorBackground"
+                android:hint="@string/email_address"
+                android:inputType="textEmailAddress"
+                android:textColor="?attr/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/taskToDoTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="@string/tasks_to_do"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="?attr/colorText"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/emailInputLayout" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/taskEmptyListTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="center"
+            android:text="@string/no_tasks_added_yet"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="?attr/colorMenuIcons"
+            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/taskToDoTv" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/orderTasksRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskToDoTv"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_task_order_editor" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

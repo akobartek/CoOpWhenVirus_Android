@@ -1,8 +1,10 @@
 package pl.pomocnawirus.view.fragments
 
 import android.app.Dialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -67,6 +69,11 @@ class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragme
                 view.teamEmailET.text?.clear()
                 view.teamEmailET.disable()
             } else view.teamEmailET.enable()
+        }
+
+        view.bottomSheetView.setOnClickListener {
+            (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                .hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
         }
 
         return bottomSheetDialog

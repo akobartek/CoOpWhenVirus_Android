@@ -36,7 +36,7 @@ class OrdersListFragment : Fragment() {
             layoutManager = LinearLayoutManager(view.context)
             itemAnimator = DefaultItemAnimator()
             adapter = mAdapter
-            addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     if (dy < 0 && !view.addOrderBtn.isShown)
@@ -52,7 +52,7 @@ class OrdersListFragment : Fragment() {
         if (teamId == null)
             ViewModelProvider(requireActivity()).get(MainViewModel::class.java).currentUser.value?.teamId
         mViewModel.fetchOrders(teamId!!)
-        mViewModel.orders.observe(viewLifecycleOwner, Observer {orders ->
+        mViewModel.orders.observe(viewLifecycleOwner, Observer { orders ->
             mAdapter.setTasksList(orders)
             view.ordersRecyclerView.scheduleLayoutAnimation()
             view.ordersLoadingIndicator.hide()
@@ -64,7 +64,7 @@ class OrdersListFragment : Fragment() {
         })
 
         view.addOrderBtn.setOnClickListener {
-            // TODO() -> Navigate to creating new order
+            findNavController().navigate(OrdersListFragmentDirections.showOrderEditorFragment(null))
         }
     }
 
@@ -77,7 +77,7 @@ class OrdersListFragment : Fragment() {
                     true
                 }
                 R.id.action_my_tasks -> {
-                    // TODO() -> Navigate to admin's tasks
+                    // TODO() -> Show tasks
                     true
                 }
                 R.id.action_account -> {

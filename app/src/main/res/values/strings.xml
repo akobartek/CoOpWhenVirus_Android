@@ -104,8 +104,8 @@
     <string name="team_code_invalid_error">No team with the given code was found! Please check if the correct code has been entered!</string>
     <string name="added_to_team_successful">You have been added to team!</string>
     <string name="team_created_successful">Your team has been created!</string>
-    <string name="save_new_team_btn_description">Press here to create new team</string>
-    <string name="close_window_btn_description">Press here to close this window</string>
+    <string name="save_new_team_btn_description">Tap here to create new team</string>
+    <string name="close_window_btn_description">Tap here to close this window</string>
     <string name="use_same_email_as_account">Use the email address that is assigned to my account</string>
     <string name="city_error_empty">City cannot be empty.</string>
     <string name="phone_error_empty">Phone number cannot be empty.</string>
@@ -113,10 +113,10 @@
     <string name="city_search">City where you want to help</string>
     <string name="empty_teams_list">There are no teams created yet!\nYou can create team on your own!</string>
     <string name="team_details">Team details</string>
-    <string name="email_btn_description">Press here to send email to leader of this team quickly</string>
+    <string name="email_btn_description">Tap here to send email to leader of this team quickly</string>
     <string name="send_email_chooser">Send mail via:</string>
     <string name="send_email_error">There is no email client installed!</string>
-    <string name="sms_btn_description">Press here to send sms to leader of this team quickly</string>
+    <string name="sms_btn_description">Tap here to send sms to leader of this team quickly</string>
 
     <!-- TASK STRINGS -->
     <string name="tasks">Tasks</string>
@@ -124,10 +124,10 @@
     <string name="empty_tasks_list">There are no tasks to show!\nYour team is doing great job!</string>
     <string name="filter">Filter</string>
     <string name="task_type_image_description">Icon that represents type of the task</string>
-    <string name="accept_task_btn_description">Press here to accept this task</string>
-    <string name="abandon_task_btn_description">Press here to abandon this task</string>
-    <string name="completed_task_btn_description">Press here to mark this task as completed</string>
-    <string name="save_filters_btn_description">Press here to save filters</string>
+    <string name="accept_task_btn_description">Tap here to accept this task</string>
+    <string name="abandon_task_btn_description">Tap here to abandon this task</string>
+    <string name="completed_task_btn_description">Tap here to mark this task as completed</string>
+    <string name="save_filters_btn_description">Tap here to save filters</string>
     <string name="task_accepted">Task accepted</string>
     <string name="task_abandoned">Task abandoned</string>
     <string name="task_completed">Task mark as completed</string>
@@ -139,11 +139,33 @@
     <string name="animals_care">Animals care</string>
     <string name="help_at_home">Help at home</string>
     <string name="other">Other</string>
-    <string name="task_filter_part_expand">Press here to expand this filter option</string>
+    <string name="task_filter_part_expand">Tap here to expand this filter option</string>
 
     <!-- ORDER STRINGS -->
     <string name="orders">Orders</string>
+    <string name="create_new_order">Create new order</string>
+    <string name="edit_order">Edit order</string>
     <string name="order_details">Order details</string>
     <string name="empty_orders_list">There are no orders yet!\nYou can create one and let your team work!</string>
+    <string name="needy_name">Name of the needy person</string>
+    <string name="address">Address</string>
+    <string name="tasks_to_do">Tasks to do:</string>
+    <string name="task_delete_btn_description">Tap here to delete this task from list</string>
+    <string name="no_tasks_added_yet">No tasks added yet. You can add task by clicking button with plus icon.</string>
+    <string name="add_task">Add task</string>
+    <string name="edit_task">Edit task</string>
+    <string name="task_description">Task description</string>
+    <string name="task_type">Task type</string>
+    <string name="realization_date">Expected realization date</string>
+    <string name="save_task_btn_description">Tap here to save task</string>
+    <string name="task_description_empty_error">Task description cannot be empty!</string>
+    <string name="task_type_empty_error">Task type cannot be empty!</string>
+    <string name="address_empty_error">Address cannot be empty!</string>
+    <string name="no_tasks_error_message">You cannot add order without tasks!</string>
+    <string name="order_saved">Order successfully saved!</string>
+    <string name="order_save_error_message">There was an error with saving the order!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

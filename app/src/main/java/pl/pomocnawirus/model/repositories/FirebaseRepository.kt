@@ -1,14 +1,17 @@
 package pl.pomocnawirus.model.repositories
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
+import pl.pomocnawirus.R
 import pl.pomocnawirus.model.*
 import pl.pomocnawirus.utils.FirestoreUtils
+import pl.pomocnawirus.utils.showShortToast
 
 class FirebaseRepository(val app: Application) {
 
@@ -238,4 +241,22 @@ class FirebaseRepository(val app: Application) {
     private fun getTeamDocument(teamId: String) =
         mFirestore.collection(FirestoreUtils.firestoreCollectionTeams).document(teamId)
     // endregion TEAMS
+
+
+    // region ORDERS
+    fun createNewOrder(order: Order, context: Context) {
+        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
+            .add(order.createOrderHashMap())
+            .addOnSuccessListener { context.showShortToast(R.string.order_saved) }
+            .addOnFailureListener { context.showShortToast(R.string.order_save_error_message) }
+    }
+
+    fun updateOrder(order: Order, context: Context) {
+        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
+            .document(order.id)
+            .set(order.createOrderHashMap())
+            .addOnSuccessListener { context.showShortToast(R.string.order_saved) }
+            .addOnFailureListener { context.showShortToast(R.string.order_save_error_message) }
+    }
+    // endregion ORDERS
 }

@@ -128,6 +128,8 @@ class MainActivity : AppCompatActivity() {
             if (mCurrentFragmentId == R.id.signUpFragment
                 || mCurrentFragmentId == R.id.settingsFragment
                 || mCurrentFragmentId == R.id.accountFragment
+                || mCurrentFragmentId == R.id.orderEditorFragment
+                || mCurrentFragmentId == R.id.teamEditorFragment
             ) bottomNavView.visibility = View.GONE
             else bottomNavView.visibility = View.VISIBLE
         }
@@ -151,7 +153,7 @@ class MainActivity : AppCompatActivity() {
         if (mLoadingDialog.isShowing) mLoadingDialog.hide()
     }
 
-    fun getCurrenUser(): User? = mMainViewModel.currentUser.value
+    fun getCurrentUser(): User? = mMainViewModel.currentUser.value
 
     fun signOut() {
         mMainViewModel.unregisterUserListener()
@@ -209,6 +211,9 @@ class MainActivity : AppCompatActivity() {
                 if ((supportFragmentManager.findFragmentById(R.id.navHostFragment)!!
                         .childFragmentManager.fragments[0] as TeamFindFragment).onBackPressed()
                 ) findNavController(R.id.navHostFragment).navigateUp()
+            R.id.orderEditorFragment ->
+                (supportFragmentManager.findFragmentById(R.id.navHostFragment)!!
+                        .childFragmentManager.fragments[0] as OrderEditorFragment).onBackPressed()
             else -> doubleBackPressToExit()
         }
     }
@@ -218,16 +223,4 @@ class MainActivity : AppCompatActivity() {
         baseContext.showShortToast(R.string.press_to_exit)
         mBackPressed = System.currentTimeMillis()
     }
-
-    private fun showUnsavedChangesDialog(discardAction: () -> Unit) =
-        AlertDialog.Builder(this@MainActivity)
-            .setMessage(R.string.unsaved_changes_dialog_msg)
-            .setCancelable(false)
-            .setPositiveButton(R.string.discard) { dialog, _ ->
-                dialog.dismiss()
-                discardAction()
-            }
-            .setNegativeButton(R.string.keep_editing) { dialog, _ -> dialog.dismiss() }
-            .create()
-            .show()
 }

@@ -8,6 +8,7 @@ import android.os.Build
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.util.DisplayMetrics
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
@@ -160,6 +161,21 @@ fun EditText.disable() {
     isFocusable = false
     isEnabled = false
     isFocusableInTouchMode = false
+}
+
+fun EditText.onDrawableEndClick(action: () -> Unit) {
+    setOnTouchListener { v, event ->
+        if (event.action == MotionEvent.ACTION_UP) {
+            v as EditText
+            val end = if (v.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL)
+                v.left else v.right
+            if (event.rawX >= (end - v.compoundPaddingEnd)) {
+                action.invoke()
+                return@setOnTouchListener true
+            }
+        }
+        return@setOnTouchListener false
+    }
 }
 // endregion EDITTEXT
 

@@ -169,7 +169,33 @@
             android:id="@+id/showAccountFragment"
             app:destination="@+id/accountFragment"
             app:enterAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/showOrderEditorFragment"
+            app:destination="@+id/orderEditorFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:popEnterAnim="@anim/slide_in_bottom" />
+        <action
+            android:id="@+id/showTeamEditorFragment"
+            app:destination="@+id/teamEditorFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:popEnterAnim="@anim/slide_in_bottom" />
     </fragment>
+
+    <fragment
+        android:id="@+id/orderEditorFragment"
+        android:name="pl.pomocnawirus.view.fragments.OrderEditorFragment"
+        tools:layout="@layout/fragment_order_editor">
+
+        <argument
+            android:name="order"
+            app:argType="pl.pomocnawirus.model.Order"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/teamEditorFragment"
+        android:name="pl.pomocnawirus.view.fragments.TeamEditorFragment"
+        tools:layout="@layout/fragment_team_editor" />
 
     <fragment
         android:id="@+id/taskListFragment"

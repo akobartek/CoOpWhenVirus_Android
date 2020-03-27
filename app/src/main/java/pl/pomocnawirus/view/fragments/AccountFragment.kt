@@ -1,10 +1,12 @@
 package pl.pomocnawirus.view.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -40,7 +42,7 @@ class AccountFragment : Fragment() {
             .setView(R.layout.dialog_loading)
             .setCancelable(false)
             .create()
-        mCurrentUser = (requireActivity() as MainActivity).getCurrenUser()!!
+        mCurrentUser = (requireActivity() as MainActivity).getCurrentUser()!!
 
         view.nameET.markRequiredInRed()
         view.nameET.setText(mCurrentUser.name)
@@ -72,6 +74,11 @@ class AccountFragment : Fragment() {
                         )
                     })
             }
+        }
+
+        view.accountLayout.setOnClickListener {
+            (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                .hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
         }
     }
 

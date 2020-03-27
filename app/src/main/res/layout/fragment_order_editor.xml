@@ -5,30 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorBackground"
-    tools:context=".view.fragments.OrdersListFragment">
+    tools:context=".view.fragments.OrderEditorFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/ordersListAppBarLayout"
+        android:id="@+id/orderDetailsAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorBackground"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/ordersListToolbar"
+            android:id="@+id/orderDetailsToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorBackground"
             app:layout_scrollFlags="enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/orders"
+            app:title="@string/create_new_order"
             app:titleTextColor="?attr/colorMenuIcons" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_orders_list" />
+    <include layout="@layout/content_order_editor" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addOrderBtn"
+        android:id="@+id/addTaskBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
