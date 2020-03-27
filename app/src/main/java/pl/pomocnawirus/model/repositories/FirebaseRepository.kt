@@ -102,6 +102,16 @@ class FirebaseRepository(val app: Application) {
 
 
     //region TEAMS
+    fun fetchTeam(teamMutableLiveData: MutableLiveData<Team>) {
+        mTeamSnapshot =
+            getCurrentUserDocument().addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                if (firebaseFirestoreException != null) {
+                    Log.e("FirebaseRepository", firebaseFirestoreException.toString())
+                }
+                teamMutableLiveData.postValue(querySnapshot!!.toObject(Team::class.java))
+            }
+    }
+
     fun createNewTeam(team: Team): MutableLiveData<String> {
         val isOperationSuccessful = MutableLiveData<String>()
         val teamDocument =
@@ -121,6 +131,14 @@ class FirebaseRepository(val app: Application) {
         }.addOnSuccessListener { isOperationSuccessful.postValue(teamDocument.id) }
             .addOnFailureListener { isOperationSuccessful.postValue("") }
         return isOperationSuccessful
+    }
+
+    fun updateTeam(team: Team, context: Context) {
+        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
+            .document(team.id)
+            .set(team.createTeamHashMap())
+            .addOnSuccessListener { context.showShortToast(R.string.team_updated) }
+            .addOnFailureListener { context.showShortToast(R.string.team_update_error_message) }
     }
 
     fun getAllTeams(teamsLiveData: MutableLiveData<List<TeamSimple>>) {
@@ -235,7 +253,7 @@ class FirebaseRepository(val app: Application) {
     }
 
     fun createNewOrder(order: Order, context: Context) {
-        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
+        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .add(order.createOrderHashMap())
             .addOnSuccessListener { context.showShortToast(R.string.order_saved) }
             .addOnFailureListener { context.showShortToast(R.string.order_save_error_message) }
@@ -252,7 +270,7 @@ class FirebaseRepository(val app: Application) {
     }
 
     fun updateOrder(order: Order, context: Context) {
-        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
+        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .document(order.id)
             .set(order.createOrderHashMap())
             .addOnSuccessListener { context.showShortToast(R.string.order_saved) }
@@ -260,7 +278,7 @@ class FirebaseRepository(val app: Application) {
     }
 
     fun deleteOrder(orderId: String, context: Context) {
-        mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
+        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .document(orderId)
             .delete()
             .addOnSuccessListener { context.showShortToast(R.string.order_delete_successfully) }

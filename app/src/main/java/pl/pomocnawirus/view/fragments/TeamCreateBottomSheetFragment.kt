@@ -55,12 +55,14 @@ class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragme
                 view.toolbarSaveBtn.isEnabled = true
                 return@setOnClickListener
             }
-            val team = Team(
-                "", teamName, city, arrayListOf(mAuth.currentUser!!.uid),
-                email ?: "", phoneNumber
-            )
-            dismiss()
-            teamJoinFragment.createNewTeam(team)
+            requireActivity().tryToRunFunctionOnInternet({
+                val team = Team(
+                    "", teamName, city, arrayListOf(mAuth.currentUser!!.uid),
+                    email ?: "", phoneNumber
+                )
+                dismiss()
+                teamJoinFragment.createNewTeam(team)
+            }, { view.toolbarSaveBtn.isEnabled = true })
         }
 
         view.teamEmailCheckBox.setOnCheckedChangeListener { _, isChecked ->

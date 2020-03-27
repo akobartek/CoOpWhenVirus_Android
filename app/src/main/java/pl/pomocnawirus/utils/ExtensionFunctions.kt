@@ -44,6 +44,18 @@ fun Context.showBasicAlertDialog(titleId: Int?, messageId: Int) {
 
 fun Context.showShortToast(messageId: Int) =
     Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show()
+
+fun Context.showUnsavedChangesDialog(discardAction: () -> Unit) =
+    AlertDialog.Builder(this)
+        .setMessage(R.string.unsaved_changes_dialog_msg)
+        .setCancelable(false)
+        .setPositiveButton(R.string.discard) { dialog, _ ->
+            dialog.dismiss()
+            discardAction()
+        }
+        .setNegativeButton(R.string.keep_editing) { dialog, _ -> dialog.dismiss() }
+        .create()
+        .show()
 // endregion CONTEXT
 
 // region ACTIVITY

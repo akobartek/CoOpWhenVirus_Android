@@ -117,6 +117,14 @@
     <string name="send_email_chooser">Send mail via:</string>
     <string name="send_email_error">There is no email client installed!</string>
     <string name="sms_btn_description">Tap here to send sms to leader of this team quickly</string>
+    <string name="team_members">Team members</string>
+    <string name="invite_to_team">Invite to the team</string>
+    <string name="invite_to_team_title">Inviting to the team</string>
+    <string name="invite_to_team_message">If you want to invite someone to your team, send them the following code:\n %s</string>
+    <string name="copy_to_clipboard">Copy</string>
+    <string name="copied_to_clipboard">Code copied to clipboard</string>
+    <string name="team_updated">Team successfully updated!</string>
+    <string name="team_update_error_message">There was an error with updating the team!</string>
 
     <!-- TASK STRINGS -->
     <string name="tasks">Tasks</string>

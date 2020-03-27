@@ -213,7 +213,10 @@ class MainActivity : AppCompatActivity() {
                 ) findNavController(R.id.navHostFragment).navigateUp()
             R.id.orderEditorFragment ->
                 (supportFragmentManager.findFragmentById(R.id.navHostFragment)!!
-                        .childFragmentManager.fragments[0] as OrderEditorFragment).onBackPressed()
+                    .childFragmentManager.fragments[0] as OrderEditorFragment).onBackPressed()
+            R.id.teamEditorFragment ->
+                (supportFragmentManager.findFragmentById(R.id.navHostFragment)!!
+                    .childFragmentManager.fragments[0] as TeamEditorFragment).onBackPressed()
             else -> doubleBackPressToExit()
         }
     }

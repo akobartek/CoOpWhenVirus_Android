@@ -19,6 +19,7 @@ import pl.pomocnawirus.model.Order
 import pl.pomocnawirus.utils.isValidEmail
 import pl.pomocnawirus.utils.isValidPhoneNumber
 import pl.pomocnawirus.utils.showBasicAlertDialog
+import pl.pomocnawirus.utils.showUnsavedChangesDialog
 import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.view.adapters.TaskNewRecyclerAdapter
 import pl.pomocnawirus.viewmodel.OrderEditorViewModel
@@ -75,7 +76,6 @@ class OrderEditorFragment : Fragment() {
             (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                 .hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
         }
-
         view.needyNameET.markRequiredInRed()
         view.addressET.markRequiredInRed()
         view.cityET.markRequiredInRed()
@@ -88,7 +88,7 @@ class OrderEditorFragment : Fragment() {
     }
 
     fun onBackPressed() {
-        if (orderChanged) showUnsavedChangesDialog { findNavController().navigateUp() }
+        if (orderChanged) requireContext().showUnsavedChangesDialog { findNavController().navigateUp() }
         else findNavController().navigateUp()
     }
 
@@ -186,18 +186,6 @@ class OrderEditorFragment : Fragment() {
         }
         return isValid
     }
-
-    private fun showUnsavedChangesDialog(discardAction: () -> Unit) =
-        AlertDialog.Builder(requireContext())
-            .setMessage(R.string.unsaved_changes_dialog_msg)
-            .setCancelable(false)
-            .setPositiveButton(R.string.discard) { dialog, _ ->
-                dialog.dismiss()
-                discardAction()
-            }
-            .setNegativeButton(R.string.keep_editing) { dialog, _ -> dialog.dismiss() }
-            .create()
-            .show()
 
     private fun showDeleteConfirmationDialog() =
         AlertDialog.Builder(context!!)
