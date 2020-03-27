@@ -113,19 +113,19 @@ class AccountFragment : Fragment() {
                     true
                 }
                 R.id.action_change_password -> {
-                    showChangePasswordDialog()
+                    requireActivity().tryToRunFunctionOnInternet({ showChangePasswordDialog() }, {})
                     true
                 }
                 R.id.action_change_email -> {
-                    showChangeEmailDialog()
+                    requireActivity().tryToRunFunctionOnInternet({ showChangeEmailDialog() }, {})
                     true
                 }
                 R.id.action_leave_team -> {
-                    showLeaveTeamDialog()
+                    requireActivity().tryToRunFunctionOnInternet({ showLeaveTeamDialog() }, {})
                     true
                 }
                 R.id.action_delete_account -> {
-                    showDeleteAccountDialog()
+                    requireActivity().tryToRunFunctionOnInternet({ showDeleteAccountDialog() }, {})
                     true
                 }
                 else -> true

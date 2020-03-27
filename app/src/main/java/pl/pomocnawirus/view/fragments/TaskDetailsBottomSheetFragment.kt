@@ -21,6 +21,7 @@ import pl.pomocnawirus.model.Task
 import pl.pomocnawirus.utils.format
 import pl.pomocnawirus.utils.setLayoutFullHeight
 import pl.pomocnawirus.utils.showShortToast
+import pl.pomocnawirus.utils.tryToRunFunctionOnInternet
 import pl.pomocnawirus.viewmodel.TasksViewModel
 
 class TaskDetailsBottomSheetFragment(private val mOrder: Order, private val mTask: Task) :
@@ -104,9 +105,13 @@ class TaskDetailsBottomSheetFragment(private val mOrder: Order, private val mTas
         val index = mOrder.tasks.indexOf(mTask)
         mTask.status = newStatus
         mOrder.tasks[index] = mTask
-        mViewModel.updateOrder(mOrder).observe(viewLifecycleOwner, Observer {
-            setupToolbarIcons()
-            if (mLoadingDialog.isShowing) mLoadingDialog.hide()
+        requireActivity().tryToRunFunctionOnInternet({
+            mViewModel.updateOrder(mOrder).observe(viewLifecycleOwner, Observer {
+                setupToolbarIcons()
+                if (mLoadingDialog.isShowing) mLoadingDialog.hide()
+            })
+        }, {
+            mLoadingDialog.hide()
         })
     }
 

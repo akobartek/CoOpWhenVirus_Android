@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.utils.createUnderlinedString
 import pl.pomocnawirus.utils.showShortToast
+import pl.pomocnawirus.utils.tryToRunFunctionOnInternet
 import pl.pomocnawirus.view.activities.MainActivity
 
 class SignInFragment : Fragment() {
@@ -53,38 +54,40 @@ class SignInFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(activity!!) { task ->
-                    if (task.isSuccessful) {
-                        if (!mAuth.currentUser!!.isEmailVerified) {
-                            showVerifyEmailDialog()
-                            mAuth.signOut()
-                            view.signInBtn.isEnabled = true
+            requireActivity().tryToRunFunctionOnInternet({
+                mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(activity!!) { task ->
+                        if (task.isSuccessful) {
+                            if (!mAuth.currentUser!!.isEmailVerified) {
+                                showVerifyEmailDialog()
+                                mAuth.signOut()
+                                view.signInBtn.isEnabled = true
+                            } else {
+                                requireContext().showShortToast(R.string.signed_in)
+                                (requireActivity() as MainActivity).navigateToCorrectServiceFragment()
+                            }
                         } else {
-                            requireContext().showShortToast(R.string.signed_in)
-                            (requireActivity() as MainActivity).navigateToCorrectServiceFragment()
-                        }
-                    } else {
-                        Log.d("SignInFailed", task.exception.toString())
-                        when (task.exception) {
-                            is FirebaseAuthInvalidUserException -> {
-                                view.emailET.error = getString(R.string.sign_in_no_user_error)
-                                view.emailET.requestFocus()
+                            Log.d("SignInFailed", task.exception.toString())
+                            when (task.exception) {
+                                is FirebaseAuthInvalidUserException -> {
+                                    view.emailET.error = getString(R.string.sign_in_no_user_error)
+                                    view.emailET.requestFocus()
+                                }
+                                is FirebaseAuthInvalidCredentialsException -> {
+                                    view.passwordET.error =
+                                        getString(R.string.sign_in_wrong_password_error)
+                                    view.passwordET.requestFocus()
+                                }
+                                else -> Snackbar.make(
+                                    view.signInLayout,
+                                    R.string.sign_in_error,
+                                    Snackbar.LENGTH_LONG
+                                ).show()
                             }
-                            is FirebaseAuthInvalidCredentialsException -> {
-                                view.passwordET.error =
-                                    getString(R.string.sign_in_wrong_password_error)
-                                view.passwordET.requestFocus()
-                            }
-                            else -> Snackbar.make(
-                                view.signInLayout,
-                                R.string.sign_in_error,
-                                Snackbar.LENGTH_LONG
-                            ).show()
+                            view.signInBtn.isEnabled = true
                         }
-                        view.signInBtn.isEnabled = true
                     }
-                }
+            }, { view.signInBtn.isEnabled = true })
         }
         view.signInLayout.setOnClickListener {
             (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)

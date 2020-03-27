@@ -106,12 +106,12 @@ class OrderEditorFragment : Fragment() {
     }
 
     private fun inflateToolbarMenu() {
-        view?.orderDetailsToolbar?.title =
+        view?.orderEditorToolbar?.title =
             getString(if (mOrder == null) R.string.create_new_order else R.string.edit_order)
-        view?.orderDetailsToolbar?.setNavigationIcon(R.drawable.ic_arrow_back)
-        view?.orderDetailsToolbar?.setNavigationOnClickListener { onBackPressed() }
-        view?.orderDetailsToolbar?.inflateMenu(if (mOrder == null) R.menu.order_new_menu else R.menu.order_edit_menu)
-        view?.orderDetailsToolbar?.setOnMenuItemClickListener {
+        view?.orderEditorToolbar?.setNavigationIcon(R.drawable.ic_arrow_back)
+        view?.orderEditorToolbar?.setNavigationOnClickListener { onBackPressed() }
+        view?.orderEditorToolbar?.inflateMenu(if (mOrder == null) R.menu.order_new_menu else R.menu.order_edit_menu)
+        view?.orderEditorToolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_save_order -> {
                     saveOrder()

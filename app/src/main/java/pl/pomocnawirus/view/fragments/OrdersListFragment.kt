@@ -73,7 +73,7 @@ class OrdersListFragment : Fragment() {
         view?.ordersListToolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_team_details -> {
-                    // TODO() -> Navigate to team details
+                    findNavController().navigate(OrdersListFragmentDirections.showTeamEditorFragment())
                     true
                 }
                 R.id.action_my_tasks -> {

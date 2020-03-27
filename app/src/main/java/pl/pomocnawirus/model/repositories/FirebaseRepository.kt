@@ -134,29 +134,6 @@ class FirebaseRepository(val app: Application) {
             }
     }
 
-    fun fetchOrders(ordersMutableLiveData: MutableLiveData<ArrayList<Order>>, teamId: String) {
-        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
-            .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
-            .orderBy(FirestoreUtils.firestoreKeyDateAdded, Query.Direction.ASCENDING)
-            .get()
-            .addOnSuccessListener { orders ->
-                val arrayList = arrayListOf<Order>()
-                arrayList.addAll(orders!!.toObjects(Order::class.java))
-                ordersMutableLiveData.postValue(arrayList)
-            }
-            .addOnFailureListener { ordersMutableLiveData.postValue(arrayListOf()) }
-    }
-
-    fun updateOrder(order: Order): MutableLiveData<Boolean> {
-        val result = MutableLiveData<Boolean>()
-        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
-            .document(order.id)
-            .set(order.createOrderHashMap())
-            .addOnSuccessListener { result.postValue(true) }
-            .addOnFailureListener { result.postValue(false) }
-        return result
-    }
-
     fun leaveTeam(isLeader: Boolean, teamId: String): MutableLiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
         val teamDocument = mFirestore.collection(FirestoreUtils.firestoreCollectionTeams).document()
@@ -244,11 +221,34 @@ class FirebaseRepository(val app: Application) {
 
 
     // region ORDERS
+    fun fetchOrders(ordersMutableLiveData: MutableLiveData<ArrayList<Order>>, teamId: String) {
+        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+            .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
+            .orderBy(FirestoreUtils.firestoreKeyDateAdded, Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener { orders ->
+                val arrayList = arrayListOf<Order>()
+                arrayList.addAll(orders!!.toObjects(Order::class.java))
+                ordersMutableLiveData.postValue(arrayList)
+            }
+            .addOnFailureListener { ordersMutableLiveData.postValue(arrayListOf()) }
+    }
+
     fun createNewOrder(order: Order, context: Context) {
         mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
             .add(order.createOrderHashMap())
             .addOnSuccessListener { context.showShortToast(R.string.order_saved) }
             .addOnFailureListener { context.showShortToast(R.string.order_save_error_message) }
+    }
+
+    fun updateOrder(order: Order): MutableLiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+            .document(order.id)
+            .set(order.createOrderHashMap())
+            .addOnSuccessListener { result.postValue(true) }
+            .addOnFailureListener { result.postValue(false) }
+        return result
     }
 
     fun updateOrder(order: Order, context: Context) {

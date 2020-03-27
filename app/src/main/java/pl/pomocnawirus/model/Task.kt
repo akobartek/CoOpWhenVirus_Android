@@ -10,7 +10,7 @@ data class Task(
     var id: String = "",
     var type: String = TASK_TYPE_OTHER,
     var description: String = "",
-    var status: Int = 0,
+    var status: Int = TASK_STATUS_ADDED,
     var realizationDate: Timestamp? = null,
     var volunteerId: String = ""
 ) : Parcelable {

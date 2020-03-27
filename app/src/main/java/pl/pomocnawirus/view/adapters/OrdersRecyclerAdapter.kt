@@ -3,10 +3,12 @@ package pl.pomocnawirus.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_order.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Order
+import pl.pomocnawirus.view.fragments.OrdersListFragmentDirections
 
 class OrdersRecyclerAdapter : RecyclerView.Adapter<OrdersRecyclerAdapter.OrderViewHolder>() {
 
@@ -35,7 +37,8 @@ class OrdersRecyclerAdapter : RecyclerView.Adapter<OrdersRecyclerAdapter.OrderVi
             itemView.orderAddressTV.text = order.getAddressFormatted()
 
             itemView.setOnClickListener {
-                // TODO()
+                itemView.findNavController()
+                    .navigate(OrdersListFragmentDirections.showOrderEditorFragment(order))
             }
         }
     }

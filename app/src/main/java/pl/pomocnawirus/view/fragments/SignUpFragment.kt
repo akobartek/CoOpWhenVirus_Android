@@ -21,6 +21,7 @@ import pl.pomocnawirus.utils.FirestoreUtils.firestoreCollectionUsers
 import pl.pomocnawirus.utils.isValidEmail
 import pl.pomocnawirus.utils.isValidPassword
 import pl.pomocnawirus.utils.isValidPhoneNumber
+import pl.pomocnawirus.utils.tryToRunFunctionOnInternet
 
 class SignUpFragment : Fragment() {
 
@@ -54,35 +55,37 @@ class SignUpFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(activity!!) { task ->
-                    if (task.isSuccessful) {
-                        mAuth.useAppLanguage()
-                        mAuth.currentUser?.sendEmailVerification()
-                        val user = User("", email, name, User.USER_TYPE_USER, phoneNumber, "")
+            requireActivity().tryToRunFunctionOnInternet({
+                mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(activity!!) { task ->
+                        if (task.isSuccessful) {
+                            mAuth.useAppLanguage()
+                            mAuth.currentUser?.sendEmailVerification()
+                            val user = User("", email, name, User.USER_TYPE_USER, phoneNumber, "")
 
-                        FirebaseFirestore.getInstance().collection(firestoreCollectionUsers)
-                            .document(mAuth.currentUser!!.uid)
-                            .set(user.createUserHashMap())
+                            FirebaseFirestore.getInstance().collection(firestoreCollectionUsers)
+                                .document(mAuth.currentUser!!.uid)
+                                .set(user.createUserHashMap())
 
-                        mAuth.signOut()
-                        showSignUpSuccessfulDialog()
-                    } else {
-                        Log.d("SignUpFailed", task.exception!!.toString())
-                        if (task.exception!! is FirebaseAuthUserCollisionException) {
-                            view.signUpBtn.isEnabled = true
-                            view.emailET.error = getString(R.string.sign_up_existing_user_error)
-                            view.emailET.requestFocus()
+                            mAuth.signOut()
+                            showSignUpSuccessfulDialog()
                         } else {
-                            view.signUpBtn.isEnabled = true
-                            Snackbar.make(
-                                view.signUpLayout,
-                                R.string.sign_up_error,
-                                Snackbar.LENGTH_LONG
-                            ).show()
+                            Log.d("SignUpFailed", task.exception!!.toString())
+                            if (task.exception!! is FirebaseAuthUserCollisionException) {
+                                view.signUpBtn.isEnabled = true
+                                view.emailET.error = getString(R.string.sign_up_existing_user_error)
+                                view.emailET.requestFocus()
+                            } else {
+                                view.signUpBtn.isEnabled = true
+                                Snackbar.make(
+                                    view.signUpLayout,
+                                    R.string.sign_up_error,
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
-                }
+            }, { view.signUpBtn.isEnabled = true })
         }
         view.signUpLayout.setOnClickListener {
             (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)

@@ -15,6 +15,7 @@ import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Team
 import pl.pomocnawirus.utils.showBasicAlertDialog
 import pl.pomocnawirus.utils.showShortToast
+import pl.pomocnawirus.utils.tryToRunFunctionOnInternet
 import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.viewmodel.TeamsViewModel
 
@@ -54,19 +55,23 @@ class TeamJoinFragment : Fragment() {
                 return@setOnClickListener
             }
             mLoadingDialog.show()
-            mViewModel.addUserToTeam(teamCode)
-                .observe(viewLifecycleOwner, Observer { addedToTeam ->
-                    if (mLoadingDialog.isShowing) mLoadingDialog.hide()
-                    if (addedToTeam) {
-                        requireContext().showShortToast(R.string.added_to_team_successful)
-                        findNavController().navigate(
-                            TeamJoinFragmentDirections.showTaskListFragment(teamCode)
+            requireActivity().tryToRunFunctionOnInternet({
+                mViewModel.addUserToTeam(teamCode)
+                    .observe(viewLifecycleOwner, Observer { addedToTeam ->
+                        if (mLoadingDialog.isShowing) mLoadingDialog.hide()
+                        if (addedToTeam) {
+                            requireContext().showShortToast(R.string.added_to_team_successful)
+                            findNavController().navigate(
+                                TeamJoinFragmentDirections.showTaskListFragment(teamCode)
+                            )
+                        } else requireContext().showBasicAlertDialog(
+                            R.string.team_not_found,
+                            R.string.team_code_invalid_error
                         )
-                    } else requireContext().showBasicAlertDialog(
-                        R.string.team_not_found,
-                        R.string.team_code_invalid_error
-                    )
-                })
+                    })
+            }, {
+                if (mLoadingDialog.isShowing) mLoadingDialog.hide()
+            })
         }
     }
 
@@ -77,17 +82,21 @@ class TeamJoinFragment : Fragment() {
 
     fun createNewTeam(team: Team) {
         mLoadingDialog.show()
-        mViewModel.createNewTeam(team).observe(viewLifecycleOwner, Observer { teamId ->
-            if (teamId.isNotEmpty()) {
-                if (mLoadingDialog.isShowing) mLoadingDialog.hide()
-                requireContext().showShortToast(R.string.team_created_successful)
-                findNavController().navigate(
-                    TeamJoinFragmentDirections.showOrdersListFragment(teamId)
+        requireActivity().tryToRunFunctionOnInternet({
+            mViewModel.createNewTeam(team).observe(viewLifecycleOwner, Observer { teamId ->
+                if (teamId.isNotEmpty()) {
+                    if (mLoadingDialog.isShowing) mLoadingDialog.hide()
+                    requireContext().showShortToast(R.string.team_created_successful)
+                    findNavController().navigate(
+                        TeamJoinFragmentDirections.showOrdersListFragment(teamId)
+                    )
+                } else requireContext().showBasicAlertDialog(
+                    R.string.update_error_title,
+                    R.string.update_error_message
                 )
-            } else requireContext().showBasicAlertDialog(
-                R.string.update_error_title,
-                R.string.update_error_message
-            )
+            })
+        }, {
+            if (mLoadingDialog.isShowing) mLoadingDialog.hide()
         })
     }
 

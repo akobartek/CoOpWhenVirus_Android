@@ -8,14 +8,14 @@
     tools:context=".view.fragments.OrderEditorFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/orderDetailsAppBarLayout"
+        android:id="@+id/orderEditorAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorBackground"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/orderDetailsToolbar"
+            android:id="@+id/orderEditorToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorBackground"
