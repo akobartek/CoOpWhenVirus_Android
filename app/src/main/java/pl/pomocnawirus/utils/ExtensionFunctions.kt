@@ -1,6 +1,8 @@
 package pl.pomocnawirus.utils
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -114,6 +116,11 @@ fun Activity.getWindowHeight(): Int {
     this.windowManager.defaultDisplay.getMetrics(displayMetrics)
     return displayMetrics.heightPixels
 }
+
+fun Activity.copyToClipboard(label: String, textToCopy: String) {
+    (this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
+        .setPrimaryClip(ClipData.newPlainText(label, textToCopy))
+}
 // endregion ACTIVITY
 
 // region VIEW
@@ -137,7 +144,8 @@ fun View.expand() {
         override fun willChangeBounds(): Boolean = true
     }
     // Expansion speed of 1dp/ms
-    animation.duration = ((targetHeight / context.resources.displayMetrics.density).toInt()).toLong()
+    animation.duration =
+        ((targetHeight / context.resources.displayMetrics.density).toInt()).toLong()
     startAnimation(animation)
 }
 
@@ -157,7 +165,8 @@ fun View.collapse() {
         override fun willChangeBounds(): Boolean = true
     }
     // Collapse speed of 1dp/ms
-    animation.duration = ((initialHeight / context.resources.displayMetrics.density).toInt()).toLong()
+    animation.duration =
+        ((initialHeight / context.resources.displayMetrics.density).toInt()).toLong()
     startAnimation(animation)
 }
 // endregion VIEW

@@ -4,6 +4,7 @@
     <string name="safety">Safety</string>
     <string name="service">Service</string>
     <string name="ok" translatable="false">OK</string>
+    <string name="yes">Yes</string>
     <string name="try_again">Try again</string>
     <string name="send">Send</string>
     <string name="save">Save</string>
@@ -121,10 +122,23 @@
     <string name="invite_to_team">Invite to the team</string>
     <string name="invite_to_team_title">Inviting to the team</string>
     <string name="invite_to_team_message">If you want to invite someone to your team, send them the following code:\n %s</string>
+    <string name="invite_btn_description">Tap here to show invite code</string>
+    <string name="empty_team_list">You are the only member of the team!\nYou can invite your friends and start working on a better tomorrow!</string>
     <string name="copy_to_clipboard">Copy</string>
     <string name="copied_to_clipboard">Code copied to clipboard</string>
     <string name="team_updated">Team successfully updated!</string>
     <string name="team_update_error_message">There was an error with updating the team!</string>
+    <string name="leader_icon_description">This icon shows that the user is a leader</string>
+    <string name="member_options_btn_description">Tap here to show options what you can do with the user</string>
+    <string name="contact_details">Contact details</string>
+    <string name="make_a_leader">Make a leader</string>
+    <string name="remove_leader">Remove leader</string>
+    <string name="remove_from_team">Remove from team</string>
+    <string name="email_copied">E-mail address copied to clipboard</string>
+    <string name="phone_copied">Phone number copied to clipboard</string>
+    <string name="make_leader_message">Are you sure you want to give this user the role of team leader?</string>
+    <string name="remove_leader_message">Are you sure you want to remove from this user the role of team leader?</string>
+    <string name="remove_team_member_message">Are you sure you want to remove this user from the team?</string>
 
     <!-- TASK STRINGS -->
     <string name="tasks">Tasks</string>

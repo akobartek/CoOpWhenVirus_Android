@@ -10,7 +10,6 @@ object FirestoreUtils {
 
     const val firestoreCollectionUsers = "users"
     const val firestoreKeyUserType = "userType"
-    const val firestoreKeyTasksToDo = "tasksToDo"
 
     const val firestoreCollectionTeams = "teams"
     const val firestoreKeyLeaders = "admins"

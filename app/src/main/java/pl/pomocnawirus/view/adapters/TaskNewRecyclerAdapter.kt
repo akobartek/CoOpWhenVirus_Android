@@ -55,7 +55,9 @@ class TaskNewRecyclerAdapter(val childFragmentManager: FragmentManager, val empt
                 taskDetailsBottomSheet.show(childFragmentManager, taskDetailsBottomSheet.tag)
             }
 
+            // TODO() -> Set user to task
             itemView.taskDeleteImage.setOnClickListener {
+                // TODO () Show undo snackbar
                 mTasks.remove(task)
                 notifyDataSetChanged()
                 if (mTasks.isEmpty()) emptyView.visibility = View.VISIBLE

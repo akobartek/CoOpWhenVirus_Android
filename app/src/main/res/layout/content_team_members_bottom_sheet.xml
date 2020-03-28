@@ -5,41 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorBackground"
-    tools:context=".view.fragments.TeamFindFragment">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/teamFindAppBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorBackground"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/teamFindToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorBackground"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/existing_teams"
-            app:titleTextColor="?attr/colorMenuIcons" />
-    </com.google.android.material.appbar.AppBarLayout>
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".view.fragments.TeamMembersBottomSheetFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/teamsRecyclerView"
+        android:id="@+id/membersRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teamFindAppBarLayout"
-        tools:listitem="@layout/item_team" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_member" />
 
     <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/teamsLoadingIndicator"
+        android:id="@+id/membersLoadingIndicator"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="42dp"
         android:layout_height="42dp"
@@ -50,20 +32,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/emptyTeamsView"
+        android:id="@+id/emptyMembersView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableTop="@drawable/ic_no_teams"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
-        android:text="@string/empty_teams_list"
+        android:drawableTop="@drawable/ic_no_teams"
+        android:text="@string/empty_team_list"
         android:textAlignment="center"
         android:textColor="?attr/colorIcons"
         android:textSize="15sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

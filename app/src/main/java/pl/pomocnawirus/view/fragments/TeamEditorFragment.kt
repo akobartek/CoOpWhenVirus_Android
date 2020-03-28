@@ -1,7 +1,5 @@
 package pl.pomocnawirus.view.fragments
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,6 +17,7 @@ import kotlinx.coroutines.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Team
 import pl.pomocnawirus.utils.*
+import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.viewmodel.TeamEditorViewModel
 
 class TeamEditorFragment : Fragment() {
@@ -48,7 +47,7 @@ class TeamEditorFragment : Fragment() {
             .setCancelable(false)
             .create()
         mLoadingDialog.show()
-        mViewModel.fetchTeam()
+        mViewModel.fetchTeam((requireActivity() as MainActivity).getCurrentUser()!!.teamId)
 
         mJob = GlobalScope.async(Dispatchers.IO) {
             delay(15000)
@@ -71,7 +70,8 @@ class TeamEditorFragment : Fragment() {
         })
 
         view.showTeamMembersBtn.setOnClickListener {
-            // TODO() -> Open members bottom sheet
+            val teamMembersBottomSheet = TeamMembersBottomSheetFragment(this::showInviteDialog)
+            teamMembersBottomSheet.show(childFragmentManager, teamMembersBottomSheet.tag)
         }
 
         view.teamEditorLayout.setOnClickListener {
@@ -124,8 +124,7 @@ class TeamEditorFragment : Fragment() {
             .setCancelable(false)
             .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .setNeutralButton(R.string.copy_to_clipboard) { dialog, _ ->
-                (requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
-                    .setPrimaryClip(ClipData.newPlainText("Invite_code", teamId))
+                requireActivity().copyToClipboard("Invite_code", teamId)
                 requireContext().showShortToast(R.string.copied_to_clipboard)
                 dialog.dismiss()
             }
