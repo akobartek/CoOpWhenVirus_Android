@@ -57,7 +57,9 @@ class OrderEditorFragment : Fragment() {
         }
         inflateToolbarMenu()
         mViewModel = ViewModelProvider(requireActivity()).get(OrderEditorViewModel::class.java)
-        mAdapter = TaskNewRecyclerAdapter(childFragmentManager, view.taskEmptyListTV)
+        mAdapter = TaskNewRecyclerAdapter(
+            childFragmentManager, view.taskEmptyListTV, view.orderEditorParentLayout
+        )
         view.orderTasksRecyclerView.apply {
             layoutManager = LinearLayoutManager(view.context)
             itemAnimator = DefaultItemAnimator()

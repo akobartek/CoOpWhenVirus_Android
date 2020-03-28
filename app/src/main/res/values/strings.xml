@@ -11,6 +11,7 @@
     <string name="cancel">Cancel</string>
     <string name="loading">Loading…</string>
     <string name="search">Search</string>
+    <string name="undo">Undo</string>
     <string name="no_internet_title">No internet connection</string>
     <string name="no_internet_reconnect_message">An error with connection occurred, do you want to try again?</string>
     <string name="press_to_exit">Press once again to exit!</string>
@@ -173,7 +174,11 @@
     <string name="needy_name">Name of the needy person</string>
     <string name="address">Address</string>
     <string name="tasks_to_do">Tasks to do:</string>
-    <string name="task_delete_btn_description">Tap here to delete this task from list</string>
+    <string name="task_options_btn_description">Tap here to show options what you can do with the task</string>
+    <string name="task_assign_user">Assign user</string>
+    <string name="assign_user_to_task">Assign user to the task</string>
+    <string name="task_delete">Delete task</string>
+    <string name="task_deleted">Task deleted</string>
     <string name="no_tasks_added_yet">No tasks added yet. You can add task by clicking button with plus icon.</string>
     <string name="add_task">Add task</string>
     <string name="edit_task">Edit task</string>

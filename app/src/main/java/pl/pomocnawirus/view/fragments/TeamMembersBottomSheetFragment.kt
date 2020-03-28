@@ -16,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.content_team_members_bottom_sheet.view.*
+import kotlinx.android.synthetic.main.content_members_list.view.*
 import kotlinx.android.synthetic.main.dialog_contact_details.view.*
 import kotlinx.android.synthetic.main.fragment_team_members_bottom_sheet.view.*
 import pl.pomocnawirus.R
@@ -62,7 +62,6 @@ class TeamMembersBottomSheetFragment(val showInviteDialog: (String) -> Unit) :
         mViewModel.fetchTeamMembers()
         mViewModel.teamMembers.observe(viewLifecycleOwner, Observer { members ->
             val list = members.filter { it.id != FirebaseAuth.getInstance().currentUser!!.uid }
-                .sortedWith(compareBy({ it.userType }, { it.name }))
             mAdapter.setMembersList(list)
             view.membersRecyclerView.scheduleLayoutAnimation()
             view.membersLoadingIndicator.hide()

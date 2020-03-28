@@ -38,18 +38,9 @@
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
-                android:text="@string/team_members"
+                android:text="@string/assign_user_to_task"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textColor="?attr/colorMenuIcons" />
-
-            <ImageButton
-                android:id="@+id/toolbarInviteBtn"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/invite_btn_description"
-                android:src="@drawable/ic_menu_invite"
-                android:tint="?attr/colorMenuIcons" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

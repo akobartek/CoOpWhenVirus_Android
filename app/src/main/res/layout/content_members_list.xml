@@ -5,15 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorBackground"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".view.fragments.TeamMembersBottomSheetFragment">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/membersRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,14 +33,14 @@
         android:id="@+id/emptyMembersView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_no_teams"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
-        android:drawableTop="@drawable/ic_no_teams"
         android:text="@string/empty_team_list"
         android:textAlignment="center"
         android:textColor="?attr/colorIcons"
         android:textSize="15sp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

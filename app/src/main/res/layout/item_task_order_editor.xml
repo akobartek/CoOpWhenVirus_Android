@@ -28,14 +28,14 @@
             tools:src="@drawable/ic_task_pets" />
 
         <ImageButton
-            android:id="@+id/taskDeleteImage"
+            android:id="@+id/taskOptionsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:background="?selectableItemBackgroundBorderless"
-            android:contentDescription="@string/task_delete_btn_description"
-            android:padding="5dp"
-            android:src="@drawable/ic_menu_close"
+            android:contentDescription="@string/task_options_btn_description"
+            android:padding="8dp"
+            android:src="@drawable/ic_options"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,9 +49,9 @@
             android:paddingBottom="4dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             android:textColor="?attr/colorText"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/taskOptionsBtn"
             app:layout_constraintStart_toEndOf="@+id/taskTypeImage"
-            app:layout_constraintTop_toBottomOf="@+id/taskDeleteImage"
+            app:layout_constraintTop_toBottomOf="@+id/taskRealizationDateTV"
             tools:text="Bardzo długi opis zadania, które należy jak najszybciej wykonać" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -63,9 +63,9 @@
             android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif"
             android:paddingBottom="4dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             android:textColor="?attr/colorText"
-            app:layout_constraintEnd_toStartOf="@+id/taskDeleteImage"
+            app:layout_constraintEnd_toStartOf="@+id/taskOptionsBtn"
             app:layout_constraintStart_toEndOf="@+id/taskTypeImage"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="11.09.2001" />

@@ -26,33 +26,37 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/memberNameTV"
+            android:id="@+id/memberEmailTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:paddingBottom="4dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="?attr/colorMenuIcons"
+            app:layout_constraintBottom_toTopOf="@+id/memberNameTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/leaderIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="sampleemail@gmail.com" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/memberNameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-light"
             android:paddingBottom="4dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColor="?attr/colorText"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/memberOptionsBtn"
-            app:layout_constraintStart_toEndOf="@+id/leaderIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@tools:sample/full_names" />
-
-        <ImageButton
-            android:id="@+id/memberOptionsBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?selectableItemBackgroundBorderless"
-            android:contentDescription="@string/member_options_btn_description"
-            android:padding="8dp"
-            android:src="@drawable/ic_options"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/leaderIcon"
+            app:layout_constraintTop_toBottomOf="@+id/memberEmailTV"
+            tools:text="@tools:sample/full_names" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

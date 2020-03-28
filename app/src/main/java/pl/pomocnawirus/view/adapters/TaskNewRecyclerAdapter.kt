@@ -3,16 +3,20 @@ package pl.pomocnawirus.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.item_task_order_editor.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Task
 import pl.pomocnawirus.utils.format
+import pl.pomocnawirus.view.fragments.TaskAssignMemberBottomSheetFragment
 import pl.pomocnawirus.view.fragments.TaskEditorBottomSheetFragment
 
-class TaskNewRecyclerAdapter(val childFragmentManager: FragmentManager, val emptyView: View) :
-    RecyclerView.Adapter<TaskNewRecyclerAdapter.TaskViewHolder>() {
+class TaskNewRecyclerAdapter(
+    val fragmentManager: FragmentManager, val emptyView: View, val parentView: View
+) : RecyclerView.Adapter<TaskNewRecyclerAdapter.TaskViewHolder>() {
 
     private var mTasks = arrayListOf<Task>()
 
@@ -48,19 +52,50 @@ class TaskNewRecyclerAdapter(val childFragmentManager: FragmentManager, val empt
             itemView.taskTypeImage.setImageResource(task.getIconDrawableId())
 
             itemView.setOnClickListener {
-                val taskDetailsBottomSheet = TaskEditorBottomSheetFragment(task) { editedTaks ->
-                    mTasks[position] = editedTaks
+                val taskDetailsBottomSheet = TaskEditorBottomSheetFragment(task) { editedTask ->
+                    mTasks[position] = editedTask
                     notifyItemChanged(position)
                 }
-                taskDetailsBottomSheet.show(childFragmentManager, taskDetailsBottomSheet.tag)
+                taskDetailsBottomSheet.show(fragmentManager, taskDetailsBottomSheet.tag)
             }
 
-            // TODO() -> Set user to task
-            itemView.taskDeleteImage.setOnClickListener {
-                // TODO () Show undo snackbar
-                mTasks.remove(task)
-                notifyDataSetChanged()
-                if (mTasks.isEmpty()) emptyView.visibility = View.VISIBLE
+            itemView.taskOptionsBtn.setOnClickListener { view ->
+                val popupMenu = PopupMenu(itemView.context, view)
+                popupMenu.menuInflater.inflate(R.menu.task_options_popup_menu, popupMenu.menu)
+                popupMenu.setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.action_task_assign_user -> {
+                            val membersBottomSheet = TaskAssignMemberBottomSheetFragment() { user ->
+                                if (user != null) task.volunteerId = user.id
+                                else task.volunteerId = ""
+                            }
+                            membersBottomSheet.show(fragmentManager, membersBottomSheet.tag)
+                            true
+                        }
+                        R.id.action_task_delete -> {
+                            mTasks.remove(task)
+                            notifyItemRemoved(position)
+
+                            val snackbar =
+                                Snackbar.make(
+                                    parentView,
+                                    R.string.task_deleted,
+                                    Snackbar.LENGTH_SHORT
+                                )
+                            snackbar.setAction(R.string.undo) {
+                                mTasks.add(position, task)
+                                notifyItemInserted(position)
+                                if (emptyView.visibility == View.VISIBLE) emptyView.visibility =
+                                    View.INVISIBLE
+                            }
+                            snackbar.show()
+                            if (mTasks.isEmpty()) emptyView.visibility = View.VISIBLE
+                            true
+                        }
+                        else -> true
+                    }
+                }
+                popupMenu.show()
             }
         }
     }
