@@ -108,7 +108,7 @@ class AccountFragment : Fragment() {
         view?.accountToolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_sign_out -> {
-                    mViewModel.unregisterTeamListener()
+                    mViewModel.unregisterListeners()
                     (requireActivity() as MainActivity).signOut()
                     true
                 }

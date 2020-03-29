@@ -14,8 +14,9 @@ import kotlinx.android.synthetic.main.content_task_list.view.*
 import kotlinx.android.synthetic.main.fragment_task_list.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Task
+import pl.pomocnawirus.utils.Filters
+import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.view.adapters.TasksRecyclerAdapter
-import pl.pomocnawirus.viewmodel.MainViewModel
 import pl.pomocnawirus.viewmodel.TasksViewModel
 
 class TaskListFragment : Fragment() {
@@ -44,20 +45,19 @@ class TaskListFragment : Fragment() {
         }
 
         mViewModel = ViewModelProvider(requireActivity()).get(TasksViewModel::class.java)
-        val teamId = arguments?.let { TaskListFragmentArgs.fromBundle(it).teamId }
-        if (teamId == null)
-            ViewModelProvider(requireActivity()).get(MainViewModel::class.java).currentUser.value?.teamId
-        mViewModel.fetchOrders(teamId!!)
+        val teamId = (requireActivity() as MainActivity).getCurrentUser()?.teamId
+        if (teamId != null) mViewModel.fetchOrders(teamId)
+        else requireActivity().recreate()
         mViewModel.orders.observe(viewLifecycleOwner, Observer { showTasks() })
-        mViewModel.filters.observe(viewLifecycleOwner, Observer { showTasks() })
+        mViewModel.filters.observe(viewLifecycleOwner, Observer { if (it != null) showTasks() })
     }
 
     private fun showTasks() {
         val tasksToShow = arrayListOf<Task>()
-        val filters = mViewModel.filters.value
+        val filters = mViewModel.filters.value ?: Filters()
         mViewModel.orders.value?.forEach { order ->
             tasksToShow.addAll(order.tasks.filter { task ->
-                filters?.selectedTaskTypes!!.contains(task.type) &&
+                filters.selectedTaskTypes.contains(task.type) &&
                         if (filters.selectedTaskStatus == Task.TASK_STATUS_ADDED) task.status == Task.TASK_STATUS_ADDED
                         else task.status != Task.TASK_STATUS_ADDED
             })

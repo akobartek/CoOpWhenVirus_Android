@@ -15,9 +15,9 @@ import kotlinx.android.synthetic.main.content_orders_list.view.*
 import kotlinx.android.synthetic.main.fragment_orders_list.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Task
+import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.view.adapters.OrdersRecyclerAdapter
 import pl.pomocnawirus.view.adapters.TasksRecyclerAdapter
-import pl.pomocnawirus.viewmodel.MainViewModel
 import pl.pomocnawirus.viewmodel.OrdersViewModel
 
 class OrdersListFragment : Fragment() {
@@ -56,10 +56,9 @@ class OrdersListFragment : Fragment() {
         }
 
         mViewModel = ViewModelProvider(requireActivity()).get(OrdersViewModel::class.java)
-        val teamId = arguments?.let { OrdersListFragmentArgs.fromBundle(it).teamId }
-        if (teamId == null)
-            ViewModelProvider(requireActivity()).get(MainViewModel::class.java).currentUser.value?.teamId
-        mViewModel.fetchOrders(teamId!!)
+        val teamId = (requireActivity() as MainActivity).getCurrentUser()?.teamId
+        if (teamId != null) mViewModel.fetchOrders(teamId)
+        else requireActivity().recreate()
         mViewModel.orders.observe(viewLifecycleOwner, Observer {
             if (mViewModel.areOrdersSelectedToShow) showOrders()
             else showTasks()

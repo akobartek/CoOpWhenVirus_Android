@@ -50,7 +50,7 @@ class TaskDetailsBottomSheetFragment(private val mOrder: Order, private val mTas
             .setCancelable(false)
             .create()
 
-        setupToolbarIcons()
+        setupToolbarIcons(view)
         view.taskRealizationDateTV.text = mTask.realizationDate?.toDate()?.format() ?: ""
         view.taskTypeImage.setImageResource(mTask.getIconDrawableId())
         view.taskDescriptionTV.text = mTask.description
@@ -88,9 +88,15 @@ class TaskDetailsBottomSheetFragment(private val mOrder: Order, private val mTas
         }
 
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
-        view.toolbarAcceptTaskBtn.setOnClickListener { changeTaskStatus(Task.TASK_STATUS_ACCEPTED) }
-        view.toolbarAbandonTaskBtn.setOnClickListener { changeTaskStatus(Task.TASK_STATUS_ADDED) }
-        view.toolbarCompleteTaskBtn.setOnClickListener { changeTaskStatus(Task.TASK_STATUS_COMPLETE) }
+        view.toolbarAcceptTaskBtn.setOnClickListener {
+            changeTaskStatus(Task.TASK_STATUS_ACCEPTED, view)
+        }
+        view.toolbarAbandonTaskBtn.setOnClickListener {
+            changeTaskStatus(Task.TASK_STATUS_ADDED, view)
+        }
+        view.toolbarCompleteTaskBtn.setOnClickListener {
+            changeTaskStatus(Task.TASK_STATUS_COMPLETE, view)
+        }
 
         return bottomSheetDialog
     }
@@ -100,14 +106,14 @@ class TaskDetailsBottomSheetFragment(private val mOrder: Order, private val mTas
         if (mLoadingDialog.isShowing) mLoadingDialog.hide()
     }
 
-    private fun changeTaskStatus(newStatus: Int) {
+    private fun changeTaskStatus(newStatus: Int, view: View) {
         mLoadingDialog.show()
         val index = mOrder.tasks.indexOf(mTask)
         mTask.status = newStatus
         mOrder.tasks[index] = mTask
         requireActivity().tryToRunFunctionOnInternet({
             mViewModel.updateOrder(mOrder).observe(viewLifecycleOwner, Observer {
-                setupToolbarIcons()
+                setupToolbarIcons(view)
                 if (mLoadingDialog.isShowing) mLoadingDialog.hide()
             })
         }, {
@@ -115,12 +121,12 @@ class TaskDetailsBottomSheetFragment(private val mOrder: Order, private val mTas
         })
     }
 
-    private fun setupToolbarIcons() {
-        view?.toolbarAcceptTaskBtn?.visibility =
+    private fun setupToolbarIcons(view: View) {
+        view.toolbarAcceptTaskBtn?.visibility =
             if (mTask.status == Task.TASK_STATUS_ADDED) View.VISIBLE else View.GONE
-        view?.toolbarAbandonTaskBtn?.visibility =
+        view.toolbarAbandonTaskBtn?.visibility =
             if (mTask.status == Task.TASK_STATUS_ACCEPTED) View.VISIBLE else View.GONE
-        view?.toolbarCompleteTaskBtn?.visibility =
+        view.toolbarCompleteTaskBtn?.visibility =
             if (mTask.status == Task.TASK_STATUS_ACCEPTED) View.VISIBLE else View.GONE
     }
 }

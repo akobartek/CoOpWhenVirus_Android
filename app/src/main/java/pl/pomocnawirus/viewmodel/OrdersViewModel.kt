@@ -13,7 +13,7 @@ class OrdersViewModel(val app: Application) : AndroidViewModel(app) {
 
     val orders = MutableLiveData<ArrayList<Order>>()
 
-    val filters = MutableLiveData<Filters>(Filters())
+    val filters = MutableLiveData<Filters>(null)
 
     var areOrdersSelectedToShow = true
 

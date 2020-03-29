@@ -2,7 +2,6 @@ package pl.pomocnawirus.model.repositories
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.EmailAuthProvider
@@ -20,13 +19,22 @@ class FirebaseRepository(val app: Application) {
 
     private lateinit var mCurrentUserSnapshot: ListenerRegistration
     private lateinit var mTeamSnapshot: ListenerRegistration
+    private lateinit var mOrdersSnapshot: ListenerRegistration
+    private lateinit var mMembersSnapshot: ListenerRegistration
+
+    fun unregisterListeners() {
+        if (::mTeamSnapshot.isInitialized) mTeamSnapshot.remove()
+        if (::mMembersSnapshot.isInitialized) mMembersSnapshot.remove()
+        if (::mOrdersSnapshot.isInitialized) mOrdersSnapshot.remove()
+    }
 
     // region USERS
     fun fetchCurrentUser(userMutableLiveData: MutableLiveData<User>) {
         mCurrentUserSnapshot =
             getUserDocument(mAuth.currentUser!!.uid).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 if (firebaseFirestoreException != null) {
-                    Log.e("FirebaseRepository", firebaseFirestoreException.toString())
+                    userMutableLiveData.postValue(null)
+                    return@addSnapshotListener
                 }
                 userMutableLiveData.postValue(querySnapshot!!.toObject(User::class.java))
             }
@@ -108,7 +116,7 @@ class FirebaseRepository(val app: Application) {
                 .document(teamId)
                 .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                     if (firebaseFirestoreException != null) {
-                        Log.e("FirebaseRepository", firebaseFirestoreException.toString())
+                        return@addSnapshotListener
                     }
                     teamMutableLiveData.postValue(querySnapshot!!.toObject(Team::class.java))
                 }
@@ -144,11 +152,15 @@ class FirebaseRepository(val app: Application) {
     }
 
     fun fetchTeamMembers(membersLiveData: MutableLiveData<List<User>>, teamId: String) {
-        mFirestore.collection(FirestoreUtils.firestoreCollectionUsers)
+        mMembersSnapshot = mFirestore.collection(FirestoreUtils.firestoreCollectionUsers)
             .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
-            .get()
-            .addOnSuccessListener { membersLiveData.postValue(it.toObjects(User::class.java)) }
-            .addOnFailureListener { membersLiveData.postValue(listOf()) }
+            .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                if (firebaseFirestoreException != null) {
+                    membersLiveData.postValue(listOf())
+                    return@addSnapshotListener
+                }
+                membersLiveData.postValue(querySnapshot?.toObjects(User::class.java))
+            }
     }
 
     fun makeNewLeader(user: User): MutableLiveData<Boolean> {
@@ -214,7 +226,8 @@ class FirebaseRepository(val app: Application) {
             .orderBy(FirestoreUtils.firestoreKeyCity, Query.Direction.ASCENDING)
             .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 if (firebaseFirestoreException != null) {
-                    Log.e("FirebaseRepository", firebaseFirestoreException.toString())
+                    teamsLiveData.postValue(listOf())
+                    return@addSnapshotListener
                 }
                 teamsLiveData.postValue(querySnapshot!!.toObjects(TeamSimple::class.java))
             }
@@ -228,7 +241,7 @@ class FirebaseRepository(val app: Application) {
             val team = transaction.get(teamDocument).toObject(Team::class.java)!!
             if (!isLeader) {
                 Tasks.await(resetUserActivities(teamId, transaction, mAuth.currentUser!!.uid))
-                unregisterTeamListener()
+                unregisterListeners()
                 transaction.update(
                     getUserDocument(mAuth.currentUser!!.uid),
                     FirestoreUtils.firestoreKeyTeamId,
@@ -236,7 +249,7 @@ class FirebaseRepository(val app: Application) {
                 )
             } else if (team.leaders.size > 1) {
                 Tasks.await(resetUserActivities(teamId, transaction, mAuth.currentUser!!.uid))
-                unregisterTeamListener()
+                unregisterListeners()
                 transaction.update(
                     teamDocument,
                     FirestoreUtils.firestoreKeyLeaders,
@@ -260,10 +273,11 @@ class FirebaseRepository(val app: Application) {
                 if (usersSnap.documents.size == 1) {
                     mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
                         .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
-                        .addSnapshotListener { querySnapshot, _ ->
+                        .get()
+                        .addOnSuccessListener { querySnapshot ->
                             querySnapshot?.documents?.forEach { transaction.delete(it.reference) }
                         }
-                    unregisterTeamListener()
+                    unregisterListeners()
                     transaction.delete(teamDocument)
                     transaction.update(
                         getUserDocument(mAuth.currentUser!!.uid),
@@ -280,10 +294,6 @@ class FirebaseRepository(val app: Application) {
         }.addOnSuccessListener { result.postValue(true) }
             .addOnFailureListener { result.postValue(false) }
         return result
-    }
-
-    fun unregisterTeamListener() {
-        if (::mTeamSnapshot.isInitialized) mTeamSnapshot.remove()
     }
 
     private fun resetUserActivities(
@@ -318,16 +328,18 @@ class FirebaseRepository(val app: Application) {
 
     // region ORDERS
     fun fetchOrders(ordersMutableLiveData: MutableLiveData<ArrayList<Order>>, teamId: String) {
-        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+        mOrdersSnapshot = mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
-            .orderBy(FirestoreUtils.firestoreKeyDateAdded, Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener { orders ->
+            .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                if (firebaseFirestoreException != null) {
+                    ordersMutableLiveData.postValue(arrayListOf())
+                    return@addSnapshotListener
+                }
                 val arrayList = arrayListOf<Order>()
-                arrayList.addAll(orders!!.toObjects(Order::class.java))
+                arrayList.addAll(querySnapshot!!.toObjects(Order::class.java))
+                arrayList.sortByDescending { it.dateAdded }
                 ordersMutableLiveData.postValue(arrayList)
             }
-            .addOnFailureListener { ordersMutableLiveData.postValue(arrayListOf()) }
     }
 
     fun createNewOrder(order: Order, context: Context) {

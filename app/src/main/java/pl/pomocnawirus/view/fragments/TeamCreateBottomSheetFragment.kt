@@ -51,7 +51,7 @@ class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragme
                 if (isEmailCheckBoxChecked) mAuth.currentUser?.email
                 else view.teamEmailET.text.toString().trim()
 
-            if (!areValuesValid(teamName, city, phoneNumber, email)) {
+            if (!areValuesValid(teamName, city, phoneNumber, email, view)) {
                 view.toolbarSaveBtn.isEnabled = true
                 return@setOnClickListener
             }
@@ -81,26 +81,28 @@ class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragme
         return bottomSheetDialog
     }
 
-    private fun areValuesValid(name: String, city: String, phone: String, email: String?): Boolean {
+    private fun areValuesValid(
+        name: String, city: String, phone: String, email: String?, view: View
+    ): Boolean {
         var isValid = true
 
         if (name.length < 3) {
-            view!!.teamNameET.error = getString(R.string.name_error_too_short)
+            view.teamNameET.error = getString(R.string.name_error_too_short)
             isValid = false
         }
         if (city.isEmpty()) {
-            view!!.teamCityET.error = getString(R.string.city_error_empty)
+            view.teamCityET.error = getString(R.string.city_error_empty)
             isValid = false
         }
         if (phone.isEmpty()) {
-            view!!.teamPhoneET.error = getString(R.string.phone_error_empty)
+            view.teamPhoneET.error = getString(R.string.phone_error_empty)
             isValid = false
         } else if (!phone.isValidPhoneNumber()) {
-            view!!.teamPhoneET.error = getString(R.string.phone_error_incorrect)
+            view.teamPhoneET.error = getString(R.string.phone_error_incorrect)
             isValid = false
         }
         if (!email.isNullOrEmpty() && !email.isValidEmail()) {
-            view!!.teamEmailET.error = getString(R.string.email_error)
+            view.teamEmailET.error = getString(R.string.email_error)
             isValid = false
         }
         return isValid

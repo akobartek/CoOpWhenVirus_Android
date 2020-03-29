@@ -44,8 +44,8 @@ class TaskFilterBottomSheetFragment(
             mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
         mFilters =
-            if (isLeader) (mViewModel as OrdersViewModel).filters.value!!
-            else (mViewModel as TasksViewModel).filters.value!!
+            if (isLeader) (mViewModel as OrdersViewModel).filters.value ?: Filters()
+            else (mViewModel as TasksViewModel).filters.value ?: Filters()
         view.taskStatusActiveTasks.isChecked = mFilters.selectedTaskStatus == Task.TASK_STATUS_ADDED
         view.taskStatusMyTasks.isChecked = mFilters.selectedTaskStatus != Task.TASK_STATUS_ADDED
 

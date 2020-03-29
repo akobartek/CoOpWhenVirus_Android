@@ -13,7 +13,7 @@ class TasksViewModel(val app: Application) : AndroidViewModel(app) {
 
     val orders = MutableLiveData<ArrayList<Order>>()
 
-    val filters = MutableLiveData<Filters>(Filters())
+    val filters = MutableLiveData<Filters>(null)
 
     fun fetchOrders(teamId: String) = mFirebaseRepository.fetchOrders(orders, teamId)
 

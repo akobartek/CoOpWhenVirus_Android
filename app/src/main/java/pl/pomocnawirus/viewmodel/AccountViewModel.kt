@@ -14,7 +14,7 @@ class AccountViewModel(val app: Application) : AndroidViewModel(app) {
     fun leaveTeam(isLeader: Boolean, teamId: String) =
         mFirebaseRepository.leaveTeam(isLeader, teamId)
 
-    fun unregisterTeamListener() = mFirebaseRepository.unregisterTeamListener()
+    fun unregisterListeners() = mFirebaseRepository.unregisterListeners()
 
     fun reAuthenticateUser(password: String) =
         mFirebaseRepository.reAuthenticateUser(password)

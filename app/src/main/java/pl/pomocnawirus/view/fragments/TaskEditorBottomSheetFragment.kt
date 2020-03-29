@@ -96,7 +96,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
             }
             popupMenu.show()
         }
-        view.taskRealizationDateET.setOnClickListener { mDateClickListener }
+        view.taskRealizationDateET.setOnClickListener(mDateClickListener(view))
         view.taskRealizationDateET.onDrawableEndClick { mRealizationDateSelected = false }
 
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
@@ -126,21 +126,24 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
     }
 
 
-    private val mDateClickListener = View.OnClickListener {
+    private fun mDateClickListener(view: View) = View.OnClickListener {
         (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
             .hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
         val calendar = Calendar.getInstance()
         calendar.time = mRealizationDate
         DatePickerDialog(
-            context!!, mDateListener, calendar.get(Calendar.YEAR),
+            context!!, mDateListener(view), calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
         ).show()
     }
-    private val mDateListener = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-        val dateString = StringBuilder()
-            .append(day).append(".").append(month + 1).append(".").append(year).toString()
-        mRealizationDate = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).parse(dateString)!!
-        view?.taskRealizationDateET?.setText(dateString)
-        mRealizationDateSelected = true
-    }
+
+    private fun mDateListener(view: View) =
+        DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            val dateString = StringBuilder()
+                .append(day).append(".").append(month + 1).append(".").append(year).toString()
+            mRealizationDate =
+                SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).parse(dateString)!!
+            view.taskRealizationDateET?.setText(dateString)
+            mRealizationDateSelected = true
+        }
 }

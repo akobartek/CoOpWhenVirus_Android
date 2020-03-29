@@ -155,6 +155,7 @@
     <string name="task_abandoned">Task abandoned</string>
     <string name="task_completed">Task mark as completed</string>
     <string name="status">Status</string>
+    <string name="my_tasks">My tasks</string>
     <string name="active_tasks">Active tasks</string>
     <string name="show_tasks">Show tasks</string>
     <string name="show_orders">Show orders</string>

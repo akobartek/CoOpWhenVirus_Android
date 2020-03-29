@@ -62,7 +62,7 @@ class TeamJoinFragment : Fragment() {
                         if (addedToTeam) {
                             requireContext().showShortToast(R.string.added_to_team_successful)
                             findNavController().navigate(
-                                TeamJoinFragmentDirections.showTaskListFragment(teamCode)
+                                TeamJoinFragmentDirections.showTaskListFragment()
                             )
                         } else requireContext().showBasicAlertDialog(
                             R.string.team_not_found,
@@ -88,7 +88,7 @@ class TeamJoinFragment : Fragment() {
                     if (mLoadingDialog.isShowing) mLoadingDialog.hide()
                     requireContext().showShortToast(R.string.team_created_successful)
                     findNavController().navigate(
-                        TeamJoinFragmentDirections.showOrdersListFragment(teamId)
+                        TeamJoinFragmentDirections.showOrdersListFragment()
                     )
                 } else requireContext().showBasicAlertDialog(
                     R.string.update_error_title,
