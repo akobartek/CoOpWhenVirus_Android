@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.AndroidViewModel
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -19,12 +19,15 @@ import pl.pomocnawirus.utils.collapse
 import pl.pomocnawirus.utils.expand
 import pl.pomocnawirus.utils.setLayoutFullHeight
 import pl.pomocnawirus.view.adapters.FilterRecyclerAdapter
+import pl.pomocnawirus.viewmodel.OrdersViewModel
 import pl.pomocnawirus.viewmodel.TasksViewModel
 
-class TaskFilterBottomSheetFragment : BottomSheetDialogFragment() {
+class TaskFilterBottomSheetFragment(
+    val mViewModel: AndroidViewModel, private val isLeader: Boolean
+) :
+    BottomSheetDialogFragment() {
 
     private lateinit var mBottomSheetBehavior: BottomSheetBehavior<View>
-    private lateinit var mViewModel: TasksViewModel
     private lateinit var mAdapter: FilterRecyclerAdapter
     private lateinit var mFilters: Filters
 
@@ -40,8 +43,9 @@ class TaskFilterBottomSheetFragment : BottomSheetDialogFragment() {
             requireActivity().setLayoutFullHeight(bottomSheet)
             mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
-        mViewModel = ViewModelProvider(requireActivity()).get(TasksViewModel::class.java)
-        mFilters = mViewModel.filters.value!!
+        mFilters =
+            if (isLeader) (mViewModel as OrdersViewModel).filters.value!!
+            else (mViewModel as TasksViewModel).filters.value!!
         view.taskStatusActiveTasks.isChecked = mFilters.selectedTaskStatus == Task.TASK_STATUS_ADDED
         view.taskStatusMyTasks.isChecked = mFilters.selectedTaskStatus != Task.TASK_STATUS_ADDED
 
@@ -88,7 +92,8 @@ class TaskFilterBottomSheetFragment : BottomSheetDialogFragment() {
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
         view.toolbarSaveFilterBtn.setOnClickListener {
             mFilters.selectedTaskTypes = mAdapter.taskTypes
-            mViewModel.filters.postValue(mFilters)
+            if (isLeader) (mViewModel as OrdersViewModel).filters.postValue(mFilters)
+            else (mViewModel as TasksViewModel).filters.postValue(mFilters)
             dismiss()
         }
 

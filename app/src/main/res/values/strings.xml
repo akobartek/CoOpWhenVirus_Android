@@ -156,7 +156,8 @@
     <string name="task_completed">Task mark as completed</string>
     <string name="status">Status</string>
     <string name="active_tasks">Active tasks</string>
-    <string name="my_tasks">My tasks</string>
+    <string name="show_tasks">Show tasks</string>
+    <string name="show_orders">Show orders</string>
     <string name="types">Types</string>
     <string name="shopping">Shopping</string>
     <string name="animals_care">Animals care</string>
@@ -195,8 +196,4 @@
     <string name="order_delete_dialog_msg">Are you sure you want to delete this order?</string>
     <string name="order_delete_successfully">Order deleted!</string>
     <string name="order_delete_error">There was an error with deleting the order! Try again later!</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>

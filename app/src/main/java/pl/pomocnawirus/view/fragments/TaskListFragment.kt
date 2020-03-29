@@ -77,7 +77,7 @@ class TaskListFragment : Fragment() {
         view?.taskListToolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_filter -> {
-                    val taskFilterBottomSheet = TaskFilterBottomSheetFragment()
+                    val taskFilterBottomSheet = TaskFilterBottomSheetFragment(mViewModel, false)
                     taskFilterBottomSheet.show(childFragmentManager, taskFilterBottomSheet.tag)
                     true
                 }

@@ -23,7 +23,7 @@ class OrdersRecyclerAdapter : RecyclerView.Adapter<OrdersRecyclerAdapter.OrderVi
 
     override fun getItemCount(): Int = mOrders.size
 
-    fun setTasksList(list: List<Order>) {
+    fun setOrdersList(list: List<Order>) {
         mOrders = list
         notifyDataSetChanged()
     }
