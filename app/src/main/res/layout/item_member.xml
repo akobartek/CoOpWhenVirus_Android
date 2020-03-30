@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorListItemBackground"
+        android:background="@color/colorListItemBackground"
         android:minHeight="64dp">
 
         <ImageView
@@ -36,7 +36,7 @@
             android:fontFamily="sans-serif-light"
             android:paddingBottom="4dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            android:textColor="?attr/colorText"
+            android:textColor="@color/colorText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/memberOptionsBtn"
             app:layout_constraintStart_toEndOf="@+id/leaderIcon"

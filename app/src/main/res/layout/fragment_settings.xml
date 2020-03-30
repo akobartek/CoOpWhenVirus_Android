@@ -10,17 +10,17 @@
         android:id="@+id/settingsAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorBackground"
+        android:background="@color/colorBackground"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/settingsToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorBackground"
+            android:background="@color/colorBackground"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/settings"
-            app:titleTextColor="?attr/colorMenuIcons" />
+            app:titleTextColor="@color/colorMenuIcons" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout

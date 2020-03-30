@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.content_order_editor.view.*
 import kotlinx.android.synthetic.main.fragment_order_editor.view.*
 import pl.pomocnawirus.R
@@ -61,6 +62,15 @@ class OrderEditorFragment : Fragment() {
             layoutManager = LinearLayoutManager(view.context)
             itemAnimator = DefaultItemAnimator()
             adapter = mAdapter
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    if (dy < 0 && !view.addTaskBtn.isShown)
+                        view.addTaskBtn.show()
+                    else if (dy > 0 && view.addTaskBtn.isShown)
+                        view.addTaskBtn.hide()
+                }
+            })
         }
         showTasks()
 

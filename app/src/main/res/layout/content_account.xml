@@ -5,7 +5,7 @@
     android:id="@+id/accountLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackground"
+    android:background="@color/colorBackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".view.fragments.AccountFragment">
 
@@ -16,7 +16,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="48dp"
-        android:textColorHint="?attr/colorText"
+        android:textColorHint="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,10 +25,10 @@
             android:id="@+id/nameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="?attr/colorBackground"
+            android:backgroundTint="@color/colorBackground"
             android:hint="@string/name"
             android:inputType="textPersonName|textCapWords"
-            android:textColor="?attr/colorText" />
+            android:textColor="@color/colorText" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -36,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColorHint="?attr/colorText"
+        android:textColorHint="@color/colorText"
         app:layout_constraintEnd_toEndOf="@+id/nameInputLayout"
         app:layout_constraintStart_toStartOf="@+id/nameInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/nameInputLayout">
@@ -45,10 +45,10 @@
             android:id="@+id/phoneET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="?attr/colorBackground"
+            android:backgroundTint="@color/colorBackground"
             android:hint="@string/phone_number"
             android:inputType="phone|numberSigned"
-            android:textColor="?attr/colorText" />
+            android:textColor="@color/colorText" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -58,10 +58,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="?attr/colorAccent"
+        android:backgroundTint="@color/colorAccent"
         android:text="@string/save"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-        android:textColor="?attr/colorBackground"
+        android:textColor="@color/colorBackground"
         app:cornerRadius="4dp"
         app:layout_constraintEnd_toEndOf="@+id/nameInputLayout"
         app:layout_constraintStart_toStartOf="@+id/nameInputLayout"

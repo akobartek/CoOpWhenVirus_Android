@@ -4,25 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackground"
+    android:background="@color/colorBackground"
     tools:context=".view.fragments.OrdersListFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/ordersListAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorBackground"
+        android:background="@color/colorBackground"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/ordersListToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorBackground"
+            android:background="@color/colorBackground"
             app:layout_scrollFlags="enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/orders"
-            app:titleTextColor="?attr/colorMenuIcons" />
+            app:titleTextColor="@color/colorMenuIcons" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_orders_list" />
@@ -35,9 +35,9 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:src="@drawable/ic_plus"
-        app:backgroundTint="?attr/colorAccent"
+        app:backgroundTint="@color/colorAccent"
         app:borderWidth="0dp"
         app:fabSize="normal"
-        app:tint="?attr/colorBackground" />
+        app:tint="@color/colorBackground" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -12,7 +12,7 @@
         android:id="@+id/taskDetailsAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorBackground"
+        android:background="@color/colorBackground"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <LinearLayout
@@ -27,7 +27,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/close_window_btn_description"
                 android:src="@drawable/ic_menu_close"
-                android:tint="?attr/colorMenuIcons" />
+                android:tint="@color/colorMenuIcons" />
 
             <TextView
                 android:id="@+id/toolbarTitle"
@@ -40,7 +40,7 @@
                 android:fontFamily="sans-serif"
                 android:text="@string/task_details"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="?attr/colorMenuIcons" />
+                android:textColor="@color/colorMenuIcons" />
 
             <ImageButton
                 android:id="@+id/toolbarAcceptTaskBtn"
@@ -49,7 +49,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/accept_task_btn_description"
                 android:src="@drawable/ic_menu_apply"
-                android:tint="?attr/colorMenuIcons" />
+                android:tint="@color/colorMenuIcons" />
 
             <ImageButton
                 android:id="@+id/toolbarAbandonTaskBtn"
@@ -58,7 +58,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/abandon_task_btn_description"
                 android:src="@drawable/ic_menu_abandon_task"
-                android:tint="?attr/colorMenuIcons" />
+                android:tint="@color/colorMenuIcons" />
 
             <ImageButton
                 android:id="@+id/toolbarCompleteTaskBtn"
@@ -67,7 +67,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/completed_task_btn_description"
                 android:src="@drawable/ic_menu_completed_task"
-                android:tint="?attr/colorMenuIcons" />
+                android:tint="@color/colorMenuIcons" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

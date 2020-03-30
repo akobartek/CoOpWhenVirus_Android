@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackground"
+    android:background="@color/colorBackground"
     tools:context=".view.fragments.TeamJoinFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/teamJoinAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorBackground"
+        android:background="@color/colorBackground"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/teamJoinToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorBackground"
-            app:titleTextColor="?attr/colorMenuIcons"
+            android:background="@color/colorBackground"
+            app:titleTextColor="@color/colorMenuIcons"
             app:layout_scrollFlags="enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/team_joining" />

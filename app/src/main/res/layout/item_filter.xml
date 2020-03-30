@@ -10,9 +10,9 @@
         android:id="@+id/filterOptionCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:buttonTint="?attr/colorMenuIcons"
+        android:buttonTint="@color/colorMenuIcons"
         android:fontFamily="sans-serif-light"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="?attr/colorText"
+        android:textColor="@color/colorText"
         tools:text="Bardzo długi opis opcji filtrowania" />
 </LinearLayout>

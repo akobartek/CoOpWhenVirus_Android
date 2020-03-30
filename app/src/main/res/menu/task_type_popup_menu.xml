@@ -5,28 +5,28 @@
     <item
         android:id="@+id/task_type_shopping"
         android:icon="@drawable/ic_task_shopping"
-        android:iconTint="?attr/colorMenuIcons"
+        android:iconTint="@color/colorMenuIcons"
         android:title="@string/shopping"
         app:showAsAction="ifRoom"
         tools:targetApi="o" />
     <item
         android:id="@+id/task_type_pets"
         android:icon="@drawable/ic_task_pets"
-        android:iconTint="?attr/colorMenuIcons"
+        android:iconTint="@color/colorMenuIcons"
         android:title="@string/animals_care"
         app:showAsAction="ifRoom"
         tools:targetApi="o" />
     <item
         android:id="@+id/task_type_home"
         android:icon="@drawable/ic_task_home"
-        android:iconTint="?attr/colorMenuIcons"
+        android:iconTint="@color/colorMenuIcons"
         android:title="@string/help_at_home"
         app:showAsAction="ifRoom"
         tools:targetApi="o" />
     <item
         android:id="@+id/task_type_other"
         android:icon="@drawable/ic_task_other"
-        android:iconTint="?attr/colorMenuIcons"
+        android:iconTint="@color/colorMenuIcons"
         android:title="@string/other"
         app:showAsAction="ifRoom"
         tools:targetApi="o" />

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackground"
+    android:background="@color/colorBackground"
     android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".view.fragments.TeamJoinFragment">
@@ -24,7 +24,7 @@
             android:gravity="center"
             android:text="@string/team_code_have"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            android:textColor="?attr/colorText"
+            android:textColor="@color/colorText"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:layout_marginStart="44dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="44dp"
-            android:textColorHint="?attr/colorText"
+            android:textColorHint="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/teamCodeTV">
@@ -46,10 +46,10 @@
                 android:id="@+id/teamCodeET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorBackground"
+                android:backgroundTint="@color/colorBackground"
                 android:hint="@string/team_code"
                 android:inputType="textEmailAddress"
-                android:textColor="?attr/colorText" />
+                android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -59,10 +59,10 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:backgroundTint="?attr/colorAccent"
+            android:backgroundTint="@color/colorAccent"
             android:text="@string/join"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:textColor="?attr/colorBackground"
+            android:textColor="@color/colorBackground"
             app:cornerRadius="4dp"
             app:layout_constraintEnd_toEndOf="@+id/teamCodeInputLayout"
             app:layout_constraintStart_toStartOf="@+id/teamCodeInputLayout"
@@ -77,7 +77,7 @@
             android:gravity="center"
             android:text="@string/team_code_dont_have"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            android:textColor="?attr/colorText"
+            android:textColor="@color/colorText"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="@+id/teamCodeTV"
             app:layout_constraintStart_toStartOf="@+id/teamCodeTV"
@@ -91,12 +91,12 @@
             android:layout_marginTop="12dp"
             android:text="@string/browse_teams"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:textColor="?colorAccent"
+            android:textColor="@color/colorAccent"
             app:cornerRadius="4dp"
             app:layout_constraintEnd_toEndOf="@+id/joinTeamBtn"
             app:layout_constraintStart_toStartOf="@+id/joinTeamBtn"
             app:layout_constraintTop_toBottomOf="@id/teamCodeDontHaveTV"
-            app:strokeColor="?colorAccent" />
+            app:strokeColor="@color/colorAccent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/createTeamBtn"
@@ -106,12 +106,12 @@
             android:layout_marginTop="12dp"
             android:text="@string/create_team"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:textColor="?colorAccent"
+            android:textColor="@color/colorAccent"
             app:cornerRadius="4dp"
             app:layout_constraintEnd_toEndOf="@+id/joinTeamBtn"
             app:layout_constraintStart_toStartOf="@+id/joinTeamBtn"
             app:layout_constraintTop_toBottomOf="@id/browseTeamsBtn"
-            app:strokeColor="?colorAccent" />
+            app:strokeColor="@color/colorAccent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

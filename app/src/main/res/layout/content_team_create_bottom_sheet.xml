@@ -5,7 +5,7 @@
     android:id="@+id/bottomSheetView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackground"
+    android:background="@color/colorBackground"
     android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".view.fragments.TeamCreateBottomSheetFragment">
@@ -21,7 +21,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="48dp"
-            android:textColorHint="?attr/colorText"
+            android:textColorHint="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -30,10 +30,10 @@
                 android:id="@+id/teamNameET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorBackground"
+                android:backgroundTint="@color/colorBackground"
                 android:hint="@string/team_name"
                 android:inputType="textCapSentences"
-                android:textColor="?attr/colorText" />
+                android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColorHint="?attr/colorText"
+            android:textColorHint="@color/colorText"
             app:layout_constraintEnd_toEndOf="@+id/teamNameInputLayout"
             app:layout_constraintStart_toStartOf="@+id/teamNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/teamNameInputLayout">
@@ -50,10 +50,10 @@
                 android:id="@+id/teamCityET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorBackground"
+                android:backgroundTint="@color/colorBackground"
                 android:hint="@string/city"
                 android:inputType="textCapWords"
-                android:textColor="?attr/colorText" />
+                android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColorHint="?attr/colorText"
+            android:textColorHint="@color/colorText"
             app:layout_constraintEnd_toEndOf="@+id/teamNameInputLayout"
             app:layout_constraintStart_toStartOf="@+id/teamNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/teamCityInputLayout">
@@ -70,10 +70,10 @@
                 android:id="@+id/teamPhoneET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorBackground"
+                android:backgroundTint="@color/colorBackground"
                 android:hint="@string/phone_number"
                 android:inputType="phone|numberSigned"
-                android:textColor="?attr/colorText" />
+                android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -81,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColorHint="?attr/colorText"
+            android:textColorHint="@color/colorText"
             app:layout_constraintEnd_toEndOf="@+id/teamNameInputLayout"
             app:layout_constraintStart_toStartOf="@+id/teamNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/teamPhoneInputLayout">
@@ -90,10 +90,10 @@
                 android:id="@+id/teamEmailET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorBackground"
+                android:backgroundTint="@color/colorBackground"
                 android:hint="@string/email_address"
                 android:inputType="textEmailAddress"
-                android:textColor="?attr/colorText" />
+                android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.checkbox.MaterialCheckBox
@@ -101,11 +101,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:buttonTint="?attr/colorMenuIcons"
+            android:buttonTint="@color/colorMenuIcons"
             android:gravity="center"
             android:text="@string/use_same_email_as_account"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="?attr/colorText"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="@+id/teamNameInputLayout"
             app:layout_constraintStart_toStartOf="@+id/teamNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/teamEmailInputLayout" />

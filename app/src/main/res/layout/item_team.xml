@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorListItemBackground">
+        android:background="@color/colorListItemBackground">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/taskDescriptionTV"
@@ -22,7 +22,7 @@
             android:fontFamily="sans-serif-light"
             android:paddingBottom="16dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            android:textColor="?attr/colorText"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/teamCityTV"
@@ -37,7 +37,7 @@
             android:layout_marginEnd="12dp"
             android:fontFamily="sans-serif-condensed"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:textColor="?attr/colorText"
+            android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Nowa Sól" />

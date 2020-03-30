@@ -5,7 +5,7 @@
     android:id="@+id/orderEditorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackground"
+    android:background="@color/colorBackground"
     android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".view.fragments.OrderEditorFragment">
@@ -21,7 +21,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
             android:layout_marginEnd="48dp"
-            android:textColorHint="?attr/colorText"
+            android:textColorHint="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -30,10 +30,10 @@
                 android:id="@+id/needyNameET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorBackground"
+                android:backgroundTint="@color/colorBackground"
                 android:hint="@string/needy_name"
                 android:inputType="textCapWords"
-                android:textColor="?attr/colorText" />
+                android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColorHint="?attr/colorText"
+            android:textColorHint="@color/colorText"
             app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
             app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/needyNameInputLayout">
@@ -50,10 +50,10 @@
                 android:id="@+id/addressET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorBackground"
+                android:backgroundTint="@color/colorBackground"
                 android:hint="@string/address"
                 android:inputType="textPostalAddress"
-                android:textColor="?attr/colorText" />
+                android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColorHint="?attr/colorText"
+            android:textColorHint="@color/colorText"
             app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
             app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/addressInputLayout">
@@ -70,10 +70,10 @@
                 android:id="@+id/cityET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorBackground"
+                android:backgroundTint="@color/colorBackground"
                 android:hint="@string/city"
                 android:inputType="textCapWords"
-                android:textColor="?attr/colorText" />
+                android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -81,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColorHint="?attr/colorText"
+            android:textColorHint="@color/colorText"
             app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
             app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/cityInputLayout">
@@ -90,10 +90,10 @@
                 android:id="@+id/phoneET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorBackground"
+                android:backgroundTint="@color/colorBackground"
                 android:hint="@string/phone_number"
                 android:inputType="phone|numberSigned"
-                android:textColor="?attr/colorText" />
+                android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -101,7 +101,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColorHint="?attr/colorText"
+            android:textColorHint="@color/colorText"
             app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
             app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/phoneInputLayout">
@@ -110,10 +110,10 @@
                 android:id="@+id/emailET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorBackground"
+                android:backgroundTint="@color/colorBackground"
                 android:hint="@string/email_address"
                 android:inputType="textEmailAddress"
-                android:textColor="?attr/colorText" />
+                android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textview.MaterialTextView
@@ -125,7 +125,7 @@
             android:gravity="center"
             android:text="@string/tasks_to_do"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            android:textColor="?attr/colorText"
+            android:textColor="@color/colorText"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
             app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
@@ -140,7 +140,7 @@
             android:gravity="center"
             android:text="@string/no_tasks_added_yet"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textColor="?attr/colorMenuIcons"
+            android:textColor="@color/colorMenuIcons"
             app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
             app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/taskToDoTv" />

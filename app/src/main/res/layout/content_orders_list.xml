@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorBackground"
+    android:background="@color/colorBackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".view.fragments.OrdersListFragment">
 
@@ -24,7 +24,7 @@
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:indeterminateTint="?attr/colorAccent"
+        android:indeterminateTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:drawableTop="@drawable/ic_no_orders"
         android:text="@string/empty_orders_list"
         android:textAlignment="center"
-        android:textColor="?attr/colorIcons"
+        android:textColor="@color/colorIcons"
         android:textSize="15sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"

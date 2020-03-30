@@ -12,7 +12,7 @@
         android:id="@+id/taskFilterAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorBackground"
+        android:background="@color/colorBackground"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <LinearLayout
@@ -27,7 +27,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/close_window_btn_description"
                 android:src="@drawable/ic_menu_close"
-                android:tint="?attr/colorMenuIcons" />
+                android:tint="@color/colorMenuIcons" />
 
             <TextView
                 android:id="@+id/toolbarTitle"
@@ -40,7 +40,7 @@
                 android:fontFamily="sans-serif"
                 android:text="@string/filter"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="?attr/colorMenuIcons" />
+                android:textColor="@color/colorMenuIcons" />
 
             <ImageButton
                 android:id="@+id/toolbarSaveFilterBtn"
@@ -49,7 +49,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/save_filters_btn_description"
                 android:src="@drawable/ic_save"
-                android:tint="?attr/colorMenuIcons" />
+                android:tint="@color/colorMenuIcons" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
