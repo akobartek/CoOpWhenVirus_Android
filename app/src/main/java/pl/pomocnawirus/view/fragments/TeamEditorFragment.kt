@@ -63,10 +63,12 @@ class TeamEditorFragment : Fragment() {
             if (mJob.isActive) mJob.cancel()
             if (mLoadingDialog.isShowing) mLoadingDialog.hide()
 
-            view.teamNameET.setText(team.name)
-            view.teamCityET.setText(team.city)
-            view.teamPhoneET.setText(team.phone)
-            view.teamEmailET.setText(team.email)
+            if (team != null) {
+                view.teamNameET.setText(team.name)
+                view.teamCityET.setText(team.city)
+                view.teamPhoneET.setText(team.phone)
+                view.teamEmailET.setText(team.email)
+            }
         })
 
         view.showTeamMembersBtn.setOnClickListener {

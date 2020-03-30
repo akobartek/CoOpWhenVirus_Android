@@ -28,8 +28,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
     BottomSheetDialogFragment() {
 
     private lateinit var mBottomSheetBehavior: BottomSheetBehavior<View>
-    private var mRealizationDate = Date()
-    private var mRealizationDateSelected = false
+    private var mRealizationDate: Date? = null
     private var mType = ""
 
     override fun onCreateView(
@@ -65,7 +64,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
             )
             if (mTask.realizationDate != null) {
                 mRealizationDate = mTask.realizationDate!!.toDate()
-                view.taskRealizationDateET.setText(mRealizationDate.format())
+                view.taskRealizationDateET.setText(mRealizationDate!!.format())
             }
         }
 
@@ -100,7 +99,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
             popupMenu.show()
         }
         view.taskRealizationDateET.setOnClickListener(mDateClickListener)
-        view.taskRealizationDateET.onDrawableEndClick { mRealizationDateSelected = false }
+        view.taskRealizationDateET.onDrawableEndClick { mRealizationDate = null }
 
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
         view.toolbarSaveTaskBtn.setOnClickListener {
@@ -120,7 +119,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
             val returnTask = mTask ?: Task()
             returnTask.description = description
             returnTask.type = mType
-            if (mRealizationDateSelected) returnTask.realizationDate = Timestamp(mRealizationDate)
+            if (mRealizationDate != null) returnTask.realizationDate = Timestamp(mRealizationDate!!)
             else returnTask.realizationDate = null
             dismiss()
             saveAction(returnTask)
@@ -131,7 +130,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
         (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
             .hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
         val calendar = Calendar.getInstance()
-        calendar.time = mRealizationDate
+        calendar.time = mRealizationDate ?: Date()
         DatePickerDialog(
             context!!, mDateListener, calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)
@@ -145,6 +144,5 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
             mRealizationDate =
                 SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).parse(dateString)!!
             view?.taskRealizationDateET?.setText(dateString)
-            mRealizationDateSelected = true
         }
 }
