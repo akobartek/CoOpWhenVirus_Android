@@ -15,7 +15,11 @@ class TaskAssignMemberRecyclerAdapter(val selectUser: (User) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         TaskAssignMemberViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_member, parent, false)
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_task_assign_member,
+                parent,
+                false
+            )
         )
 
     override fun onBindViewHolder(holder: TaskAssignMemberViewHolder, position: Int) =

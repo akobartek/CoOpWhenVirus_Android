@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.fragment_task_list.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Task
 import pl.pomocnawirus.utils.Filters
-import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.view.adapters.TasksRecyclerAdapter
 import pl.pomocnawirus.viewmodel.MainViewModel
 import pl.pomocnawirus.viewmodel.TasksViewModel

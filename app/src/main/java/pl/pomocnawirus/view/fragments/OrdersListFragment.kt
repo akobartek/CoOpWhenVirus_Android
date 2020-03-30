@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.content_orders_list.view.*
 import kotlinx.android.synthetic.main.fragment_orders_list.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Task
+import pl.pomocnawirus.utils.Filters
 import pl.pomocnawirus.view.adapters.OrdersRecyclerAdapter
 import pl.pomocnawirus.view.adapters.TasksRecyclerAdapter
 import pl.pomocnawirus.viewmodel.MainViewModel
@@ -37,6 +38,8 @@ class OrdersListFragment : Fragment() {
         view.emptyOrdersView.text = getString(
             if (mViewModel.areOrdersSelectedToShow) R.string.empty_orders_list else R.string.empty_tasks_list
         )
+        if (!mViewModel.areOrdersSelectedToShow) view.addOrderBtn.hide()
+        else view.addOrderBtn.visibility = View.VISIBLE
 
         mOrdersAdapter = OrdersRecyclerAdapter()
         mTasksAdapter = TasksRecyclerAdapter() { task ->
@@ -70,7 +73,7 @@ class OrdersListFragment : Fragment() {
             else showTasks()
         })
         mViewModel.filters.observe(viewLifecycleOwner, Observer {
-            if (!mViewModel.areOrdersSelectedToShow) showTasks()
+            if (!mViewModel.areOrdersSelectedToShow && it != null) showTasks()
         })
 
         view.addOrderBtn.setOnClickListener {
@@ -93,6 +96,7 @@ class OrdersListFragment : Fragment() {
                 R.id.action_show_tasks -> {
                     mViewModel.areOrdersSelectedToShow = false
                     view?.emptyOrdersView?.text = getString(R.string.empty_tasks_list)
+                    view?.addOrderBtn?.hide()
                     inflateToolbarMenu()
                     showTasks()
                     true
@@ -113,6 +117,7 @@ class OrdersListFragment : Fragment() {
                 R.id.action_show_orders -> {
                     mViewModel.areOrdersSelectedToShow = true
                     view?.emptyOrdersView?.text = getString(R.string.empty_orders_list)
+                    view?.addOrderBtn?.show()
                     inflateToolbarMenu()
                     showOrders()
                     true
@@ -136,10 +141,10 @@ class OrdersListFragment : Fragment() {
 
     private fun showTasks() {
         val tasksToShow = arrayListOf<Task>()
-        val filters = mViewModel.filters.value
+        val filters = mViewModel.filters.value ?: Filters()
         mViewModel.orders.value?.forEach { order ->
             tasksToShow.addAll(order.tasks.filter { task ->
-                filters?.selectedTaskTypes!!.contains(task.type) &&
+                filters.selectedTaskTypes.contains(task.type) &&
                         if (filters.selectedTaskStatus == Task.TASK_STATUS_ADDED) task.status == Task.TASK_STATUS_ADDED
                         else task.status != Task.TASK_STATUS_ADDED
             })

@@ -73,7 +73,8 @@ class TaskFilterBottomSheetFragment(
             } else if (!view.taskStatusActiveTasks.isChecked)
                 view.taskStatusActiveTasks.isChecked = true
         }
-        view.filterTaskStatusHeader.setOnClickListener {
+
+        val expandFilterStatus = View.OnClickListener {
             if (view.filterTaskStatusOptions.visibility == View.GONE) {
                 view.filterTaskStatusOptions.expand()
                 view.filterTaskStatusBtn.animate().rotation(180f).duration = 300
@@ -82,7 +83,9 @@ class TaskFilterBottomSheetFragment(
                 view.filterTaskStatusBtn.animate().rotation(0f).duration = 300
             }
         }
-        view.filterTaskTypeHeader.setOnClickListener {
+        view.filterTaskStatusHeader.setOnClickListener(expandFilterStatus)
+        view.filterTaskStatusBtn.setOnClickListener(expandFilterStatus)
+        val expandFilterType = View.OnClickListener {
             if (view.filterTaskTypeOptions.visibility == View.GONE) {
                 view.filterTaskTypeOptions.expand()
                 view.filterTaskTypeBtn.animate().rotation(180f).duration = 300
@@ -91,6 +94,8 @@ class TaskFilterBottomSheetFragment(
                 view.filterTaskTypeBtn.animate().rotation(0f).duration = 300
             }
         }
+        view.filterTaskTypeHeader.setOnClickListener(expandFilterType)
+        view.filterTaskTypeBtn.setOnClickListener(expandFilterType)
 
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
         view.toolbarSaveFilterBtn.setOnClickListener {

@@ -121,6 +121,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
             returnTask.description = description
             returnTask.type = mType
             if (mRealizationDateSelected) returnTask.realizationDate = Timestamp(mRealizationDate)
+            else returnTask.realizationDate = null
             dismiss()
             saveAction(returnTask)
         }
