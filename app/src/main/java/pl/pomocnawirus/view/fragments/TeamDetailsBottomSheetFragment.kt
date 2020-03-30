@@ -1,10 +1,11 @@
 package pl.pomocnawirus.view.fragments
 
-import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -20,19 +21,20 @@ class TeamDetailsBottomSheetFragment(private val mTeam: TeamSimple) : BottomShee
 
     private lateinit var mBottomSheetBehavior: BottomSheetBehavior<View>
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-
-        val view = View.inflate(requireContext(), R.layout.fragment_team_details_bottom_sheet, null)
-        bottomSheetDialog.setContentView(view)
-        bottomSheetDialog.setOnShowListener { dialog ->
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        dialog?.setOnShowListener { dialog ->
             val bottomSheet = (dialog as BottomSheetDialog)
                 .findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
             mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
             requireActivity().setLayoutFullHeight(bottomSheet)
             mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
+        return inflater.inflate(R.layout.fragment_team_details_bottom_sheet, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.teamNameTV.text = mTeam.name
         view.teamCityTV.text = mTeam.city
         view.teamPhoneTV.text = mTeam.phone
@@ -58,7 +60,5 @@ class TeamDetailsBottomSheetFragment(private val mTeam: TeamSimple) : BottomShee
             smsIntent.data = Uri.parse("smsto:${mTeam.phone}")
             startActivity(smsIntent)
         }
-
-        return bottomSheetDialog
     }
 }

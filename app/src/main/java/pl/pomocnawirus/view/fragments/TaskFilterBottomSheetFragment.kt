@@ -1,8 +1,9 @@
 package pl.pomocnawirus.view.fragments
 
-import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.lifecycle.AndroidViewModel
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -24,25 +25,26 @@ import pl.pomocnawirus.viewmodel.TasksViewModel
 
 class TaskFilterBottomSheetFragment(
     val mViewModel: AndroidViewModel, private val isLeader: Boolean
-) :
-    BottomSheetDialogFragment() {
+) : BottomSheetDialogFragment() {
 
     private lateinit var mBottomSheetBehavior: BottomSheetBehavior<View>
     private lateinit var mAdapter: FilterRecyclerAdapter
     private lateinit var mFilters: Filters
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-
-        val view = View.inflate(requireContext(), R.layout.fragment_task_filter_bottom_sheet, null)
-        bottomSheetDialog.setContentView(view)
-        bottomSheetDialog.setOnShowListener { dialog ->
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        dialog?.setOnShowListener { dialog ->
             val bottomSheet = (dialog as BottomSheetDialog)
                 .findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
             mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
             requireActivity().setLayoutFullHeight(bottomSheet)
             mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
+        return inflater.inflate(R.layout.fragment_task_details_bottom_sheet, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         mFilters =
             if (isLeader) (mViewModel as OrdersViewModel).filters.value ?: Filters()
             else (mViewModel as TasksViewModel).filters.value ?: Filters()
@@ -96,7 +98,5 @@ class TaskFilterBottomSheetFragment(
             else (mViewModel as TasksViewModel).filters.postValue(mFilters)
             dismiss()
         }
-
-        return bottomSheetDialog
     }
 }

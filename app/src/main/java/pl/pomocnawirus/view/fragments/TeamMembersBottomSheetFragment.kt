@@ -1,10 +1,10 @@
 package pl.pomocnawirus.view.fragments
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
@@ -36,18 +36,20 @@ class TeamMembersBottomSheetFragment(val showInviteDialog: (String) -> Unit) :
     private lateinit var mAdapter: MembersRecyclerAdapter
     private lateinit var mLoadingDialog: AlertDialog
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-
-        val view = View.inflate(requireContext(), R.layout.fragment_team_members_bottom_sheet, null)
-        bottomSheetDialog.setContentView(view)
-        bottomSheetDialog.setOnShowListener { dialog ->
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        dialog?.setOnShowListener { dialog ->
             val bottomSheet = (dialog as BottomSheetDialog)
                 .findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
             mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
             requireActivity().setLayoutFullHeight(bottomSheet)
             mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
+        return inflater.inflate(R.layout.fragment_team_members_bottom_sheet, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         mViewModel = ViewModelProvider(requireActivity()).get(TeamEditorViewModel::class.java)
         mLoadingDialog = AlertDialog.Builder(requireContext())
             .setView(R.layout.dialog_loading)
@@ -74,8 +76,6 @@ class TeamMembersBottomSheetFragment(val showInviteDialog: (String) -> Unit) :
 
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
         view.toolbarInviteBtn.setOnClickListener { showInviteDialog(mViewModel.team.value!!.id) }
-
-        return bottomSheetDialog
     }
 
     override fun onStop() {
