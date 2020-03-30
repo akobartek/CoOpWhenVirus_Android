@@ -39,6 +39,7 @@
             android:background="@drawable/ic_round_background"
             android:contentDescription="@string/task_type_image_description"
             android:padding="20dp"
+            android:tint="?attr/colorBackground"
             app:layout_constraintBottom_toBottomOf="@+id/taskDescriptionTV"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/taskDescriptionTV"

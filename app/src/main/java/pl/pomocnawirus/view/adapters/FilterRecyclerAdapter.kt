@@ -35,10 +35,11 @@ class FilterRecyclerAdapter(val taskTypes: ArrayList<String>) :
                     else -> R.string.other
                 }
             )
+            itemView.filterOptionCheckBox.isChecked = taskTypes.contains(type)
 
             itemView.filterOptionCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) taskTypes.add(type)
-                else taskTypes.remove(type)
+                if (isChecked && !taskTypes.contains(type)) taskTypes.add(type)
+                else if (!isChecked and taskTypes.contains(type)) taskTypes.remove(type)
             }
         }
     }
