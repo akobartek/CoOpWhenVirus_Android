@@ -38,6 +38,7 @@ class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragme
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
 
         view.teamNameET.markRequiredInRed()

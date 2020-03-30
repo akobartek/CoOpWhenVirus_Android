@@ -42,6 +42,7 @@ class TaskAssignMemberBottomSheetFragment(private val selectUser: (User?) -> Uni
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mViewModel = ViewModelProvider(requireActivity()).get(OrderEditorViewModel::class.java)
         mAdapter = TaskAssignMemberRecyclerAdapter() { user ->
             dismiss()

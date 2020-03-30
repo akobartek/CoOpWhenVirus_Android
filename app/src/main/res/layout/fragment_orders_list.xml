@@ -35,7 +35,9 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:src="@drawable/ic_plus"
-        android:tint="?attr/colorBackground"
-        app:backgroundTint="?attr/colorAccent" />
+        app:backgroundTint="?attr/colorAccent"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        app:tint="?attr/colorBackground" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

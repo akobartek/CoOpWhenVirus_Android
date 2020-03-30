@@ -50,6 +50,7 @@ class TeamMembersBottomSheetFragment(val showInviteDialog: (String) -> Unit) :
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mViewModel = ViewModelProvider(requireActivity()).get(TeamEditorViewModel::class.java)
         mLoadingDialog = AlertDialog.Builder(requireContext())
             .setView(R.layout.dialog_loading)

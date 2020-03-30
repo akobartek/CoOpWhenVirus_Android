@@ -15,9 +15,9 @@ import kotlinx.android.synthetic.main.content_orders_list.view.*
 import kotlinx.android.synthetic.main.fragment_orders_list.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Task
-import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.view.adapters.OrdersRecyclerAdapter
 import pl.pomocnawirus.view.adapters.TasksRecyclerAdapter
+import pl.pomocnawirus.viewmodel.MainViewModel
 import pl.pomocnawirus.viewmodel.OrdersViewModel
 
 class OrdersListFragment : Fragment() {
@@ -32,7 +32,11 @@ class OrdersListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mViewModel = ViewModelProvider(requireActivity()).get(OrdersViewModel::class.java)
         inflateToolbarMenu()
+        view.emptyOrdersView.text = getString(
+            if (mViewModel.areOrdersSelectedToShow) R.string.empty_orders_list else R.string.empty_tasks_list
+        )
 
         mOrdersAdapter = OrdersRecyclerAdapter()
         mTasksAdapter = TasksRecyclerAdapter() { task ->
@@ -55,9 +59,11 @@ class OrdersListFragment : Fragment() {
             })
         }
 
-        mViewModel = ViewModelProvider(requireActivity()).get(OrdersViewModel::class.java)
-        val teamId = (requireActivity() as MainActivity).getCurrentUser()?.teamId
-        if (teamId != null) mViewModel.fetchOrders(teamId)
+        var teamId = arguments?.let { TaskListFragmentArgs.fromBundle(it).teamId }
+        if (teamId == null)
+            teamId = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+                .currentUser.value?.teamId
+        if (!teamId.isNullOrEmpty()) mViewModel.fetchOrders(teamId)
         else requireActivity().recreate()
         mViewModel.orders.observe(viewLifecycleOwner, Observer {
             if (mViewModel.areOrdersSelectedToShow) showOrders()
@@ -73,6 +79,7 @@ class OrdersListFragment : Fragment() {
     }
 
     private fun inflateToolbarMenu() {
+        view?.ordersListToolbar?.menu?.clear()
         view?.ordersListToolbar?.inflateMenu(
             if (mViewModel.areOrdersSelectedToShow) R.menu.orders_menu
             else R.menu.tasks_menu_leader
@@ -84,7 +91,8 @@ class OrdersListFragment : Fragment() {
                     true
                 }
                 R.id.action_show_tasks -> {
-                    mViewModel.areOrdersSelectedToShow = true
+                    mViewModel.areOrdersSelectedToShow = false
+                    view?.emptyOrdersView?.text = getString(R.string.empty_tasks_list)
                     inflateToolbarMenu()
                     showTasks()
                     true
@@ -104,6 +112,7 @@ class OrdersListFragment : Fragment() {
                 }
                 R.id.action_show_orders -> {
                     mViewModel.areOrdersSelectedToShow = true
+                    view?.emptyOrdersView?.text = getString(R.string.empty_orders_list)
                     inflateToolbarMenu()
                     showOrders()
                     true

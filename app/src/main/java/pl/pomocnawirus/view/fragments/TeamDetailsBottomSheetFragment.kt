@@ -35,6 +35,7 @@ class TeamDetailsBottomSheetFragment(private val mTeam: TeamSimple) : BottomShee
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         view.teamNameTV.text = mTeam.name
         view.teamCityTV.text = mTeam.city
         view.teamPhoneTV.text = mTeam.phone

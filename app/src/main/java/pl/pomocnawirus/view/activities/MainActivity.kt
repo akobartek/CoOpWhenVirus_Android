@@ -183,18 +183,19 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         else {
+            val teamId = mMainViewModel.currentUser.value!!.teamId
             when (mCurrentFragmentId) {
                 R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
-                    if (isLeader) SafetyFragmentDirections.showOrdersListFragment()
-                    else SafetyFragmentDirections.showTaskListFragment()
+                    if (isLeader) SafetyFragmentDirections.showOrdersListFragment(teamId)
+                    else SafetyFragmentDirections.showTaskListFragment(teamId)
                 )
                 R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
-                    if (isLeader) WebsiteFragmentDirections.showOrdersListFragment()
-                    else WebsiteFragmentDirections.showTaskListFragment()
+                    if (isLeader) WebsiteFragmentDirections.showOrdersListFragment(teamId)
+                    else WebsiteFragmentDirections.showTaskListFragment(teamId)
                 )
                 R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
-                    if (isLeader) SignInFragmentDirections.showOrdersListFragment()
-                    else SignInFragmentDirections.showTaskListFragment()
+                    if (isLeader) SignInFragmentDirections.showOrdersListFragment(teamId)
+                    else SignInFragmentDirections.showTaskListFragment(teamId)
                 )
             }
         }

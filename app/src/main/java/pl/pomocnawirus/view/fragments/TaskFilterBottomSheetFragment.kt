@@ -45,6 +45,7 @@ class TaskFilterBottomSheetFragment(
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mFilters =
             if (isLeader) (mViewModel as OrdersViewModel).filters.value ?: Filters()
             else (mViewModel as TasksViewModel).filters.value ?: Filters()

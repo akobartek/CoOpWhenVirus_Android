@@ -12,6 +12,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.*
@@ -348,18 +349,25 @@ class FirebaseRepository(val app: Application) {
 
 
     // region ORDERS
-    fun fetchOrders(ordersMutableLiveData: MutableLiveData<ArrayList<Order>>, teamId: String) {
+    fun fetchOrders(
+        ordersLiveData: MutableLiveData<ArrayList<Order>>, teamId: String, tryAgain: Boolean = true
+    ) {
         mOrdersSnapshot = mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
             .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 if (firebaseFirestoreException != null) {
-                    ordersMutableLiveData.postValue(arrayListOf())
+                    if (tryAgain) {
+                        GlobalScope.launch(Dispatchers.IO) {
+                            delay(3000)
+                            fetchOrders(ordersLiveData, teamId, false)
+                        }
+                    } else ordersLiveData.postValue(arrayListOf())
                     return@addSnapshotListener
                 }
                 val arrayList = arrayListOf<Order>()
                 arrayList.addAll(querySnapshot!!.toObjects(Order::class.java))
                 arrayList.sortByDescending { it.dateAdded }
-                ordersMutableLiveData.postValue(arrayList)
+                ordersLiveData.postValue(arrayList)
             }
     }
 

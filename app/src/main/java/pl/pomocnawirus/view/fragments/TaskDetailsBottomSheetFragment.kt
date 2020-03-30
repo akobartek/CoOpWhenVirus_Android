@@ -47,6 +47,7 @@ class TaskDetailsBottomSheetFragment(private val mOrder: Order, private val mTas
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mViewModel = ViewModelProvider(requireActivity()).get(TasksViewModel::class.java)
         mLoadingDialog = AlertDialog.Builder(requireContext())
             .setView(R.layout.dialog_loading)

@@ -17,6 +17,7 @@ import pl.pomocnawirus.model.Task
 import pl.pomocnawirus.utils.Filters
 import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.view.adapters.TasksRecyclerAdapter
+import pl.pomocnawirus.viewmodel.MainViewModel
 import pl.pomocnawirus.viewmodel.TasksViewModel
 
 class TaskListFragment : Fragment() {
@@ -45,8 +46,11 @@ class TaskListFragment : Fragment() {
         }
 
         mViewModel = ViewModelProvider(requireActivity()).get(TasksViewModel::class.java)
-        val teamId = (requireActivity() as MainActivity).getCurrentUser()?.teamId
-        if (teamId != null) mViewModel.fetchOrders(teamId)
+        var teamId = arguments?.let { TaskListFragmentArgs.fromBundle(it).teamId }
+        if (teamId == null)
+            teamId = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+                .currentUser.value?.teamId
+        if (!teamId.isNullOrEmpty()) mViewModel.fetchOrders(teamId)
         else requireActivity().recreate()
         mViewModel.orders.observe(viewLifecycleOwner, Observer { showTasks() })
         mViewModel.filters.observe(viewLifecycleOwner, Observer { if (it != null) showTasks() })

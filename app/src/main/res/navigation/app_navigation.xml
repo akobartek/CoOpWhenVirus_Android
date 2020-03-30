@@ -149,6 +149,10 @@
         android:name="pl.pomocnawirus.view.fragments.OrdersListFragment"
         tools:layout="@layout/fragment_orders_list">
 
+        <argument
+            android:name="teamId"
+            app:argType="string"
+            app:nullable="true" />
         <action
             android:id="@+id/showMapFragment"
             app:destination="@+id/mapFragment"
@@ -199,6 +203,10 @@
         android:name="pl.pomocnawirus.view.fragments.TaskListFragment"
         tools:layout="@layout/fragment_task_list">
 
+        <argument
+            android:name="teamId"
+            app:argType="string"
+            app:nullable="true" />
         <action
             android:id="@+id/showMapFragment"
             app:destination="@+id/mapFragment"

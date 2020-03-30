@@ -45,6 +45,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         view.taskDescriptionET.markRequiredInRed()
         view.taskTypeET.markRequiredInRed()
 
