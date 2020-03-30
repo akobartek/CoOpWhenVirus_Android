@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Build
 import android.text.SpannableString
@@ -19,6 +20,9 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.text.buildSpannedString
+import androidx.core.text.color
+import com.google.android.material.textfield.TextInputLayout
 import pl.pomocnawirus.R
 import java.text.SimpleDateFormat
 import java.util.*
@@ -199,6 +203,13 @@ fun EditText.onDrawableEndClick(action: () -> Unit) {
     }
 }
 // endregion EDITTEXT
+
+fun TextInputLayout.markRequiredInRed() {
+    hint = buildSpannedString {
+        append(hint)
+        color(Color.RED) { append(" *") } // Mind the space prefix.
+    }
+}
 
 // region DATE
 fun Date.format(): String {

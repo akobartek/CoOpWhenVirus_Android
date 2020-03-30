@@ -16,10 +16,7 @@ import kotlinx.android.synthetic.main.content_order_editor.view.*
 import kotlinx.android.synthetic.main.fragment_order_editor.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Order
-import pl.pomocnawirus.utils.isValidEmail
-import pl.pomocnawirus.utils.isValidPhoneNumber
-import pl.pomocnawirus.utils.showBasicAlertDialog
-import pl.pomocnawirus.utils.showUnsavedChangesDialog
+import pl.pomocnawirus.utils.*
 import pl.pomocnawirus.view.activities.MainActivity
 import pl.pomocnawirus.view.adapters.TaskNewRecyclerAdapter
 import pl.pomocnawirus.viewmodel.OrderEditorViewModel
@@ -78,10 +75,10 @@ class OrderEditorFragment : Fragment() {
             (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                 .hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
         }
-        view.needyNameET.markRequiredInRed()
-        view.addressET.markRequiredInRed()
-        view.cityET.markRequiredInRed()
-        view.phoneET.markRequiredInRed()
+        view.needyNameInputLayout.markRequiredInRed()
+        view.addressInputLayout.markRequiredInRed()
+        view.cityInputLayout.markRequiredInRed()
+        view.phoneInputLayout.markRequiredInRed()
         view.needyNameET.setOnTouchListener(mTouchListener)
         view.addressET.setOnTouchListener(mTouchListener)
         view.cityET.setOnTouchListener(mTouchListener)

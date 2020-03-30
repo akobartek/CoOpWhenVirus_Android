@@ -41,9 +41,9 @@ class TeamCreateBottomSheetFragment(private val teamJoinFragment: TeamJoinFragme
         super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
 
-        view.teamNameET.markRequiredInRed()
-        view.teamCityET.markRequiredInRed()
-        view.teamPhoneET.markRequiredInRed()
+        view.teamNameInputLayout.markRequiredInRed()
+        view.teamCityInputLayout.markRequiredInRed()
+        view.teamPhoneInputLayout.markRequiredInRed()
 
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
         view.toolbarSaveBtn.setOnClickListener {

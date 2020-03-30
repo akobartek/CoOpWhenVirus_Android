@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_task_editor_bottom_sheet.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.Task
 import pl.pomocnawirus.utils.format
+import pl.pomocnawirus.utils.markRequiredInRed
 import pl.pomocnawirus.utils.onDrawableEndClick
 import pl.pomocnawirus.utils.setLayoutFullHeight
 import java.text.SimpleDateFormat
@@ -46,8 +47,8 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.taskDescriptionET.markRequiredInRed()
-        view.taskTypeET.markRequiredInRed()
+        view.taskDescriptionInputLayout.markRequiredInRed()
+        view.taskTypeInputLayout.markRequiredInRed()
 
         if (mTask == null) view.toolbarTitle.text = getString(R.string.add_task)
         else {

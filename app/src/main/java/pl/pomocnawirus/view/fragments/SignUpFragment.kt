@@ -17,11 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.User
+import pl.pomocnawirus.utils.*
 import pl.pomocnawirus.utils.FirestoreUtils.firestoreCollectionUsers
-import pl.pomocnawirus.utils.isValidEmail
-import pl.pomocnawirus.utils.isValidPassword
-import pl.pomocnawirus.utils.isValidPhoneNumber
-import pl.pomocnawirus.utils.tryToRunFunctionOnInternet
 
 class SignUpFragment : Fragment() {
 
@@ -37,9 +34,9 @@ class SignUpFragment : Fragment() {
         view.signUpToolbar.setNavigationOnClickListener {
             findNavController().navigate(SignUpFragmentDirections.showSignInFragment())
         }
-        view.emailET.markRequiredInRed()
-        view.passwordET.markRequiredInRed()
-        view.nameET.markRequiredInRed()
+        view.emailInputLayout.markRequiredInRed()
+        view.passwordInputLayout.markRequiredInRed()
+        view.nameInputLayout.markRequiredInRed()
 
         mAuth = FirebaseAuth.getInstance()
 

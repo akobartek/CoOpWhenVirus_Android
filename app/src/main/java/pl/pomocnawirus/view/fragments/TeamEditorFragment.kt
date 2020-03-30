@@ -78,9 +78,9 @@ class TeamEditorFragment : Fragment() {
             (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                 .hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
         }
-        view.teamNameET.markRequiredInRed()
-        view.teamCityET.markRequiredInRed()
-        view.teamPhoneET.markRequiredInRed()
+        view.teamNameInputLayout.markRequiredInRed()
+        view.teamCityInputLayout.markRequiredInRed()
+        view.teamPhoneInputLayout.markRequiredInRed()
         view.teamNameET.setOnTouchListener(mTouchListener)
         view.teamCityET.setOnTouchListener(mTouchListener)
         view.teamPhoneET.setOnTouchListener(mTouchListener)
