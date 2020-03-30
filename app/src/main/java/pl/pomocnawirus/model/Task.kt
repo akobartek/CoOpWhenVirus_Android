@@ -16,7 +16,7 @@ data class Task(
 ) : Parcelable {
     companion object {
         const val TASK_TYPE_SHOPPING = "SHOPPING"
-        const val TASK_TYPE_PETS = "PETS"
+        const val TASK_TYPE_PETS = "PET_CARE"
         const val TASK_TYPE_HOME = "HOME"
         const val TASK_TYPE_OTHER = "OTHER"
 

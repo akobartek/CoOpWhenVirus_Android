@@ -38,7 +38,7 @@ class TaskAssignMemberBottomSheetFragment(private val selectUser: (User?) -> Uni
             requireActivity().setLayoutFullHeight(bottomSheet)
             mBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
-        return inflater.inflate(R.layout.fragment_team_members_bottom_sheet, container, false)
+        return inflater.inflate(R.layout.fragment_task_assign_member_bottom_sheet, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
