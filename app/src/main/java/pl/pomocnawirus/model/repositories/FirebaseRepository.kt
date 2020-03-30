@@ -99,15 +99,24 @@ class FirebaseRepository(val app: Application) {
     fun updateUserEmail(newEmail: String): MutableLiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
         mAuth.currentUser!!.updateEmail(newEmail)
-            .addOnSuccessListener { result.postValue(true) }
+            .addOnSuccessListener {
+                getUserDocument(mAuth.currentUser!!.uid)
+                    .update(FirestoreUtils.firestoreKeyEmail, newEmail)
+                    .addOnCompleteListener { result.postValue(true) }
+            }
             .addOnFailureListener { result.postValue(false) }
         return result
     }
 
     fun deleteUser(): MutableLiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
+        val id = mAuth.currentUser!!.uid
         mAuth.currentUser!!.delete()
-            .addOnSuccessListener { result.postValue(true) }
+            .addOnSuccessListener {
+                getUserDocument(id)
+                    .delete()
+                    .addOnCompleteListener { result.postValue(true) }
+            }
             .addOnFailureListener { result.postValue(false) }
         return result
     }

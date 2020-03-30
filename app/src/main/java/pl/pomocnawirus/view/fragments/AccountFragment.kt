@@ -161,22 +161,26 @@ class AccountFragment : Fragment() {
                     return@setOnClickListener
                 }
 
-                mViewModel.reAuthenticateUser(currentPassword)
-                    .observe(viewLifecycleOwner, Observer { authenticateSuccessful ->
-                        if (authenticateSuccessful) {
-                            mViewModel.updateUserPassword(newPassword)
-                                .observe(viewLifecycleOwner, Observer { passwordChanged ->
-                                    if (passwordChanged) {
-                                        requireContext().showShortToast(R.string.change_password_successful)
-                                        dialog.dismiss()
-                                    } else
-                                        requireContext().showShortToast(R.string.operation_failed_error)
-                                })
-                        } else {
-                            dialogView.currentPasswordET.error =
-                                getString(R.string.authenticate_failed)
-                        }
-                    })
+                mLoadingDialog.show()
+                requireActivity().tryToRunFunctionOnInternet({
+                    mViewModel.reAuthenticateUser(currentPassword)
+                        .observe(viewLifecycleOwner, Observer { authenticateSuccessful ->
+                            if (authenticateSuccessful) {
+                                mViewModel.updateUserPassword(newPassword)
+                                    .observe(viewLifecycleOwner, Observer { passwordChanged ->
+                                        mLoadingDialog.hide()
+                                        if (passwordChanged) {
+                                            requireContext().showShortToast(R.string.change_password_successful)
+                                            dialog.dismiss()
+                                        } else
+                                            requireContext().showShortToast(R.string.operation_failed_error)
+                                    })
+                            } else {
+                                dialogView.currentPasswordET.error =
+                                    getString(R.string.authenticate_failed)
+                            }
+                        })
+                }, { mLoadingDialog.hide() })
             }
         }
         dialog.show()
@@ -203,22 +207,26 @@ class AccountFragment : Fragment() {
                     return@setOnClickListener
                 }
 
-                mViewModel.reAuthenticateUser(password)
-                    .observe(viewLifecycleOwner, Observer { authenticateSuccessful ->
-                        if (authenticateSuccessful) {
-                            mViewModel.updateUserEmail(newEmail)
-                                .observe(viewLifecycleOwner, Observer { emailChanged ->
-                                    if (emailChanged) {
-                                        requireContext().showShortToast(R.string.change_email_successful)
-                                        dialog.dismiss()
-                                    } else
-                                        requireContext().showShortToast(R.string.operation_failed_error)
-                                })
-                        } else {
-                            dialogView.currentPasswordET.error =
-                                getString(R.string.authenticate_failed)
-                        }
-                    })
+                mLoadingDialog.show()
+                requireActivity().tryToRunFunctionOnInternet({
+                    mViewModel.reAuthenticateUser(password)
+                        .observe(viewLifecycleOwner, Observer { authenticateSuccessful ->
+                            if (authenticateSuccessful) {
+                                mViewModel.updateUserEmail(newEmail)
+                                    .observe(viewLifecycleOwner, Observer { emailChanged ->
+                                        mLoadingDialog.hide()
+                                        if (emailChanged) {
+                                            requireContext().showShortToast(R.string.change_email_successful)
+                                            dialog.dismiss()
+                                        } else
+                                            requireContext().showShortToast(R.string.operation_failed_error)
+                                    })
+                            } else {
+                                dialogView.currentPasswordET.error =
+                                    getString(R.string.authenticate_failed)
+                            }
+                        })
+                }, { mLoadingDialog.hide() })
             }
         }
         dialog.show()
@@ -231,7 +239,7 @@ class AccountFragment : Fragment() {
             .setCancelable(false)
             .setPositiveButton(R.string.leave) { dialog, _ ->
                 dialog.dismiss()
-                leaveTeam()
+                requireActivity().tryToRunFunctionOnInternet({ leaveTeam() }, {})
             }
             .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
             .create()
@@ -273,23 +281,25 @@ class AccountFragment : Fragment() {
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                 val password = dialogView.deleteAccountPasswordET.text.toString()
 
-                mViewModel.reAuthenticateUser(password)
-                    .observe(viewLifecycleOwner, Observer { authenticateSuccessful ->
-                        if (authenticateSuccessful) {
-                            dialog.dismiss()
-                            deleteAccount()
-                        } else {
-                            dialogView.currentPasswordET.error =
-                                getString(R.string.authenticate_failed)
-                        }
-                    })
+                mLoadingDialog.show()
+                requireActivity().tryToRunFunctionOnInternet({
+                    mViewModel.reAuthenticateUser(password)
+                        .observe(viewLifecycleOwner, Observer { authenticateSuccessful ->
+                            if (authenticateSuccessful) {
+                                dialog.dismiss()
+                                deleteAccount()
+                            } else {
+                                dialogView.currentPasswordET.error =
+                                    getString(R.string.authenticate_failed)
+                            }
+                        })
+                }, { mLoadingDialog.hide() })
             }
         }
         dialog.show()
     }
 
     private fun deleteAccount() {
-        mLoadingDialog.show()
         val isLeader = mCurrentUser.userType == User.USER_TYPE_LEADER
         mViewModel.leaveTeam(isLeader, mCurrentUser.teamId)
             .observe(viewLifecycleOwner, Observer { isLeavingSuccessful ->
