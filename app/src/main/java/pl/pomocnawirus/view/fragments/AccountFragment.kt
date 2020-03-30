@@ -104,7 +104,7 @@ class AccountFragment : Fragment() {
     private fun inflateToolbarMenu() {
         view?.accountToolbar?.setNavigationIcon(R.drawable.ic_arrow_back)
         view?.accountToolbar?.setNavigationOnClickListener { findNavController().navigateUp() }
-        view?.accountToolbar?.inflateMenu(R.menu.tasks_menu)
+        view?.accountToolbar?.inflateMenu(R.menu.account_menu)
         view?.accountToolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_sign_out -> {
