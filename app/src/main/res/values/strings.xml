@@ -197,4 +197,8 @@
     <string name="order_delete_dialog_msg">Are you sure you want to delete this order?</string>
     <string name="order_delete_successfully">Order deleted!</string>
     <string name="order_delete_error">There was an error with deleting the order! Try again later!</string>
+    <string name="new_order_notification_title">New order has appeared!</string>
+    <string name="new_order_notification_message">%s needs your help!</string>
+    <string name="new_order_channel_name">New orders channel</string>
+    <string name="new_order_channel_desc">New orders in your team</string>
 </resources>

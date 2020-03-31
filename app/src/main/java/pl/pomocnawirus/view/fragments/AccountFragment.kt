@@ -121,6 +121,7 @@ class AccountFragment : Fragment() {
                     true
                 }
                 R.id.action_leave_team -> {
+
                     requireActivity().tryToRunFunctionOnInternet({ showLeaveTeamDialog() }, {})
                     true
                 }
@@ -253,6 +254,9 @@ class AccountFragment : Fragment() {
                 if (mLoadingDialog.isShowing) mLoadingDialog.hide()
                 if (isLeavingSuccessful) {
                     requireContext().showShortToast(R.string.leave_successful)
+                    MainActivity.unsubscribeFromNewOrdersNotifications(
+                        (requireActivity() as MainActivity).getCurrentUser()!!.teamId
+                    )
                     findNavController().navigate(AccountFragmentDirections.showTeamJoinFragment())
                 } else {
                     requireContext().showBasicAlertDialog(
@@ -308,6 +312,9 @@ class AccountFragment : Fragment() {
                         if (mLoadingDialog.isShowing) mLoadingDialog.hide()
                         if (isDeleted) {
                             requireContext().showShortToast(R.string.delete_successful)
+                            MainActivity.unsubscribeFromNewOrdersNotifications(
+                                (requireActivity() as MainActivity).getCurrentUser()!!.teamId
+                            )
                             findNavController().navigate(AccountFragmentDirections.showSignInFragment())
                         } else {
                             requireContext().showBasicAlertDialog(

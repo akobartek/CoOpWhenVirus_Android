@@ -60,6 +60,7 @@ class TeamJoinFragment : Fragment() {
                     .observe(viewLifecycleOwner, Observer { addedToTeam ->
                         if (mLoadingDialog.isShowing) mLoadingDialog.hide()
                         if (addedToTeam) {
+                            MainActivity.subscribeToNewOrdersNotifications(teamCode)
                             requireContext().showShortToast(R.string.added_to_team_successful)
                             findNavController().navigate(
                                 TeamJoinFragmentDirections.showTaskListFragment(teamCode)
@@ -86,6 +87,7 @@ class TeamJoinFragment : Fragment() {
             mViewModel.createNewTeam(team).observe(viewLifecycleOwner, Observer { teamId ->
                 if (teamId.isNotEmpty()) {
                     if (mLoadingDialog.isShowing) mLoadingDialog.hide()
+                    MainActivity.subscribeToNewOrdersNotifications(teamId)
                     requireContext().showShortToast(R.string.team_created_successful)
                     findNavController().navigate(
                         TeamJoinFragmentDirections.showOrdersListFragment(teamId)

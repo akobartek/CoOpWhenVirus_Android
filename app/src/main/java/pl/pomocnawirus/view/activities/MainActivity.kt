@@ -15,6 +15,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.pomocnawirus.R
 import pl.pomocnawirus.model.User
@@ -25,6 +26,16 @@ import pl.pomocnawirus.view.fragments.*
 import pl.pomocnawirus.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        fun subscribeToNewOrdersNotifications(teamId: String) {
+            FirebaseMessaging.getInstance().subscribeToTopic("newOrder-$teamId")
+        }
+
+        fun unsubscribeFromNewOrdersNotifications(teamId: String) {
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("newOrder-$teamId")
+        }
+    }
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mMainViewModel: MainViewModel
@@ -156,6 +167,7 @@ class MainActivity : AppCompatActivity() {
     fun getCurrentUser(): User? = mMainViewModel.currentUser.value
 
     fun signOut() {
+        unsubscribeFromNewOrdersNotifications(mMainViewModel.currentUser.value!!.teamId)
         mMainViewModel.unregisterUserListener()
         mMainViewModel.currentUser.postValue(null)
         mAuth.signOut()
@@ -169,7 +181,6 @@ class MainActivity : AppCompatActivity() {
             mMainViewModel.fetchUser()
             return
         }
-        val isLeader = mMainViewModel.currentUser.value?.userType == User.USER_TYPE_LEADER
         if (mMainViewModel.currentUser.value?.teamId?.isEmpty() == true)
             when (mCurrentFragmentId) {
                 R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
@@ -184,6 +195,8 @@ class MainActivity : AppCompatActivity() {
             }
         else {
             val teamId = mMainViewModel.currentUser.value!!.teamId
+            val isLeader = mMainViewModel.currentUser.value?.userType == User.USER_TYPE_LEADER
+            subscribeToNewOrdersNotifications(teamId)
             when (mCurrentFragmentId) {
                 R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
                     if (isLeader) SafetyFragmentDirections.showOrdersListFragment(teamId)
