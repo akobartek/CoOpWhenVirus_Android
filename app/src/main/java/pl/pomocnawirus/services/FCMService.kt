@@ -14,7 +14,6 @@ import com.google.firebase.messaging.RemoteMessage
 import pl.pomocnawirus.R
 import pl.pomocnawirus.view.activities.MainActivity
 
-
 class FCMService : FirebaseMessagingService() {
 
     companion object {
@@ -52,7 +51,7 @@ class FCMService : FirebaseMessagingService() {
         val notificationBuilder = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher_round)
             .setContentTitle(getString(R.string.new_order_notification_title))
-            .setContentText(getString(R.string.new_order_notification_title, needyName))
+            .setContentText(getString(R.string.new_order_notification_message, needyName))
             .setAutoCancel(true)
             .setSound(defaultSoundUri)
             .setContentIntent(pendingIntent) as NotificationCompat.Builder
