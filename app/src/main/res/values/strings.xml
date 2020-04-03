@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">PomocNaWirus</string>
+    <!-- GENERAL STRINGS -->
+    <string name="app_name">CoOpWhenVirus</string>
     <string name="map">Map</string>
     <string name="safety">Safety</string>
     <string name="service">Service</string>
@@ -33,7 +34,7 @@
 
     <!-- SAFETY STRINGS -->
     <string name="safety_rules">Safety rules</string>
-    <string name="safety_header">Your safety is the most important to prevent spreading of the coronavirus!\nPlease follow the rules* below:</string>
+    <string name="safety_header">Your safety is the most important to prevent spreading of the coronavirus!\nPlease follow the rules below:</string>
     <string name="safety_rule1">Do not go outside without explicit necessity!\n#StayAtHome</string>
     <string name="safety_rule2">Try to protect yourself as much as possible. Wear gloves and a mask when you leave the house.</string>
     <string name="safety_rule3">Regularly wash your hands with soap and water or clean them with an alcohol-based hand rub.</string>
@@ -43,11 +44,11 @@
     <string name="safety_rule7">Touch surfaces including desks, tables, door handles, light switches, handrails must be wiped regularly with water and detergent or a disinfectant.</string>
     <string name="safety_rule8">If you have a fever, cough and difficulty breathing, seek medical attention and call in advance. Follow the directions of your local health authority.</string>
     <string name="safety_rule9">Keep up to date on the latest information about COVID-19.</string>
-    <string name="based_on_who">* Prepared based on the guidelines of the\nWorld Health Organization</string>
+    <string name="based_on_who">Prepared based on the guidelines of the\nWorld Health Organization</string>
 
     <!-- ACCOUNT STRINGS -->
     <string name="my_account">My account</string>
-    <string name="email_address">E-mail address</string>
+    <string name="email_address">Email address</string>
     <string name="password">Password</string>
     <string name="name">Name</string>
     <string name="phone_number">Phone number</string>
@@ -81,14 +82,14 @@
     <string name="operation_failed_error">Operation failed, please check connection and the input!</string>
     <string name="message_sent">Message sent</string>
     <string name="change_password">Change password</string>
-    <string name="change_email_address">Change e-mail address</string>
+    <string name="change_email_address">Change email address</string>
     <string name="leave_team">Leave team</string>
     <string name="leave_team_dialog_title">Leaving team</string>
     <string name="leave_team_dialog_message">Are you sure you want to leave your team?</string>
     <string name="leave">Leave</string>
     <string name="leave_successful">Leaving successful</string>
     <string name="leave_failed_title">Leaving failed</string>
-    <string name="leave_failed_message_leader">You cannot leave your group without finding a new leader!</string>
+    <string name="leave_failed_message_leader">You cannot leave your group without finding a new team leader!</string>
     <string name="delete_account">Delete account</string>
     <string name="current_password">Current password</string>
     <string name="new_password">New password</string>
@@ -96,13 +97,13 @@
     <string name="repeated_password_error">Passwords do not match</string>
     <string name="authenticate_failed">Wrong password, please check the input</string>
     <string name="change_password_successful">Password changed!</string>
-    <string name="new_email_address">New e-mail address</string>
-    <string name="change_email_successful">E-mail address changed!</string>
+    <string name="new_email_address">New email address</string>
+    <string name="change_email_successful">Email address changed!</string>
     <string name="delete_account_dialog_title">Deleting user</string>
-    <string name="delete_account_dialog_message">If you want to delete your account, verify your password below</string>
+    <string name="delete_account_dialog_message">If you want to delete your account, verify your password below:</string>
     <string name="delete_successful">Account deleted</string>
     <string name="delete_failed_title">Deleting failed</string>
-    <string name="delete_failed_message_leader">You cannot delete your account without finding a new leader!</string>
+    <string name="delete_failed_message_leader">You cannot delete your account without finding a new team leader!</string>
 
     <!-- TEAM STRINGS -->
     <string name="teams">Teams</string>
@@ -149,7 +150,7 @@
     <string name="make_a_leader">Make a leader</string>
     <string name="remove_leader">Remove leader</string>
     <string name="remove_from_team">Remove from team</string>
-    <string name="email_copied">E-mail address copied to clipboard</string>
+    <string name="email_copied">Email address copied to clipboard</string>
     <string name="phone_copied">Phone number copied to clipboard</string>
     <string name="make_leader_message">Are you sure you want to give this user the role of team leader?</string>
     <string name="remove_leader_message">Are you sure you want to remove from this user the role of team leader?</string>
@@ -159,7 +160,7 @@
     <string name="tasks">Tasks</string>
     <string name="task_details">Task details</string>
     <string name="empty_tasks_list">There are no tasks to show!\nYour team is doing great job!</string>
-    <string name="filter">Filter</string>
+    <string name="filters">Filters</string>
     <string name="task_type_image_description">Icon that represents type of the task</string>
     <string name="accept_task_btn_description">Tap here to accept this task</string>
     <string name="abandon_task_btn_description">Tap here to abandon this task</string>
