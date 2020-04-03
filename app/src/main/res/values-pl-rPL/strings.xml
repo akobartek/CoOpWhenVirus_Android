@@ -33,17 +33,17 @@
 
     <!-- SAFETY STRINGS -->
     <string name="safety_rules">Zasady bezpieczeństwa</string>
-    <string name="safety_header">Your safety is the most important to prevent spreading of the coronavirus!\nPlease follow the rules below:</string>
-    <string name="safety_rule1">Do not go outside without explicit necessity!\n#StayAtHome</string>
-    <string name="safety_rule2">Try to protect yourself as much as possible. Wear gloves and a mask when you leave the house.</string>
-    <string name="safety_rule3">Regularly wash your hands with soap and water or clean them with an alcohol-based hand rub.</string>
-    <string name="safety_rule4">Avoid touching eyes, nose and mouth. Hands touch many surfaces and can pick up viruses.</string>
-    <string name="safety_rule5">Cover your mouth and nose with your bent elbow or tissue when you cough or sneeze.</string>
-    <string name="safety_rule6">Maintain at least 1 metre distance between yourself and anyone who is coughing or sneezing, as well as your interlocutors.</string>
-    <string name="safety_rule7">Touch surfaces including desks, tables, door handles, light switches, handrails must be wiped regularly with water and detergent or a disinfectant.</string>
-    <string name="safety_rule8">If you have a fever, cough and difficulty breathing, seek medical attention and call in advance. Follow the directions of your local health authority.</string>
-    <string name="safety_rule9">Keep up to date on the latest information about COVID-19.</string>
-    <string name="based_on_who">Prepared based on the guidelines of the\nWorld Health Organization</string>
+    <string name="safety_header">Twoje bezpieczeństwo jest najważniejsze, aby zapobiec rozprzestrzenianiu się koronawirusa!\nPostępuj zgodnie z poniższymi zasadami:</string>
+    <string name="safety_rule1">Nie wychodź na zewnątrz bez wyraźnej konieczności!\n#ZostańWDomu</string>
+    <string name="safety_rule2">Staraj się chronić jak najbardziej to tylko możliwe. Kiedy wychodzisz z domu, noś rękawiczki i maskę.</string>
+    <string name="safety_rule3">Regularnie myj ręce mydłem i wodą lub chusteczką nasączoną środkiem na bazie alkoholu.</string>
+    <string name="safety_rule4">Unikaj dotykania oczu, nosa i ust. Dłonie dotykają wielu powierzchni i mogą zbierać wirusy.</string>
+    <string name="safety_rule5">Podczas kaszlu i kichania zakryj usta i nos zgiętym łokciem lub chusteczką.</string>
+    <string name="safety_rule6">Zachowaj co najmniej 1 metr odległości między sobą a każdym, kto kaszle lub kicha, a także swoimi rozmówcami.</string>
+    <string name="safety_rule7">Powierzchnie dotykowe, w tym biurka, stoły, klamki, włączniki światła, poręcze, należy regularnie przecierać wodą i detergentem lub środkiem dezynfekującym.</string>
+    <string name="safety_rule8">Jeśli masz gorączkę, kaszel i trudności w oddychaniu, zwróć się o pomoc lekarską, wcześniej dzwoniąc. Postępuj zgodnie ze wskazówkami lokalnego urzędu zdrowia.</string>
+    <string name="safety_rule9">Bądź na bieżąco z najnowszymi informacjami o COVID-19.</string>
+    <string name="based_on_who">Przygotowano w oparciu o wytyczne\nŚwiatowej Organizacji Zdrowia</string>
 
     <!-- ACCOUNT STRINGS -->
     <string name="my_account">Moje konto</string>
