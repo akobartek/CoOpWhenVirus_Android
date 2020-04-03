@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".view.fragments.SafetyFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/safetyHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/safety_header"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="@color/colorText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/safetyRule1"
+            style="@style/SafetyRule"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="36dp"
+            android:drawableStart="@drawable/ic_safety_rule1"
+            android:text="@string/safety_rule1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/safetyHeader" />
+
+        <View
+            style="@style/SafetyRulesDivider"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/safetyRule2"
+            style="@style/SafetyRule"
+            android:drawableStart="@drawable/ic_safety_rule2"
+            android:text="@string/safety_rule2"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule1" />
+
+        <View
+            style="@style/SafetyRulesDivider"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/safetyRule3"
+            style="@style/SafetyRule"
+            android:drawableStart="@drawable/ic_safety_rule3"
+            android:text="@string/safety_rule3"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule2" />
+
+        <View
+            style="@style/SafetyRulesDivider"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule3" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/safetyRule4"
+            style="@style/SafetyRule"
+            android:drawableStart="@drawable/ic_safety_rule4"
+            android:text="@string/safety_rule4"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule3" />
+
+        <View
+            style="@style/SafetyRulesDivider"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule4" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/safetyRule5"
+            style="@style/SafetyRule"
+            android:drawableStart="@drawable/ic_safety_rule5"
+            android:text="@string/safety_rule5"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule4" />
+
+        <View
+            style="@style/SafetyRulesDivider"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule5" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/safetyRule6"
+            style="@style/SafetyRule"
+            android:drawableStart="@drawable/ic_safety_rule6"
+            android:text="@string/safety_rule6"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule5" />
+
+        <View
+            style="@style/SafetyRulesDivider"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule6" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/safetyRule7"
+            style="@style/SafetyRule"
+            android:drawableStart="@drawable/ic_safety_rule7"
+            android:text="@string/safety_rule7"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule6" />
+
+        <View
+            style="@style/SafetyRulesDivider"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule7" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/safetyRule8"
+            style="@style/SafetyRule"
+            android:drawableStart="@drawable/ic_safety_rule8"
+            android:text="@string/safety_rule8"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule7" />
+
+        <View
+            style="@style/SafetyRulesDivider"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule8" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/safetyRule9"
+            style="@style/SafetyRule"
+            android:drawableStart="@drawable/ic_safety_rule9"
+            android:text="@string/safety_rule9"
+            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule8" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="center"
+            android:paddingBottom="16dp"
+            android:text="@string/based_on_who"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            app:layout_constraintEnd_toEndOf="@+id/safetyHeader"
+            app:layout_constraintStart_toStartOf="@+id/safetyHeader"
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule9" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

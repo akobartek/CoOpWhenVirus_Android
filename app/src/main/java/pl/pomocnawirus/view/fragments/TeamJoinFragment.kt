@@ -103,7 +103,7 @@ class TeamJoinFragment : Fragment() {
     }
 
     private fun inflateToolbarMenu() {
-        view?.teamJoinToolbar?.inflateMenu(R.menu.basic_menu)
+        view?.teamJoinToolbar?.inflateMenu(R.menu.team_join_menu)
         view?.teamJoinToolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_settings -> {
