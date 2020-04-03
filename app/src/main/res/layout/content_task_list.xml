@@ -39,7 +39,7 @@
         android:paddingEnd="32dp"
         android:text="@string/empty_tasks_list"
         android:textAlignment="center"
-        android:textColor="@color/colorIcons"
+        android:textColor="@color/colorAccent"
         android:textSize="15sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"

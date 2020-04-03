@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#402222</color>
-    <color name="colorPrimaryDark">#391e1e</color>
-    <color name="colorAccent">#391e1e</color>
+    <color name="colorPrimary">#1976d2</color>
+    <color name="colorPrimaryDark">#1565c0</color>
+    <color name="colorAccent">#1976d2</color>
     <color name="colorText">#191919</color>
     <color name="colorButtonText">#000000</color>
-    <color name="colorIcons">#4e342e</color>
     <color name="colorMenuIcons">#777777</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorListItemBackground">#FFFFFF</color>
-
-    <color name="swipe_refresh_color_1">#FA3647</color>
-    <color name="swipe_refresh_color_2">#FFD200</color>
-    <color name="swipe_refresh_color_3">#00CBFF</color>
-    <color name="swipe_refresh_color_4">#00F076</color>
 </resources>
