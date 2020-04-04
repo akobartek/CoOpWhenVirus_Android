@@ -226,7 +226,7 @@ class FirebaseRepository(val app: Application) {
     fun removeUserFromTeam(user: User): MutableLiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
         GlobalScope.launch(Dispatchers.IO) {
-            val orders = getOrdersWithActivitiesReseted(user.teamId, user.id)
+            val orders = getOrdersWithActivitiesReset(user.teamId, user.id)
             mFirestore.runTransaction { transaction ->
                 orders.forEach { order ->
                     transaction.update(
@@ -274,7 +274,7 @@ class FirebaseRepository(val app: Application) {
         val teamDocument =
             mFirestore.collection(FirestoreUtils.firestoreCollectionTeams).document(teamId)
         GlobalScope.launch(Dispatchers.IO) {
-            val orders = getOrdersWithActivitiesReseted(teamId, mAuth.currentUser!!.uid)
+            val orders = getOrdersWithActivitiesReset(teamId, mAuth.currentUser!!.uid)
             mFirestore.runTransaction { transaction ->
                 val team = transaction.get(teamDocument).toObject(Team::class.java)!!
                 if (!isLeader || team.leaders.size > 1) {
@@ -336,7 +336,7 @@ class FirebaseRepository(val app: Application) {
         return result
     }
 
-    private fun getOrdersWithActivitiesReseted(teamId: String, userId: String): List<Order> {
+    private fun getOrdersWithActivitiesReset(teamId: String, userId: String): List<Order> {
         val ordersQuery = mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
         val orders = Tasks.await(ordersQuery.get()).toObjects(Order::class.java)

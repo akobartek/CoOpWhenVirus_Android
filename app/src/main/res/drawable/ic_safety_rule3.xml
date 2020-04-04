@@ -49,7 +49,7 @@
         android:fillColor="#FF000000"
         android:pathData="m296.603,335.919h15v36.023h-15z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m484.103,136h-27.5v-60h-30v-61h27.5v-15h-183.75l-32.25,43 12,9 27.75,-37h103.75v61h-30v60h-27.5c-15.163,0 -27.5,12.336 -27.5,27.5v157.419h15v-157.419c0,-6.893 5.607,-12.5 12.5,-12.5h160c6.893,0 12.5,5.607 12.5,12.5v69.724h15v-69.724c0,-15.164 -12.337,-27.5 -27.5,-27.5zM396.603,15h15v61h-15zM441.603,136h-75v-45h75z" />
     <path
         android:fillColor="#FF000000"
@@ -64,24 +64,24 @@
         android:fillColor="#FF000000"
         android:pathData="m376.603,192v40h-40v55h40v40h55v-40h40v-55h-40v-40zM456.603,247v25h-40v40h-25v-40h-40v-25h40v-40h25v40z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m233.103,327c17.764,0 33.894,-9.457 42.095,-24.68 7.896,-14.655 7.123,-31.733 -2.066,-45.685l-40.028,-60.77 -40.028,60.77c-9.189,13.951 -9.962,31.029 -2.066,45.685 8.199,15.223 24.329,24.68 42.093,24.68zM205.602,264.886 L233.103,223.134 260.604,264.886c6.104,9.268 6.624,20.602 1.389,30.319 -5.667,10.517 -16.466,16.795 -28.89,16.795s-23.224,-6.278 -28.89,-16.795c-5.235,-9.717 -4.716,-21.051 1.389,-30.319z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m225.603,120.5h15v40h-15z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m225.603,90.5h15v15h-15z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m265.603,150.5h15v40h-15z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m265.603,120.5h15v15h-15z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m185.603,150.5h15v40h-15z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m185.603,120.5h15v15h-15z" />
 </vector>

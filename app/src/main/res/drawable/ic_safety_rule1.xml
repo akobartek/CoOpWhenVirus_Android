@@ -61,19 +61,19 @@
         android:fillColor="#FF000000"
         android:pathData="m5.661,231.755l76.179,-65.34l9.765,11.385l-76.179,65.34z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m413.5,30h15v15h-15z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m383.5,30h15v15h-15z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m352.5,30h15v15h-15z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m397.5,0h15v15h-15z" />
     <path
-        android:fillColor="@color/colorButtonText"
+        android:fillColor="@color/colorIconContours"
         android:pathData="m367.5,0h15v15h-15z" />
     <path
         android:fillColor="#FF000000"

@@ -107,7 +107,7 @@
     <!-- TEAM STRINGS -->
     <string name="teams">Zespoły</string>
     <string name="team_details">Szczegóły zespołu</string>
-    <string name="team_name">Nazwa drużyny</string>
+    <string name="team_name">Nazwa zespołu</string>
     <string name="city">Miasto</string>
     <string name="team_joining">Dołączanie do zespołu</string>
     <string name="join">Dołącz</string>
@@ -133,7 +133,7 @@
     <string name="send_email_chooser">Wyślij e-mail przez:</string>
     <string name="send_email_error">Nie ma zainstalowanego klienta poczty e-mail!</string>
     <string name="sms_btn_description">Kliknij tutaj, aby szybko wysłać SMS-a do lidera tego zespołu</string>
-    <string name="team_members">Członkowie drużyny</string>
+    <string name="team_members">Członkowie zespołu</string>
     <string name="invite_to_team">Zaproś do zespołu</string>
     <string name="invite_to_team_title">Zapraszanie do zespołu</string>
     <string name="invite_to_team_message">Jeśli chcesz zaprosić kogoś do swojego zespołu, wyślij mu następujący kod:\n %s</string>
@@ -214,5 +214,5 @@
     <string name="new_order_notification_title">Pojawiły się nowe zadania!</string>
     <string name="new_order_notification_message">%s potrzebuje Twojej pomocy!</string>
     <string name="new_order_channel_name">Kanał o nowych zadaniach</string>
-    <string name="new_order_channel_desc">Nowe zadania w twojej drużynie</string>
+    <string name="new_order_channel_desc">Nowe zadania w twoim zespole</string>
 </resources>

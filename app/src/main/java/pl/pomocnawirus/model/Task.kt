@@ -2,12 +2,12 @@ package pl.pomocnawirus.model
 
 import android.os.Parcelable
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.Exclude
 import kotlinx.android.parcel.Parcelize
 import pl.pomocnawirus.R
 
 @Parcelize
 data class Task(
-    var id: String = "",
     var type: String = TASK_TYPE_OTHER,
     var description: String = "",
     var status: Int = TASK_STATUS_ADDED,
@@ -25,6 +25,7 @@ data class Task(
         const val TASK_STATUS_COMPLETE = 2
     }
 
+    @Exclude
     fun getIconDrawableId() =
         if (status == TASK_STATUS_COMPLETE) R.drawable.ic_done
         else when (type) {

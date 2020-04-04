@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#28292e</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorText">#FFFFFF</color>
-    <color name="colorButtonText">#FFFFFF</color>
+    <color name="colorIconContours">#FFFFFF</color>
     <color name="colorMenuIcons">#FFFFFF</color>
     <color name="colorBackground">#28292e</color>
     <color name="colorListItemBackground">#232428</color>
