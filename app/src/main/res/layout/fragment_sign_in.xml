@@ -15,7 +15,7 @@
         android:layout_height="160dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/ic_launcher_background_round"
-        android:src="@drawable/ic_launcher_foreground"
+        android:src="@drawable/ic_launcher_foreground_v2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".3"
         app:layout_constraintStart_toStartOf="parent"

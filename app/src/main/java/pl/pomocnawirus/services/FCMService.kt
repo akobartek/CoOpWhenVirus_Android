@@ -20,7 +20,7 @@ class FCMService : FirebaseMessagingService() {
 
     companion object {
         private const val mNewOrderNotificationAction = "NEW_ORDER"
-        private const val NOTIFICATION_CHANNEL_ID = "PomocNaWirusNewOrder"
+        private const val NOTIFICATION_CHANNEL_ID = "MartaNewOrder"
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {

@@ -1,6 +1,6 @@
 <resources>
     <!-- GENERAL STRINGS -->
-    <string name="app_name">CoOpWhenVirus</string>
+    <string name="app_name" translatable="false">Marta</string>
     <string name="map">Map</string>
     <string name="safety">Safety</string>
     <string name="service">Service</string>

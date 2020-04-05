@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- GENERAL STRINGS -->
-    <string name="app_name">PomocNaWirus</string>
     <string name="map">Mapa</string>
     <string name="safety">Bezpieczeństwo</string>
     <string name="service">Służba</string>
