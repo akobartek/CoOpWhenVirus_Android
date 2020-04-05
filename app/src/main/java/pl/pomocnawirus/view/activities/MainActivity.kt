@@ -24,6 +24,7 @@ import pl.pomocnawirus.utils.isChromeCustomTabsSupported
 import pl.pomocnawirus.utils.showShortToast
 import pl.pomocnawirus.view.fragments.*
 import pl.pomocnawirus.viewmodel.MainViewModel
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,13 +49,16 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_map -> {
                     if (isChromeCustomTabsSupported()) {
+                        val urlAddress =
+                            if (Locale.getDefault().displayLanguage.toLowerCase() == "polski") "https://korona.ws/"
+                            else "https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6"
                         CustomTabsIntent.Builder().apply {
                             val color =
                                 if (PreferencesManager.getNightMode()) Color.parseColor("#28292e")
                                 else Color.WHITE
                             setToolbarColor(color)
                             setSecondaryToolbarColor(color)
-                        }.build().launchUrl(this@MainActivity, Uri.parse("https://korona.ws/"))
+                        }.build().launchUrl(this@MainActivity, Uri.parse(urlAddress))
                     } else {
                         when (mCurrentFragmentId) {
                             R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
@@ -155,8 +159,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        super.onResume()
-        bottomNavView.selectedItemId = R.id.navigation_safety
+        try {
+            super.onResume()
+            if (bottomNavView.selectedItemId == R.id.navigation_map)
+                bottomNavView.selectedItemId = R.id.navigation_safety
+        } catch (t: Throwable) {
+            bottomNavView.selectedItemId = R.id.navigation_safety
+        }
     }
 
     override fun onStop() {

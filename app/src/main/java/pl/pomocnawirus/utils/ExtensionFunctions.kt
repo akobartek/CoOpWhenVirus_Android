@@ -32,8 +32,8 @@ import java.util.regex.Pattern
 fun Context.isChromeCustomTabsSupported(): Boolean {
     val serviceIntent = Intent("android.support.customtabs.action.CustomTabsService")
     serviceIntent.setPackage("com.android.chrome")
-    val resolveInfos = packageManager.queryIntentServices(serviceIntent, 0)
-    return resolveInfos.isNotEmpty()
+    val resolveInfo = packageManager.queryIntentServices(serviceIntent, 0)
+    return resolveInfo.isNotEmpty()
 }
 
 fun Context.showBasicAlertDialog(titleId: Int?, messageId: Int) {

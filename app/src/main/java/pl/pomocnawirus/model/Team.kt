@@ -1,10 +1,9 @@
 package pl.pomocnawirus.model
 
-import com.google.firebase.firestore.DocumentId
 import pl.pomocnawirus.utils.FirestoreUtils
 
 data class Team(
-    @DocumentId var id: String = "",
+    var id: String = "",
     var name: String = "",
     var city: String = "",
     var leaders: ArrayList<String> = arrayListOf(),
@@ -21,7 +20,7 @@ data class Team(
 }
 
 data class TeamSimple(
-    @DocumentId var id: String = "",
+    var id: String = "",
     var name: String = "",
     var city: String = "",
     var email: String = "",

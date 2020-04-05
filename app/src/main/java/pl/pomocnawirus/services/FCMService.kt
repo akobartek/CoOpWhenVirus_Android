@@ -5,10 +5,12 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import pl.pomocnawirus.R
@@ -49,7 +51,11 @@ class FCMService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(notificationChannel)
         }
         val notificationBuilder = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-            .setSmallIcon(R.mipmap.ic_launcher_round)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setColor(ContextCompat.getColor(this, R.color.colorAccent))
+            .setLargeIcon(
+                BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher_round)
+            )
             .setContentTitle(getString(R.string.new_order_notification_title))
             .setContentText(getString(R.string.new_order_notification_message, needyName))
             .setAutoCancel(true)

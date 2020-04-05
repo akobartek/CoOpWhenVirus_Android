@@ -43,7 +43,9 @@ class FirebaseRepository(val app: Application) {
                     userMutableLiveData.postValue(null)
                     return@addSnapshotListener
                 }
-                userMutableLiveData.postValue(querySnapshot!!.toObject(User::class.java))
+                val user = querySnapshot!!.toObject(User::class.java)
+                user?.id = querySnapshot.id
+                userMutableLiveData.postValue(user)
             }
     }
 
@@ -136,7 +138,9 @@ class FirebaseRepository(val app: Application) {
                     if (firebaseFirestoreException != null) {
                         return@addSnapshotListener
                     }
-                    teamMutableLiveData.postValue(querySnapshot!!.toObject(Team::class.java))
+                    val team = querySnapshot!!.toObject(Team::class.java)
+                    team?.id = querySnapshot.id
+                    teamMutableLiveData.postValue(team)
                 }
     }
 
@@ -179,7 +183,13 @@ class FirebaseRepository(val app: Application) {
                     membersLiveData.postValue(listOf())
                     return@addSnapshotListener
                 }
-                membersLiveData.postValue(querySnapshot?.toObjects(User::class.java))
+                val arrayList = arrayListOf<User>()
+                querySnapshot!!.forEach {snapshot ->
+                    val user = snapshot.toObject(User::class.java)
+                    user.id = snapshot.id
+                    arrayList.add(user)
+                }
+                membersLiveData.postValue(arrayList)
             }
     }
 
@@ -265,7 +275,13 @@ class FirebaseRepository(val app: Application) {
                     teamsLiveData.postValue(listOf())
                     return@addSnapshotListener
                 }
-                teamsLiveData.postValue(querySnapshot!!.toObjects(TeamSimple::class.java))
+                val arrayList = arrayListOf<TeamSimple>()
+                querySnapshot!!.forEach {snapshot ->
+                    val team = snapshot.toObject(TeamSimple::class.java)
+                    team.id = snapshot.id
+                    arrayList.add(team)
+                }
+                teamsLiveData.postValue(arrayList)
             }
     }
 
@@ -374,7 +390,11 @@ class FirebaseRepository(val app: Application) {
                     return@addSnapshotListener
                 }
                 val arrayList = arrayListOf<Order>()
-                arrayList.addAll(querySnapshot!!.toObjects(Order::class.java))
+                querySnapshot!!.forEach {snapshot ->
+                    val order = snapshot.toObject(Order::class.java)
+                    order.id = snapshot.id
+                    arrayList.add(order)
+                }
                 arrayList.sortByDescending { it.dateAdded }
                 ordersLiveData.postValue(arrayList)
             }

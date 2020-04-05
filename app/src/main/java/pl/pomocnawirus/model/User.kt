@@ -1,10 +1,9 @@
 package pl.pomocnawirus.model
 
-import com.google.firebase.firestore.DocumentId
 import pl.pomocnawirus.utils.FirestoreUtils
 
 data class User(
-    @DocumentId var id: String = "",
+    var id: String = "",
     val email: String = "",
     var name: String = "",
     var userType: String = USER_TYPE_USER,

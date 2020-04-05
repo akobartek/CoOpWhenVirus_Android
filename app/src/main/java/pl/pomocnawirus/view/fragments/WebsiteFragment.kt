@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_website.view.*
 import pl.pomocnawirus.R
+import java.util.*
 
 class WebsiteFragment : Fragment() {
 
@@ -23,7 +24,9 @@ class WebsiteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val urlAddress = "https://korona.ws/"
+        val urlAddress =
+            if (Locale.getDefault().displayLanguage.toLowerCase() == "polski") "https://korona.ws/"
+            else "https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6"
         view.webView.settings.javaScriptEnabled = true
         view.webView.settings.domStorageEnabled = true
         view.webView.webViewClient = object : WebViewClient() {

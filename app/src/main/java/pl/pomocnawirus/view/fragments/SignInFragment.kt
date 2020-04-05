@@ -89,6 +89,10 @@ class SignInFragment : Fragment() {
                     }
             }, { view.signInBtn.isEnabled = true })
         }
+        view.logo.setOnClickListener {
+            (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                .hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
+        }
         view.signInLayout.setOnClickListener {
             (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
                 .hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
