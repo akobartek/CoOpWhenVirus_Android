@@ -55,7 +55,7 @@ class TaskDetailsBottomSheetFragment(private val mOrder: Order, private val mTas
             .create()
 
         setupToolbarIcons()
-        view.taskRealizationDateTV.text = mTask.realizationDate?.toDate()?.format() ?: ""
+        view.taskRealizationDateTV.text = mTask.realizationDate.toDate().format()
         view.taskTypeImage.setImageResource(mTask.getIconDrawableId())
         view.taskDescriptionTV.text = mTask.description
         view.taskPersonName.text = mOrder.martaName

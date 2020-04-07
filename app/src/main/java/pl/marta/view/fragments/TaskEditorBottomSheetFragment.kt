@@ -28,7 +28,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
     BottomSheetDialogFragment() {
 
     private lateinit var mBottomSheetBehavior: BottomSheetBehavior<View>
-    private var mRealizationDate: Date? = null
+    private var mRealizationDate: Date = Date()
     private var mType = ""
 
     override fun onCreateView(
@@ -49,8 +49,10 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
         view.taskDescriptionInputLayout.markRequiredInRed()
         view.taskTypeInputLayout.markRequiredInRed()
 
-        if (mTask == null) view.toolbarTitle.text = getString(R.string.add_task)
-        else {
+        if (mTask == null) {
+            view.toolbarTitle.text = getString(R.string.add_task)
+            view.taskRealizationDateET.setText(mRealizationDate.format())
+        } else {
             mType = mTask.type
             view.toolbarTitle.text = getString(R.string.edit_task)
             view.taskDescriptionET.setText(mTask.description)
@@ -62,10 +64,8 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
                     else -> R.string.other
                 }
             )
-            if (mTask.realizationDate != null) {
-                mRealizationDate = mTask.realizationDate!!.toDate()
-                view.taskRealizationDateET.setText(mRealizationDate!!.format())
-            }
+            mRealizationDate = mTask.realizationDate.toDate()
+            view.taskRealizationDateET.setText(mRealizationDate.format())
         }
 
         view.taskTypeET.setOnClickListener {
@@ -99,7 +99,10 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
             popupMenu.show()
         }
         view.taskRealizationDateET.setOnClickListener(mDateClickListener)
-        view.taskRealizationDateET.onDrawableEndClick { mRealizationDate = null }
+        view.taskRealizationDateET.onDrawableEndClick {
+            mRealizationDate = Date()
+            view.taskRealizationDateET.setText(mRealizationDate.format())
+        }
 
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
         view.toolbarSaveTaskBtn.setOnClickListener {
@@ -119,8 +122,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
             val returnTask = mTask ?: Task()
             returnTask.description = description
             returnTask.type = mType
-            if (mRealizationDate != null) returnTask.realizationDate = Timestamp(mRealizationDate!!)
-            else returnTask.realizationDate = null
+            returnTask.realizationDate = Timestamp(mRealizationDate)
             dismiss()
             saveAction(returnTask)
         }
@@ -130,7 +132,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
         (it.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
             .hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
         val calendar = Calendar.getInstance()
-        calendar.time = mRealizationDate ?: Date()
+        calendar.time = mRealizationDate
         DatePickerDialog(
             context!!, mDateListener, calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)

@@ -49,8 +49,10 @@ class TaskListFragment : Fragment() {
         if (teamId == null)
             teamId = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
                 .currentUser.value?.teamId
-        if (!teamId.isNullOrEmpty()) mViewModel.fetchOrders(teamId)
-        else requireActivity().recreate()
+        if (!teamId.isNullOrEmpty()) {
+            mViewModel.teamId = teamId
+            mViewModel.fetchOrders()
+        } else requireActivity().recreate()
         mViewModel.orders.observe(viewLifecycleOwner, Observer { showTasks() })
         mViewModel.filters.observe(viewLifecycleOwner, Observer { if (it != null) showTasks() })
     }

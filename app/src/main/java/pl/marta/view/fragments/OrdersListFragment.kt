@@ -62,12 +62,14 @@ class OrdersListFragment : Fragment() {
             })
         }
 
-        var teamId = arguments?.let { TaskListFragmentArgs.fromBundle(it).teamId }
+        var teamId = arguments?.let { OrdersListFragmentArgs.fromBundle(it).teamId }
         if (teamId == null)
             teamId = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
                 .currentUser.value?.teamId
-        if (!teamId.isNullOrEmpty()) mViewModel.fetchOrders(teamId)
-        else requireActivity().recreate()
+        if (!teamId.isNullOrEmpty()) {
+            mViewModel.teamId = teamId
+            mViewModel.fetchOrders()
+        } else requireActivity().recreate()
         mViewModel.orders.observe(viewLifecycleOwner, Observer {
             if (mViewModel.areOrdersSelectedToShow) showOrders()
             else showTasks()
@@ -90,7 +92,9 @@ class OrdersListFragment : Fragment() {
         view?.ordersListToolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_martas_templates -> {
-                    // TODO() -> XDDD
+                    findNavController().navigate(
+                        OrdersListFragmentDirections.showMartasListFragment(mViewModel.teamId)
+                    )
                     true
                 }
                 R.id.action_team_details -> {

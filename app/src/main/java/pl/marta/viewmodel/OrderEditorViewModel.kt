@@ -14,13 +14,13 @@ class OrderEditorViewModel(val app: Application) : AndroidViewModel(app) {
     val teamMembers = MutableLiveData<List<User>>()
 
     fun createNewOrder(order: Order) =
-        mFirebaseRepository.createNewOrder(order, app.applicationContext)
+        mFirebaseRepository.createNewOrder(order)
 
     fun updateOrder(order: Order) =
-        mFirebaseRepository.updateOrder(order, app.applicationContext)
+        mFirebaseRepository.updateOrder(order)
 
     fun deleteOrder(orderId: String) =
-        mFirebaseRepository.deleteOrder(orderId, app.applicationContext)
+        mFirebaseRepository.deleteOrder(orderId)
 
     fun fetchTeamMembers(teamId: String) = mFirebaseRepository.fetchTeamMembers(teamMembers, teamId)
 }

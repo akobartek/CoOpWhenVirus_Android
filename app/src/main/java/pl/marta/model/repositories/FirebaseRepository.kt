@@ -1,7 +1,6 @@
 package pl.marta.model.repositories
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.EmailAuthProvider
@@ -28,11 +27,13 @@ class FirebaseRepository(val app: Application) {
     private lateinit var mTeamSnapshot: ListenerRegistration
     private lateinit var mOrdersSnapshot: ListenerRegistration
     private lateinit var mMembersSnapshot: ListenerRegistration
+    private lateinit var mMartasSnapshot: ListenerRegistration
 
     fun unregisterListeners() {
         if (::mTeamSnapshot.isInitialized) mTeamSnapshot.remove()
         if (::mMembersSnapshot.isInitialized) mMembersSnapshot.remove()
         if (::mOrdersSnapshot.isInitialized) mOrdersSnapshot.remove()
+        if (::mMartasSnapshot.isInitialized) mMartasSnapshot.remove()
     }
 
     // region USERS
@@ -167,12 +168,12 @@ class FirebaseRepository(val app: Application) {
         return isOperationSuccessful
     }
 
-    fun updateTeam(team: Team, context: Context) {
+    fun updateTeam(team: Team) {
         mFirestore.collection(FirestoreUtils.firestoreCollectionTeams)
             .document(team.id)
             .set(team.createTeamHashMap())
-            .addOnSuccessListener { context.showShortToast(R.string.team_updated) }
-            .addOnFailureListener { context.showShortToast(R.string.team_update_error_message) }
+            .addOnSuccessListener { app.showShortToast(R.string.team_updated) }
+            .addOnFailureListener { app.showShortToast(R.string.team_update_error_message) }
     }
 
     fun fetchTeamMembers(membersLiveData: MutableLiveData<List<User>>, teamId: String) {
@@ -184,11 +185,12 @@ class FirebaseRepository(val app: Application) {
                     return@addSnapshotListener
                 }
                 val arrayList = arrayListOf<User>()
-                querySnapshot!!.forEach {snapshot ->
+                querySnapshot!!.forEach { snapshot ->
                     val user = snapshot.toObject(User::class.java)
                     user.id = snapshot.id
                     arrayList.add(user)
                 }
+                arrayList.sortBy { it.name }
                 membersLiveData.postValue(arrayList)
             }
     }
@@ -276,12 +278,12 @@ class FirebaseRepository(val app: Application) {
                     return@addSnapshotListener
                 }
                 val arrayList = arrayListOf<TeamSimple>()
-                querySnapshot!!.forEach {snapshot ->
+                querySnapshot!!.forEach { snapshot ->
                     val team = snapshot.toObject(TeamSimple::class.java)
                     team.id = snapshot.id
                     arrayList.add(team)
                 }
-                teamsLiveData.postValue(arrayList)
+                teamsLiveData.postValue(arrayList.sortedWith(compareBy({ it.city }, { it.name })))
             }
     }
 
@@ -390,7 +392,7 @@ class FirebaseRepository(val app: Application) {
                     return@addSnapshotListener
                 }
                 val arrayList = arrayListOf<Order>()
-                querySnapshot!!.forEach {snapshot ->
+                querySnapshot!!.forEach { snapshot ->
                     val order = snapshot.toObject(Order::class.java)
                     order.id = snapshot.id
                     arrayList.add(order)
@@ -400,14 +402,14 @@ class FirebaseRepository(val app: Application) {
             }
     }
 
-    fun createNewOrder(order: Order, context: Context) {
+    fun createNewOrder(order: Order) {
         mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .add(order.createOrderHashMap())
-            .addOnSuccessListener { context.showShortToast(R.string.order_saved) }
-            .addOnFailureListener { context.showShortToast(R.string.order_save_error_message) }
+            .addOnSuccessListener { app.showShortToast(R.string.order_saved) }
+            .addOnFailureListener { app.showShortToast(R.string.order_save_error_message) }
     }
 
-    fun updateOrder(order: Order): MutableLiveData<Boolean> {
+    fun updateOrderAndWaitForResult(order: Order): MutableLiveData<Boolean> {
         val result = MutableLiveData<Boolean>()
         mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .document(order.id)
@@ -417,25 +419,59 @@ class FirebaseRepository(val app: Application) {
         return result
     }
 
-    fun updateOrder(order: Order, context: Context) {
+    fun updateOrder(order: Order) {
         mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .document(order.id)
             .set(order.createOrderHashMap())
-            .addOnSuccessListener { context.showShortToast(R.string.order_saved) }
-            .addOnFailureListener { context.showShortToast(R.string.order_save_error_message) }
+            .addOnSuccessListener { app.showShortToast(R.string.order_saved) }
+            .addOnFailureListener { app.showShortToast(R.string.order_save_error_message) }
     }
 
-    fun deleteOrder(orderId: String, context: Context) {
+    fun deleteOrder(orderId: String) {
         mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
             .document(orderId)
             .delete()
-            .addOnSuccessListener { context.showShortToast(R.string.order_delete_successfully) }
-            .addOnFailureListener { context.showShortToast(R.string.order_delete_error) }
+            .addOnSuccessListener { app.showShortToast(R.string.order_delete_successfully) }
+            .addOnFailureListener { app.showShortToast(R.string.order_delete_error) }
     }
     // endregion ORDERS
 
 
     // region MARTAS
+    fun fetchMartas(
+        martasLiveData: MutableLiveData<ArrayList<Marta>>, teamId: String
+    ) {
+        mMartasSnapshot = mFirestore.collection(FirestoreUtils.firestoreCollectionMartas)
+            .whereEqualTo(FirestoreUtils.firestoreKeyTeamId, teamId)
+            .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                if (firebaseFirestoreException != null) {
+                    martasLiveData.postValue(arrayListOf())
+                    return@addSnapshotListener
+                }
+                val arrayList = arrayListOf<Marta>()
+                querySnapshot!!.forEach { snapshot ->
+                    val marta = snapshot.toObject(Marta::class.java)
+                    marta.id = snapshot.id
+                    arrayList.add(marta)
+                }
+                arrayList.sortBy { it.name }
+                martasLiveData.postValue(arrayList)
+            }
+    }
 
+    fun addNewMarta(marta: Marta, isWaitingForMessage: Boolean) {
+        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+            .add(marta.createMartaHashMap())
+            .addOnSuccessListener { if (isWaitingForMessage) app.showShortToast(R.string.marta_saved) }
+            .addOnFailureListener { if (isWaitingForMessage) app.showShortToast(R.string.marta_save_error) }
+    }
+
+    fun updateMarta(marta: Marta) {
+        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+            .document(marta.id)
+            .set(marta.createMartaHashMap())
+            .addOnSuccessListener { app.showShortToast(R.string.marta_saved) }
+            .addOnFailureListener { app.showShortToast(R.string.marta_save_error) }
+    }
     // endregion MARTAS
 }

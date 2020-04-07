@@ -19,4 +19,6 @@ object FirestoreUtils {
     const val firestoreKeyMartaName = "martaName"
     const val firestoreKeyTasks = "tasks"
     const val firestoreKeyDateAdded = "dateAdded"
+
+    const val firestoreCollectionMartas = "martas"
 }

@@ -11,7 +11,7 @@ data class Task(
     var type: String = TASK_TYPE_OTHER,
     var description: String = "",
     var status: Int = TASK_STATUS_ADDED,
-    var realizationDate: Timestamp? = null,
+    var realizationDate: Timestamp = Timestamp.now(),
     var volunteerId: String = ""
 ) : Parcelable {
     companion object {

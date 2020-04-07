@@ -10,7 +10,9 @@ data class Marta(
     var phone: String = "",
     var email: String = ""
 ) {
-    fun createOrderHashMap(): HashMap<String, Any> = hashMapOf(
+    fun getAddressFormatted() = "$address, $city"
+
+    fun createMartaHashMap(): HashMap<String, Any> = hashMapOf(
         FirestoreUtils.firestoreKeyName to this.name,
         FirestoreUtils.firestoreKeyAddress to this.address,
         FirestoreUtils.firestoreKeyCity to this.city,

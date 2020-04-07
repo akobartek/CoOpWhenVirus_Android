@@ -148,6 +148,7 @@ class MainActivity : AppCompatActivity() {
                 || mCurrentFragmentId == R.id.accountFragment
                 || mCurrentFragmentId == R.id.orderEditorFragment
                 || mCurrentFragmentId == R.id.teamEditorFragment
+                || mCurrentFragmentId == R.id.martasListFragment
             ) bottomNavView.visibility = View.GONE
             else bottomNavView.visibility = View.VISIBLE
         }

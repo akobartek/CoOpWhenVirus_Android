@@ -12,10 +12,10 @@ class TasksViewModel(val app: Application) : AndroidViewModel(app) {
     private val mFirebaseRepository = FirebaseRepository(app)
 
     val orders = MutableLiveData<ArrayList<Order>>()
-
     val filters = MutableLiveData<Filters>(null)
+    var teamId = ""
 
-    fun fetchOrders(teamId: String) = mFirebaseRepository.fetchOrders(orders, teamId)
+    fun fetchOrders() = mFirebaseRepository.fetchOrders(orders, teamId)
 
-    fun updateOrder(order: Order) = mFirebaseRepository.updateOrder(order)
+    fun updateOrder(order: Order) = mFirebaseRepository.updateOrderAndWaitForResult(order)
 }

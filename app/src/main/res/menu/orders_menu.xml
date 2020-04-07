@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_martas_templates"
         android:icon="@drawable/ic_menu_marta"
-        android:title=""
+        android:title="@string/martas_list"
         app:showAsAction="ifRoom" />
 
     <item

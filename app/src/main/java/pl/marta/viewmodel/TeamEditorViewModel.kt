@@ -21,8 +21,7 @@ class TeamEditorViewModel(val app: Application) : AndroidViewModel(app) {
 
     fun fetchTeam(teamId: String) = mFirebaseRepository.fetchTeam(team, teamId)
 
-    fun updateTeam(team: Team) =
-        mFirebaseRepository.updateTeam(team, app.applicationContext)
+    fun updateTeam(team: Team) = mFirebaseRepository.updateTeam(team)
 
     fun fetchTeamMembers() = mFirebaseRepository.fetchTeamMembers(teamMembers, team.value!!.id)
 

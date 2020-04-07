@@ -32,10 +32,7 @@ class TasksRecyclerAdapter(val openBottomSheetFunction: (Task) -> Unit) :
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(task: Task) {
             itemView.taskDescriptionTV.text = task.description
-            itemView.taskRealizationDateTV.text = task.realizationDate?.toDate()?.format() ?: ""
-            itemView.taskRealizationDateTV.visibility =
-                if (task.realizationDate != null) View.VISIBLE else View.GONE
-
+            itemView.taskRealizationDateTV.text = task.realizationDate.toDate().format()
             itemView.taskTypeImage.setImageResource(task.getIconDrawableId())
 
             itemView.setOnClickListener {

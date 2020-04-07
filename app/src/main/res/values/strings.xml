@@ -216,5 +216,15 @@
     <string name="new_order_notification_message">%s needs your help!</string>
     <string name="new_order_channel_name">New orders channel</string>
     <string name="new_order_channel_desc">New orders in your team</string>
-    <string name="martas_list">List of your Martas</string>
+
+    <!-- MARTAS STRINGS -->
+    <string name="martas_list">List of your Martas templates</string>
+    <string name="empty_martas_list">Look how sad Marta is!\nThat\'s because she is alone here and you haven\'t created any other Marta template yet!</string>
+    <string name="marta_saved">New template successfully saved!</string>
+    <string name="marta_save_error">There was an error with saving the new template!</string>
+    <string name="save_marta_btn_description">Tap here to save template</string>
+    <string name="edit_marta_btn_description">Tap here to start editing template</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

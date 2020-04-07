@@ -14,44 +14,26 @@
         android:background="@color/colorListItemBackground">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/orderNumberOfTasksTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:background="@drawable/ic_round_background"
-            android:gravity="center"
-            android:padding="16dp"
-            android:textColor="@color/colorBackground"
-            app:autoSizeMaxTextSize="100sp"
-            app:autoSizeMinTextSize="12sp"
-            app:autoSizeStepGranularity="2sp"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="99+" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/orderNeedyNameTV"
+            android:id="@+id/martaNameTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="16dp"
             android:fontFamily="sans-serif-light"
             android:paddingBottom="4dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/orderNumberOfTasksTV"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@tools:sample/full_names" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/orderAddressTV"
+            android:id="@+id/martaAddressTV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="24dp"
             android:layout_marginEnd="12dp"
             android:fontFamily="sans-serif-condensed-light"
             android:gravity="end"
@@ -59,8 +41,8 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:textColor="@color/colorMenuIcons"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/orderNumberOfTasksTV"
-            app:layout_constraintTop_toBottomOf="@+id/orderNeedyNameTV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/martaNameTV"
             tools:text="wybrzeże Wyspiańskiego 27, Wrocław" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

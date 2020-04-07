@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".view.fragments.MartaEditorBottomSheetFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/martaNameInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="48dp"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <pl.marta.view.ui.MyTextInputEditText
+                android:id="@+id/martaNameET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorBackground"
+                android:hint="@string/marta_name"
+                android:inputType="textCapWords"
+                android:textColor="@color/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addressInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/martaNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/martaNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/martaNameInputLayout">
+
+            <pl.marta.view.ui.MyTextInputEditText
+                android:id="@+id/addressET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorBackground"
+                android:hint="@string/address"
+                android:inputType="textPostalAddress"
+                android:textColor="@color/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cityInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/martaNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/martaNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/addressInputLayout">
+
+            <pl.marta.view.ui.MyTextInputEditText
+                android:id="@+id/cityET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorBackground"
+                android:hint="@string/city"
+                android:inputType="textCapWords"
+                android:textColor="@color/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phoneInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/martaNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/martaNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/cityInputLayout">
+
+            <pl.marta.view.ui.MyTextInputEditText
+                android:id="@+id/phoneET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorBackground"
+                android:hint="@string/phone_number"
+                android:inputType="phone|numberSigned"
+                android:textColor="@color/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="@color/colorText"
+            app:layout_constraintEnd_toEndOf="@+id/martaNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/martaNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/phoneInputLayout">
+
+            <pl.marta.view.ui.MyTextInputEditText
+                android:id="@+id/emailET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorBackground"
+                android:hint="@string/email_address"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorText" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
