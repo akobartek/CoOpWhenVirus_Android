@@ -186,7 +186,7 @@
     <string name="delete_order">Usuń to zlecenie</string>
     <string name="order_details">Szczegóły zlecenia</string>
     <string name="empty_orders_list">Nie ma jeszcze żadnych zleceń!\nMożesz je stworzyć i pozwolić swojemu zespołowi pracować!</string>
-    <string name="needy_name">Imię osoby potrzebującej</string>
+    <string name="marta_name">Imię osoby potrzebującej</string>
     <string name="address">Adres</string>
     <string name="tasks_to_do">Zadania do wykonania:</string>
     <string name="task_options_btn_description">Kliknij tutaj, aby wyświetlić operacje, które możesz wykonać na zadaniu</string>
@@ -214,4 +214,5 @@
     <string name="new_order_notification_message">%s potrzebuje Twojej pomocy!</string>
     <string name="new_order_channel_name">Kanał o nowych zadaniach</string>
     <string name="new_order_channel_desc">Nowe zadania w twoim zespole</string>
+    <string name="martas_list">Marty Twojego zespołu</string>
 </resources>

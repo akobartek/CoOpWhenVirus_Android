@@ -9,18 +9,18 @@
     android:focusableInTouchMode="true"
     tools:context=".view.fragments.SignInFragment">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logo"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/ic_launcher_background_round"
-        android:src="@drawable/ic_launcher_foreground"
+        android:src="@mipmap/ic_launcher_round"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent=".75" />
+        app:layout_constraintWidth_percent=".75"
+        app:shapeAppearanceOverlay="@style/CircularImage" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailInputLayout"
@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo">
 
-        <pl.pomocnawirus.view.ui.MyTextInputEditText
+        <pl.marta.view.ui.MyTextInputEditText
             android:id="@+id/emailET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/emailInputLayout"
         app:passwordToggleEnabled="true">
 
-        <pl.pomocnawirus.view.ui.MyTextInputEditText
+        <pl.marta.view.ui.MyTextInputEditText
             android:id="@+id/passwordET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

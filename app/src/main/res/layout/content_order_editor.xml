@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/needyNameInputLayout"
+            android:id="@+id/martaNameInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
@@ -26,12 +26,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <pl.pomocnawirus.view.ui.MyTextInputEditText
-                android:id="@+id/needyNameET"
+            <pl.marta.view.ui.MyTextInputEditText
+                android:id="@+id/martaNameET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorBackground"
-                android:hint="@string/needy_name"
+                android:hint="@string/marta_name"
                 android:inputType="textCapWords"
                 android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -42,11 +42,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textColorHint="@color/colorText"
-            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/needyNameInputLayout">
+            app:layout_constraintEnd_toEndOf="@+id/martaNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/martaNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/martaNameInputLayout">
 
-            <pl.pomocnawirus.view.ui.MyTextInputEditText
+            <pl.marta.view.ui.MyTextInputEditText
                 android:id="@+id/addressET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,11 +62,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textColorHint="@color/colorText"
-            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintEnd_toEndOf="@+id/martaNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/martaNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/addressInputLayout">
 
-            <pl.pomocnawirus.view.ui.MyTextInputEditText
+            <pl.marta.view.ui.MyTextInputEditText
                 android:id="@+id/cityET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,11 +82,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textColorHint="@color/colorText"
-            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintEnd_toEndOf="@+id/martaNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/martaNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/cityInputLayout">
 
-            <pl.pomocnawirus.view.ui.MyTextInputEditText
+            <pl.marta.view.ui.MyTextInputEditText
                 android:id="@+id/phoneET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -102,11 +102,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textColorHint="@color/colorText"
-            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintEnd_toEndOf="@+id/martaNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/martaNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/phoneInputLayout">
 
-            <pl.pomocnawirus.view.ui.MyTextInputEditText
+            <pl.marta.view.ui.MyTextInputEditText
                 android:id="@+id/emailET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,8 +127,8 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColor="@color/colorText"
             android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintEnd_toEndOf="@+id/martaNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/martaNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/emailInputLayout" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -141,8 +141,8 @@
             android:text="@string/no_tasks_added_yet"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             android:textColor="@color/colorMenuIcons"
-            app:layout_constraintEnd_toEndOf="@+id/needyNameInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/needyNameInputLayout"
+            app:layout_constraintEnd_toEndOf="@+id/martaNameInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/martaNameInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/taskToDoTv" />
 
         <androidx.recyclerview.widget.RecyclerView

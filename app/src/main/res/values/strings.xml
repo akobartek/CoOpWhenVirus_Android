@@ -188,7 +188,7 @@
     <string name="delete_order">Delete this order</string>
     <string name="order_details">Order details</string>
     <string name="empty_orders_list">There are no orders yet!\nYou can create one and let your team work!</string>
-    <string name="needy_name">Name of the needy person</string>
+    <string name="marta_name">Name of your Marta</string>
     <string name="address">Address</string>
     <string name="tasks_to_do">Tasks to do:</string>
     <string name="task_options_btn_description">Tap here to show options what you can do with the task</string>
@@ -216,4 +216,5 @@
     <string name="new_order_notification_message">%s needs your help!</string>
     <string name="new_order_channel_name">New orders channel</string>
     <string name="new_order_channel_desc">New orders in your team</string>
+    <string name="martas_list">List of your Martas</string>
 </resources>

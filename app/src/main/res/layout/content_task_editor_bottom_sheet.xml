@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <pl.pomocnawirus.view.ui.MyTextInputEditText
+            <pl.marta.view.ui.MyTextInputEditText
                 android:id="@+id/taskDescriptionET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/taskDescriptionInputLayout">
 
-            <pl.pomocnawirus.view.ui.MyTextInputEditText
+            <pl.marta.view.ui.MyTextInputEditText
                 android:id="@+id/taskTypeET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/taskTypeInputLayout">
 
-            <pl.pomocnawirus.view.ui.MyTextInputEditText
+            <pl.marta.view.ui.MyTextInputEditText
                 android:id="@+id/taskRealizationDateET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

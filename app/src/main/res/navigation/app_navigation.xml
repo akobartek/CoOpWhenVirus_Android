@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mapFragment"
-        android:name="pl.pomocnawirus.view.fragments.WebsiteFragment"
+        android:name="pl.marta.view.fragments.WebsiteFragment"
         tools:layout="@layout/fragment_website">
 
         <action
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/safetyFragment"
-        android:name="pl.pomocnawirus.view.fragments.SafetyFragment"
+        android:name="pl.marta.view.fragments.SafetyFragment"
         tools:layout="@layout/fragment_safety">
 
         <action
@@ -66,7 +66,7 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="pl.pomocnawirus.view.fragments.SignInFragment"
+        android:name="pl.marta.view.fragments.SignInFragment"
         tools:layout="@layout/fragment_sign_in">
 
         <action
@@ -97,7 +97,7 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="pl.pomocnawirus.view.fragments.SignUpFragment"
+        android:name="pl.marta.view.fragments.SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
 
         <action
@@ -108,7 +108,7 @@
 
     <fragment
         android:id="@+id/teamJoinFragment"
-        android:name="pl.pomocnawirus.view.fragments.TeamJoinFragment"
+        android:name="pl.marta.view.fragments.TeamJoinFragment"
         tools:layout="@layout/fragment_team_join">
 
         <action
@@ -141,12 +141,12 @@
 
     <fragment
         android:id="@+id/teamFindFragment"
-        android:name="pl.pomocnawirus.view.fragments.TeamFindFragment"
+        android:name="pl.marta.view.fragments.TeamFindFragment"
         tools:layout="@layout/fragment_team_find" />
 
     <fragment
         android:id="@+id/ordersListFragment"
-        android:name="pl.pomocnawirus.view.fragments.OrdersListFragment"
+        android:name="pl.marta.view.fragments.OrdersListFragment"
         tools:layout="@layout/fragment_orders_list">
 
         <argument
@@ -184,23 +184,23 @@
 
     <fragment
         android:id="@+id/orderEditorFragment"
-        android:name="pl.pomocnawirus.view.fragments.OrderEditorFragment"
+        android:name="pl.marta.view.fragments.OrderEditorFragment"
         tools:layout="@layout/fragment_order_editor">
 
         <argument
             android:name="order"
-            app:argType="pl.pomocnawirus.model.Order"
+            app:argType="pl.marta.model.Order"
             app:nullable="true" />
     </fragment>
 
     <fragment
         android:id="@+id/teamEditorFragment"
-        android:name="pl.pomocnawirus.view.fragments.TeamEditorFragment"
+        android:name="pl.marta.view.fragments.TeamEditorFragment"
         tools:layout="@layout/fragment_team_editor" />
 
     <fragment
         android:id="@+id/taskListFragment"
-        android:name="pl.pomocnawirus.view.fragments.TaskListFragment"
+        android:name="pl.marta.view.fragments.TaskListFragment"
         tools:layout="@layout/fragment_task_list">
 
         <argument
@@ -228,9 +228,13 @@
 
     <fragment
         android:id="@+id/accountFragment"
-        android:name="pl.pomocnawirus.view.fragments.AccountFragment"
+        android:name="pl.marta.view.fragments.AccountFragment"
         tools:layout="@layout/fragment_account">
 
+        <action
+            android:id="@+id/showSafetyFragment"
+            app:destination="@+id/safetyFragment"
+            app:enterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/showSignInFragment"
             app:destination="@+id/signInFragment"
@@ -243,6 +247,6 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="pl.pomocnawirus.view.fragments.SettingsFragment" />
+        android:name="pl.marta.view.fragments.SettingsFragment" />
 
 </navigation>

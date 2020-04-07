@@ -21,6 +21,11 @@
     <style name="PrefsTheme" parent="PreferenceThemeOverlay.v14.Material">
         <item name="android:layout">@layout/fragment_settings</item>
     </style>
+    
+    <style name="CircularImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 
     <style name="SafetyRule">
         <item name="android:layout_width">0dp</item>

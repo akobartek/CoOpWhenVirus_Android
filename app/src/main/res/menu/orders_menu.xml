@@ -3,13 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_team_details"
-        android:title="@string/team_details"
-        app:showAsAction="never" />
+        android:id="@+id/action_martas_templates"
+        android:icon="@drawable/ic_menu_marta"
+        android:title=""
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_show_tasks"
         android:title="@string/show_tasks"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_team_details"
+        android:title="@string/team_details"
         app:showAsAction="never" />
 
     <item

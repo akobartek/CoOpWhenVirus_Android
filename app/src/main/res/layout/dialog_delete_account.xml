@@ -12,7 +12,7 @@
         android:textColorHint="#28292e"
         app:passwordToggleEnabled="true">
 
-        <pl.pomocnawirus.view.ui.MyTextInputEditText
+        <pl.marta.view.ui.MyTextInputEditText
             android:id="@+id/deleteAccountPasswordET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

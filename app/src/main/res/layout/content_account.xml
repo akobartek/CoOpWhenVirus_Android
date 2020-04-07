@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <pl.pomocnawirus.view.ui.MyTextInputEditText
+        <pl.marta.view.ui.MyTextInputEditText
             android:id="@+id/nameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="@+id/nameInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/nameInputLayout">
 
-        <pl.pomocnawirus.view.ui.MyTextInputEditText
+        <pl.marta.view.ui.MyTextInputEditText
             android:id="@+id/phoneET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
