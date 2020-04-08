@@ -38,30 +38,12 @@
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
+                android:text="@string/select_template"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:textColor="@color/colorMenuIcons"
-                tools:text="@string/add_template" />
-
-            <ImageButton
-                android:id="@+id/toolbarEditMartaBtn"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/edit_marta_btn_description"
-                android:src="@drawable/ic_edit"
-                android:tint="@color/colorMenuIcons" />
-
-            <ImageButton
-                android:id="@+id/toolbarSaveMartaBtn"
-                android:layout_width="?attr/actionBarSize"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/save_marta_btn_description"
-                android:src="@drawable/ic_save"
-                android:tint="@color/colorMenuIcons" />
+                android:textColor="@color/colorMenuIcons" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_marta_editor_bottom_sheet" />
+    <include layout="@layout/content_martas_list" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

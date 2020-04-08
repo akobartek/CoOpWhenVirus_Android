@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -83,10 +84,10 @@ class TeamEditorFragment : Fragment() {
         view.teamNameInputLayout.markRequiredInRed()
         view.teamCityInputLayout.markRequiredInRed()
         view.teamPhoneInputLayout.markRequiredInRed()
-        view.teamNameET.setOnTouchListener(mTouchListener)
-        view.teamCityET.setOnTouchListener(mTouchListener)
-        view.teamPhoneET.setOnTouchListener(mTouchListener)
-        view.teamEmailET.setOnTouchListener(mTouchListener)
+        view.teamNameET.doOnTextChanged { _, _, _, _ -> teamChanged = true }
+        view.teamCityET.doOnTextChanged { _, _, _, _ -> teamChanged = true }
+        view.teamPhoneET.doOnTextChanged { _, _, _, _ -> teamChanged = true }
+        view.teamEmailET.doOnTextChanged { _, _, _, _ -> teamChanged = true }
     }
 
     override fun onStop() {
@@ -171,10 +172,5 @@ class TeamEditorFragment : Fragment() {
             isValid = false
         }
         return isValid
-    }
-
-    private val mTouchListener = View.OnTouchListener { _, _ ->
-        teamChanged = true
-        false
     }
 }

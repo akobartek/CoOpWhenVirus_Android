@@ -5,6 +5,7 @@
     <string name="safety">Bezpieczeństwo</string>
     <string name="service">Służba</string>
     <string name="yes">Tak</string>
+    <string name="no">Nie</string>
     <string name="try_again">Spróbuj</string>
     <string name="send">Wyślij</string>
     <string name="save">Zapisz</string>
@@ -223,4 +224,10 @@
     <string name="marta_saved">Zapisano nowy szablon!</string>
     <string name="marta_save_error">Wystąpił problem w czasie zapisywania szablonu!</string>
     <string name="save_marta_btn_description">Kliknij tutaj, aby zapisać szablon</string>
+    <string name="edit_marta_btn_description">>Kliknij tutaj, aby rozpocząć edycję szablonu</string>
+    <string name="use_template_dialog_message">Czy chcesz zastosować jeden z zapisanych szablonów Marty?</string>
+    <string name="save_template_dialog_title">Zapisanie szablonu</string>
+    <string name="save_template_dialog_message">Czy chcesz zachować na przyszłość dane tej osoby jako szablon?</string>
+    <string name="select_template">Wybierz szablon</string>
+    <string name="empty_templates_list">Zobacz jak smutna jest Marta!\nNie utworzyłeś jeszcze żadnych szablonów - jeśli chcesz przyspieszyć swoją pracę w przyszłości, listę szablonów można otworzyć z widoku zleceń!</string>
 </resources>

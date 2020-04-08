@@ -3,14 +3,12 @@ package pl.marta.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_marta.view.*
 import pl.marta.R
 import pl.marta.model.Marta
-import pl.marta.view.fragments.MartaEditorBottomSheetFragment
 
-class MartasRecyclerAdapter(val childFragmentManager: FragmentManager) :
+class MartasRecyclerAdapter(val onClickAction: (Marta) -> Unit) :
     RecyclerView.Adapter<MartasRecyclerAdapter.MartaViewHolder>() {
 
     private var mMartas = listOf<Marta>()
@@ -36,8 +34,7 @@ class MartasRecyclerAdapter(val childFragmentManager: FragmentManager) :
             itemView.martaAddressTV.text = marta.getAddressFormatted()
 
             itemView.setOnClickListener {
-                val editorBottomSheetFragment = MartaEditorBottomSheetFragment(marta)
-                editorBottomSheetFragment.show(childFragmentManager, editorBottomSheetFragment.tag)
+                onClickAction(marta)
             }
         }
     }

@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.content_martas_list.view.*
 import kotlinx.android.synthetic.main.fragment_martas_list.view.*
 import pl.marta.R
+import pl.marta.view.activities.MainActivity
 import pl.marta.view.adapters.MartasRecyclerAdapter
-import pl.marta.viewmodel.MainViewModel
 import pl.marta.viewmodel.MartasViewModel
 
 class MartasListFragment : Fragment() {
@@ -33,7 +33,10 @@ class MartasListFragment : Fragment() {
         view.martasListToolbar.setNavigationOnClickListener { findNavController().navigateUp() }
 
         mViewModel = ViewModelProvider(requireActivity()).get(MartasViewModel::class.java)
-        mAdapter = MartasRecyclerAdapter(childFragmentManager)
+        mAdapter = MartasRecyclerAdapter() { marta ->
+            val editorBottomSheetFragment = MartaEditorBottomSheetFragment(marta)
+            editorBottomSheetFragment.show(childFragmentManager, editorBottomSheetFragment.tag)
+        }
         view.martasRecyclerView.apply {
             layoutManager = LinearLayoutManager(view.context)
             itemAnimator = DefaultItemAnimator()
@@ -49,8 +52,7 @@ class MartasListFragment : Fragment() {
         }
         var teamId = arguments?.let { MartasListFragmentArgs.fromBundle(it).teamId }
         if (teamId == null)
-            teamId = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-                .currentUser.value?.teamId
+            teamId = (requireActivity() as MainActivity).getCurrentUser()!!.teamId
         if (!teamId.isNullOrEmpty()) mViewModel.fetchMartas(teamId)
         else requireActivity().recreate()
 

@@ -6,6 +6,7 @@
     <string name="service">Service</string>
     <string name="ok" translatable="false">OK</string>
     <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="try_again">Try again</string>
     <string name="send">Send</string>
     <string name="save">Save</string>
@@ -220,11 +221,15 @@
     <!-- MARTAS STRINGS -->
     <string name="martas_list">List of your Martas templates</string>
     <string name="empty_martas_list">Look how sad Marta is!\nThat\'s because she is alone here and you haven\'t created any other Marta template yet!</string>
+    <string name="add_template">Add template</string>
+    <string name="edit_template">Edit template</string>
     <string name="marta_saved">New template successfully saved!</string>
     <string name="marta_save_error">There was an error with saving the new template!</string>
     <string name="save_marta_btn_description">Tap here to save template</string>
     <string name="edit_marta_btn_description">Tap here to start editing template</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="use_template_dialog_message">Do you want to apply one of the saved Marta templates?</string>
+    <string name="save_template_dialog_title">Save template</string>
+    <string name="save_template_dialog_message">Do you want to save for the future this person data as template?</string>
+    <string name="select_template">Select template</string>
+    <string name="empty_templates_list">Look how sad Marta is!\nThere are no templates yet - if you want to speed up your work in the future, the list of templates can be opened from the order view!</string>
 </resources>

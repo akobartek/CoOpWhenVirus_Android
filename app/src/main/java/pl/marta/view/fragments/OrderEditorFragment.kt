@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.content_order_editor.view.*
 import kotlinx.android.synthetic.main.fragment_order_editor.view.*
 import pl.marta.R
+import pl.marta.model.Marta
 import pl.marta.model.Order
 import pl.marta.utils.*
 import pl.marta.view.activities.MainActivity
@@ -31,6 +33,7 @@ class OrderEditorFragment : Fragment() {
     private lateinit var mViewModel: OrderEditorViewModel
     private lateinit var mAdapter: TaskNewRecyclerAdapter
     private var mOrder: Order? = null
+    private var mIsTemplateSelected = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -54,6 +57,11 @@ class OrderEditorFragment : Fragment() {
             activity?.invalidateOptionsMenu()
         }
         inflateToolbarMenu()
+
+        if (mOrder == null) {
+            showUseTemplateDialog()
+        }
+
         mViewModel = ViewModelProvider(requireActivity()).get(OrderEditorViewModel::class.java)
         mAdapter = TaskNewRecyclerAdapter(
             childFragmentManager, view.taskEmptyListTV, view.orderEditorParentLayout
@@ -89,11 +97,11 @@ class OrderEditorFragment : Fragment() {
         view.addressInputLayout.markRequiredInRed()
         view.cityInputLayout.markRequiredInRed()
         view.phoneInputLayout.markRequiredInRed()
-        view.martaNameET.setOnTouchListener(mTouchListener)
-        view.addressET.setOnTouchListener(mTouchListener)
-        view.cityET.setOnTouchListener(mTouchListener)
-        view.phoneET.setOnTouchListener(mTouchListener)
-        view.emailET.setOnTouchListener(mTouchListener)
+        view.martaNameET.doOnTextChanged { _, _, _, _ -> orderChanged = true }
+        view.addressET.doOnTextChanged { _, _, _, _ -> orderChanged = true }
+        view.cityET.doOnTextChanged { _, _, _, _ -> orderChanged = true }
+        view.phoneET.doOnTextChanged { _, _, _, _ -> orderChanged = true }
+        view.emailET.doOnTextChanged { _, _, _, _ -> orderChanged = true }
     }
 
     fun onBackPressed() {
@@ -155,8 +163,11 @@ class OrderEditorFragment : Fragment() {
             this.tasks = mAdapter.getTasksList()
         }
 
-        if (mOrder == null) mViewModel.createNewOrder(order)
-        else mViewModel.updateOrder(order)
+        if (mOrder == null) {
+            if (!mIsTemplateSelected)
+                showSaveTemplateDialog(Marta("", martaName, address, city, phoneNumber, email))
+            mViewModel.createNewOrder(order)
+        } else mViewModel.updateOrder(order)
 
         findNavController().navigateUp()
     }
@@ -209,8 +220,36 @@ class OrderEditorFragment : Fragment() {
             .create()
             .show()
 
-    private val mTouchListener = View.OnTouchListener { _, _ ->
-        orderChanged = true
-        false
-    }
+    private fun showUseTemplateDialog() =
+        AlertDialog.Builder(context!!)
+            .setMessage(R.string.use_template_dialog_message)
+            .setCancelable(true)
+            .setPositiveButton(R.string.yes) { dialog, _ ->
+                dialog.dismiss()
+                val martaSelectBottomSheet = MartaSelectBottomSheetFragment() {
+                    mIsTemplateSelected = true
+                    view?.martaNameET?.setText(it.name)
+                    view?.addressET?.setText(it.address)
+                    view?.cityET?.setText(it.city)
+                    view?.phoneET?.setText(it.phone)
+                    view?.emailET?.setText(it.email)
+                }
+                martaSelectBottomSheet.show(childFragmentManager, martaSelectBottomSheet.tag)
+            }
+            .setNegativeButton(R.string.no) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
+
+    private fun showSaveTemplateDialog(marta: Marta) =
+        AlertDialog.Builder(context!!)
+            .setMessage(R.string.save_template_dialog_title)
+            .setMessage(R.string.save_template_dialog_message)
+            .setCancelable(false)
+            .setPositiveButton(R.string.yes) { dialog, _ ->
+                dialog.dismiss()
+                mViewModel.addNewMarta(marta)
+            }
+            .setNegativeButton(R.string.no) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
 }

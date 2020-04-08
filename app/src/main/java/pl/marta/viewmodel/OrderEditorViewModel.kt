@@ -3,6 +3,7 @@ package pl.marta.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import pl.marta.model.Marta
 import pl.marta.model.Order
 import pl.marta.model.User
 import pl.marta.model.repositories.FirebaseRepository
@@ -23,4 +24,6 @@ class OrderEditorViewModel(val app: Application) : AndroidViewModel(app) {
         mFirebaseRepository.deleteOrder(orderId)
 
     fun fetchTeamMembers(teamId: String) = mFirebaseRepository.fetchTeamMembers(teamMembers, teamId)
+
+    fun addNewMarta(marta: Marta) = mFirebaseRepository.addNewMarta(marta, false)
 }
