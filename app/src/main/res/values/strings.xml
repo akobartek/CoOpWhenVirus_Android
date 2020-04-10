@@ -27,6 +27,14 @@
     <string name="update_error_message">There was an error with saving the data, please check connection and try again!</string>
     <string name="operation_failed_message">Operation failed, please check connection and try again later!</string>
 
+    <!-- ABOUT US STRINGS -->
+    <string name="about_us">About us</string>
+    <string name="about_us_text_part1">Application made as part of the hackathon HackTheCrisis Denmark.\n</string>
+    <string name="about_us_text_part2">Our team is only two people. We are IT students at the Wrocław University of Science and Technology, so we wanted to use our skills to help in a difficult time of the coronavirus epidemic in the way we can do it best.\n</string>
+    <string name="about_us_text_part3">If you would like to support us, you can do so by clicking the button below:</string>
+    <string name="support_btn_text">Buy us a coffee</string>
+    <string name="about_us_contact">If you have found any errors or want to help us improve the application, please contact us:</string>
+
     <!-- PREFERENCES STRINGS -->
     <string name="preferences">Preferences</string>
     <string name="night_mode_key" translatable="false">night_mode</string>
@@ -100,11 +108,14 @@
     <string name="change_password_successful">Password changed!</string>
     <string name="new_email_address">New email address</string>
     <string name="change_email_successful">Email address changed!</string>
-    <string name="delete_account_dialog_title">Deleting user</string>
+    <string name="delete_account_dialog_title">Deleting account</string>
     <string name="delete_account_dialog_message">If you want to delete your account, verify your password below:</string>
     <string name="delete_successful">Account deleted</string>
     <string name="delete_failed_title">Deleting failed</string>
     <string name="delete_failed_message_leader">You cannot delete your account without finding a new team leader!</string>
+    <string name="privacy_policy_link">https://docs.google.com/document/d/1YOyEKYTfRs7fNFb71DTZdUTfz9zQvONhL8e9KYM19ZU/</string>
+    <string name="privacy_policy_declaration">I declare that I have read and accepted the privacy policy.</string>
+    <string name="privacy_policy">privacy policy</string>
 
     <!-- TEAM STRINGS -->
     <string name="teams">Teams</string>
@@ -193,7 +204,8 @@
     <string name="address">Address</string>
     <string name="tasks_to_do">Tasks to do:</string>
     <string name="task_options_btn_description">Tap here to show options what you can do with the task</string>
-    <string name="task_assign_user">Assign user</string>
+    <string name="task_assign_user">Assign volunteer</string>
+    <string name="task_remove_user">Remove volunteer</string>
     <string name="assign_user_to_task">Assign user to the task</string>
     <string name="task_delete">Delete task</string>
     <string name="task_deleted">Task deleted</string>

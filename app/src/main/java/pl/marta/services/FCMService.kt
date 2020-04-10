@@ -19,18 +19,19 @@ import pl.marta.view.activities.MainActivity
 class FCMService : FirebaseMessagingService() {
 
     companion object {
-        private const val mNewOrderNotificationAction = "NEW_ORDER"
-        private const val NOTIFICATION_CHANNEL_ID = "MartaNewOrder"
+        const val newOrderNotificationAction = "NEW_ORDER"
+        private const val NOTIFICATION_NEW_ORDER_CHANNEL_ID = "MartaNewOrder"
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        if (!remoteMessage.data.isNullOrEmpty() && remoteMessage.data["action"] == mNewOrderNotificationAction)
-            sendNotification(remoteMessage.data["martaName"]!!)
+        if (!remoteMessage.data.isNullOrEmpty() && remoteMessage.data["action"] == newOrderNotificationAction)
+            sendNewOrderNotification(remoteMessage.data["martaName"]!!)
     }
 
-    private fun sendNotification(martaName: String) {
+    private fun sendNewOrderNotification(martaName: String) {
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.putExtra(newOrderNotificationAction, true)
         val pendingIntent = PendingIntent.getActivity(
             applicationContext, 0, intent, PendingIntent.FLAG_ONE_SHOT
         )
@@ -40,7 +41,7 @@ class FCMService : FirebaseMessagingService() {
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
-                NOTIFICATION_CHANNEL_ID,
+                NOTIFICATION_NEW_ORDER_CHANNEL_ID,
                 getString(R.string.new_order_channel_name),
                 NotificationManager.IMPORTANCE_MAX
             )
@@ -50,7 +51,7 @@ class FCMService : FirebaseMessagingService() {
             notificationChannel.enableVibration(true)
             notificationManager.createNotificationChannel(notificationChannel)
         }
-        val notificationBuilder = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+        val notificationBuilder = NotificationCompat.Builder(this, NOTIFICATION_NEW_ORDER_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setColor(ContextCompat.getColor(this, R.color.colorAccent))
             .setLargeIcon(

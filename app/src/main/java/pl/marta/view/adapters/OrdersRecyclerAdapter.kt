@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_order.view.*
 import pl.marta.R
 import pl.marta.model.Order
+import pl.marta.model.Task
 import pl.marta.view.fragments.OrdersListFragmentDirections
 
 class OrdersRecyclerAdapter : RecyclerView.Adapter<OrdersRecyclerAdapter.OrderViewHolder>() {
@@ -31,8 +32,9 @@ class OrdersRecyclerAdapter : RecyclerView.Adapter<OrdersRecyclerAdapter.OrderVi
 
     inner class OrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(order: Order) {
+            val activeTasks = order.tasks.filter { it.status != Task.TASK_STATUS_COMPLETE }
             itemView.orderNumberOfTasksTV.text =
-                if (order.tasks.size < 100) order.tasks.size.toString() else "99+"
+                if (activeTasks.size < 100) activeTasks.size.toString() else "99+"
             itemView.orderNeedyNameTV.text = order.martaName
             itemView.orderAddressTV.text = order.getAddressFormatted()
 

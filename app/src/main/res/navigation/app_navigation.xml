@@ -51,6 +51,11 @@
             app:enterAnim="@anim/slide_in_bottom"
             app:popEnterAnim="@anim/slide_in_top" />
         <action
+            android:id="@+id/showAboutUsFragment"
+            app:destination="@+id/aboutUsFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:popEnterAnim="@anim/slide_in_bottom" />
+        <action
             android:id="@+id/showTeamJoinFragment"
             app:destination="@+id/teamJoinFragment"
             app:enterAnim="@anim/slide_in_right" />
@@ -263,6 +268,12 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="pl.marta.view.fragments.SettingsFragment" />
+        android:name="pl.marta.view.fragments.SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="pl.marta.view.fragments.AboutUsFragment"
+        tools:layout="@layout/fragment_about_us" />
 
 </navigation>

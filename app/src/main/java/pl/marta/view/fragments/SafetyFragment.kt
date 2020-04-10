@@ -25,6 +25,10 @@ class SafetyFragment : Fragment() {
                     findNavController().navigate(SafetyFragmentDirections.showSettingsFragment())
                     true
                 }
+                R.id.action_about_us -> {
+                    findNavController().navigate(SafetyFragmentDirections.showAboutUsFragment())
+                    true
+                }
                 else -> true
             }
         }

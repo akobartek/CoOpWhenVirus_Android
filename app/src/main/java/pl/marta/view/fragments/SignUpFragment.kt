@@ -1,7 +1,14 @@
 package pl.marta.view.fragments
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +46,35 @@ class SignUpFragment : Fragment() {
         view.nameInputLayout.markRequiredInRed()
 
         mAuth = FirebaseAuth.getInstance()
+        view.signUpBtn.isEnabled = view.privacyCheckBox.isChecked
+
+        val declaration = getString(R.string.privacy_policy_declaration)
+        val privacyPolicy = getString(R.string.privacy_policy)
+        val ss = SpannableString(declaration)
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(textView: View) {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(getString(R.string.privacy_policy_link))
+                startActivity(intent)
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = true
+            }
+        }
+        val indexOfPolicy = declaration.indexOf(privacyPolicy)
+        ss.setSpan(
+            clickableSpan,
+            indexOfPolicy,
+            indexOfPolicy + privacyPolicy.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        view.privacyCheckBox.text = ss
+        view.privacyCheckBox.movementMethod = LinkMovementMethod.getInstance()
+        view.privacyCheckBox.setOnCheckedChangeListener { _, newValue ->
+            view.signUpBtn.isEnabled = newValue
+        }
 
         view.signUpBtn.setOnClickListener {
             view.signUpBtn.isEnabled = false

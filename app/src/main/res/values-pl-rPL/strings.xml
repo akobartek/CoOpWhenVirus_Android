@@ -26,6 +26,14 @@
     <string name="update_error_message">Wystąpił błąd podczas zapisywania danych, sprawdź połączenie i spróbuj ponownie!</string>
     <string name="operation_failed_message">Operacja nie powiodła się, sprawdź połączenie i spróbuj ponownie później!</string>
 
+    <!-- ABOUT US STRINGS -->
+    <string name="about_us">O nas</string>
+    <string name="about_us_text_part1">Aplikacja zrobiona w ramach hackathonu HackTheCrisis Denmark.\n</string>
+    <string name="about_us_text_part2">Nasz zespół to tylko dwie osoby. Jesteśmy studentami Informatyki na Politechnice Wrocławskiej, chcieliśmy więc wykorzystać nasze umiejętności żeby pomóc w ciężkim czasie epidemii koronawirusa w sposób w jaki umiemy to zrobić najlepiej.\n</string>
+    <string name="about_us_text_part3">Jeśli chciałbyś nas wspomóc, możesz to zrobić klikając w przycisk poniżej:</string>
+    <string name="support_btn_text">Postaw nam kawę</string>
+    <string name="about_us_contact">Jeśli znalazłeś jakieś błędy lub chcesz pomóc nam usprawnić aplikację, zapraszamy do kontaktu:</string>
+
     <!-- PREFERENCES STRINGS -->
     <string name="preferences">Ustawienia</string>
     <string name="night_mode_title">Tryb nocny</string>
@@ -98,11 +106,14 @@
     <string name="change_password_successful">Hasło zostało zmienione!</string>
     <string name="new_email_address">Nowy adres e-mail</string>
     <string name="change_email_successful">Adres e-mail został zmieniony!</string>
-    <string name="delete_account_dialog_title">Kasowanie użytkownika</string>
+    <string name="delete_account_dialog_title">Kasowanie konta</string>
     <string name="delete_account_dialog_message">Jeśli chcesz usunąć swoje konto, wpisz swoje hasło poniżej:</string>
     <string name="delete_successful">Konto usunięte</string>
     <string name="delete_failed_title">Usuwanie nie powiodło się</string>
     <string name="delete_failed_message_leader">Nie możesz usunąć swojego konta bez znalezienia nowego lidera zespołu!</string>
+    <string name="privacy_policy_link">https://docs.google.com/document/d/1GH50cPwE9-Tpzkn-h-FSTo2x7Vp-uz5l01UsOamESCQ/</string>
+    <string name="privacy_policy_declaration">Oświadczam, iż zapoznałem(-am) się z polityką prywatności i akceptuję ją.</string>
+    <string name="privacy_policy">polityką prywatności</string>
 
     <!-- TEAM STRINGS -->
     <string name="teams">Zespoły</string>
@@ -191,7 +202,8 @@
     <string name="address">Adres</string>
     <string name="tasks_to_do">Zadania do wykonania:</string>
     <string name="task_options_btn_description">Kliknij tutaj, aby wyświetlić operacje, które możesz wykonać na zadaniu</string>
-    <string name="task_assign_user">Przypisz użytkownika</string>
+    <string name="task_assign_user">Przypisz wolontariusza</string>
+    <string name="task_remove_user">Usuń wolontariusza</string>
     <string name="assign_user_to_task">Przypisz użytkownika do zadania</string>
     <string name="task_delete">Usuń zadanie</string>
     <string name="task_deleted">Zadanie usunięte</string>

@@ -60,6 +60,10 @@ class TaskNewRecyclerAdapter(
             itemView.taskOptionsBtn.setOnClickListener { view ->
                 val popupMenu = PopupMenu(itemView.context, view)
                 popupMenu.menuInflater.inflate(R.menu.task_options_popup_menu, popupMenu.menu)
+                popupMenu.menu.findItem(R.id.action_task_assign_user).isVisible =
+                    task.volunteerId == ""
+                popupMenu.menu.findItem(R.id.action_task_remove_user).isVisible =
+                    task.volunteerId != ""
                 popupMenu.setOnMenuItemClickListener { menuItem ->
                     when (menuItem.itemId) {
                         R.id.action_task_assign_user -> {

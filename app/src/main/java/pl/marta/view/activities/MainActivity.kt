@@ -19,6 +19,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.marta.R
 import pl.marta.model.User
+import pl.marta.services.FCMService.Companion.newOrderNotificationAction
 import pl.marta.utils.PreferencesManager
 import pl.marta.utils.isChromeCustomTabsSupported
 import pl.marta.utils.showShortToast
@@ -149,6 +150,7 @@ class MainActivity : AppCompatActivity() {
                 || mCurrentFragmentId == R.id.orderEditorFragment
                 || mCurrentFragmentId == R.id.teamEditorFragment
                 || mCurrentFragmentId == R.id.martasListFragment
+                || mCurrentFragmentId == R.id.aboutUsFragment
             ) bottomNavView.visibility = View.GONE
             else bottomNavView.visibility = View.VISIBLE
         }
@@ -165,7 +167,9 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         try {
             super.onResume()
-            if (bottomNavView.selectedItemId == R.id.navigation_map)
+            if (intent.extras != null && intent.getBooleanExtra(newOrderNotificationAction, false))
+                bottomNavView.selectedItemId = R.id.navigation_service
+            else if (bottomNavView.selectedItemId == R.id.navigation_map)
                 bottomNavView.selectedItemId = R.id.navigation_safety
         } catch (t: Throwable) {
             bottomNavView.selectedItemId = R.id.navigation_safety

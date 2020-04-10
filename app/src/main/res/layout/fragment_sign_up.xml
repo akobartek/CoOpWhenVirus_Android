@@ -34,7 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="48dp"
         android:textColorHint="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,6 +112,18 @@
             android:textColor="@color/colorText" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/privacyCheckBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:padding="4dp"
+        android:text="@string/privacy_policy_declaration"
+        android:textColor="@color/colorText"
+        app:layout_constraintEnd_toEndOf="@+id/emailInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/emailInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/phoneInputLayout" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signUpBtn"
         android:layout_width="0dp"
@@ -126,6 +138,6 @@
         app:cornerRadius="4dp"
         app:layout_constraintEnd_toEndOf="@+id/emailInputLayout"
         app:layout_constraintStart_toStartOf="@+id/emailInputLayout"
-        app:layout_constraintTop_toBottomOf="@id/phoneInputLayout" />
+        app:layout_constraintTop_toBottomOf="@id/privacyCheckBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

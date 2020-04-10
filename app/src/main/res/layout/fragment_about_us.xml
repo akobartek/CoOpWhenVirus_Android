@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".view.fragments.AboutUsFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/aboutUsAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/aboutUsToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBackground"
+            app:layout_scrollFlags="enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/about_us"
+            app:titleTextColor="@color/colorMenuIcons" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_about_us" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

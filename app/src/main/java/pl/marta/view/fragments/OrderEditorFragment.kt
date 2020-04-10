@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_order_editor.view.*
 import pl.marta.R
 import pl.marta.model.Marta
 import pl.marta.model.Order
+import pl.marta.model.Task
 import pl.marta.utils.*
 import pl.marta.view.activities.MainActivity
 import pl.marta.view.adapters.TaskNewRecyclerAdapter
@@ -114,8 +115,10 @@ class OrderEditorFragment : Fragment() {
             view?.taskEmptyListTV?.visibility = View.VISIBLE
             return
         }
-        mAdapter.setTasksList(mOrder!!.tasks)
-        if (mOrder!!.tasks.isEmpty()) {
+        val activeTasks = arrayListOf<Task>()
+        activeTasks.addAll(mOrder!!.tasks.filter { it.status != Task.TASK_STATUS_COMPLETE })
+        mAdapter.setTasksList(activeTasks)
+        if (activeTasks.isEmpty()) {
             view?.taskEmptyListTV?.visibility = View.VISIBLE
         } else {
             view?.taskEmptyListTV?.visibility = View.INVISIBLE
