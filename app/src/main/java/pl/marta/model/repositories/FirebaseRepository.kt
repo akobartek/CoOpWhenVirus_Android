@@ -460,18 +460,26 @@ class FirebaseRepository(val app: Application) {
     }
 
     fun addNewMarta(marta: Marta, isWaitingForMessage: Boolean) {
-        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+        mFirestore.collection(FirestoreUtils.firestoreCollectionMartas)
             .add(marta.createMartaHashMap())
             .addOnSuccessListener { if (isWaitingForMessage) app.showShortToast(R.string.marta_saved) }
             .addOnFailureListener { if (isWaitingForMessage) app.showShortToast(R.string.marta_save_error) }
     }
 
     fun updateMarta(marta: Marta) {
-        mFirestore.collection(FirestoreUtils.firestoreCollectionOrders)
+        mFirestore.collection(FirestoreUtils.firestoreCollectionMartas)
             .document(marta.id)
             .set(marta.createMartaHashMap())
-            .addOnSuccessListener { app.showShortToast(R.string.marta_saved) }
-            .addOnFailureListener { app.showShortToast(R.string.marta_save_error) }
+            .addOnSuccessListener { app.showShortToast(R.string.marta_updated) }
+            .addOnFailureListener { app.showShortToast(R.string.marta_update_error_message) }
+    }
+
+    fun deleteMarta(martaId: String) {
+        mFirestore.collection(FirestoreUtils.firestoreCollectionMartas)
+            .document(martaId)
+            .delete()
+            .addOnSuccessListener { app.showShortToast(R.string.marta_deleted) }
+            .addOnFailureListener { app.showShortToast(R.string.marta_delete_error) }
     }
     // endregion MARTAS
 }

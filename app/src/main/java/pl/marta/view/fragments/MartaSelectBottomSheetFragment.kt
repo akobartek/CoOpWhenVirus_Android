@@ -45,10 +45,14 @@ class MartaSelectBottomSheetFragment(val onSelect: (Marta) -> Unit) : BottomShee
         mViewModel = ViewModelProvider(requireActivity()).get(MartasViewModel::class.java)
         view.emptyMartasView.setText(R.string.empty_templates_list)
 
-        mAdapter = MartasRecyclerAdapter() { marta -> onSelect(marta) }
+        mAdapter = MartasRecyclerAdapter() { marta ->
+            onSelect(marta)
+            dismiss()
+        }
         view.martasRecyclerView.apply {
             layoutManager = LinearLayoutManager(view.context)
             itemAnimator = DefaultItemAnimator()
+            adapter = mAdapter
         }
         mViewModel.fetchMartas((requireActivity() as MainActivity).getCurrentUser()!!.teamId)
         mViewModel.martas.observe(viewLifecycleOwner, Observer { martas ->

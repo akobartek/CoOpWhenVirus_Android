@@ -52,6 +52,15 @@
                 android:tint="@color/colorMenuIcons" />
 
             <ImageButton
+                android:id="@+id/toolbarDeleteMartaBtn"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/delete_marta_btn_description"
+                android:src="@drawable/ic_delete"
+                android:tint="@color/colorMenuIcons" />
+
+            <ImageButton
                 android:id="@+id/toolbarSaveMartaBtn"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"

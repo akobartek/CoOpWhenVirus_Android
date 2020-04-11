@@ -231,14 +231,20 @@
     <string name="new_order_channel_desc">New orders in your team</string>
 
     <!-- MARTAS STRINGS -->
-    <string name="martas_list">List of your Martas templates</string>
+    <string name="martas_list">Martas templates</string>
     <string name="empty_martas_list">Look how sad Marta is!\nThat\'s because she is alone here and you haven\'t created any other Marta template yet!</string>
     <string name="add_template">Add template</string>
     <string name="edit_template">Edit template</string>
     <string name="marta_saved">New template successfully saved!</string>
     <string name="marta_save_error">There was an error with saving the new template!</string>
+    <string name="marta_updated">Template successfully updated!</string>
+    <string name="marta_update_error_message">There was an error with updating the template!</string>
     <string name="save_marta_btn_description">Tap here to save template</string>
     <string name="edit_marta_btn_description">Tap here to start editing template</string>
+    <string name="delete_marta_btn_description">Tap here to delete template</string>
+    <string name="marta_delete_dialog_msg">Are you sure you want to delete this template?</string>
+    <string name="marta_deleted">Template successfully deleted!</string>
+    <string name="marta_delete_error">There was an error with deleting the new template!</string>
     <string name="use_template_dialog_message">Do you want to apply one of the saved Marta templates?</string>
     <string name="save_template_dialog_title">Save template</string>
     <string name="save_template_dialog_message">Do you want to save for the future this person data as template?</string>

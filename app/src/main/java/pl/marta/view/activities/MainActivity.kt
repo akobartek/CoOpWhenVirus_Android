@@ -236,7 +236,7 @@ class MainActivity : AppCompatActivity() {
         when (mCurrentFragmentId) {
             R.id.signUpFragment ->
                 findNavController(R.id.navHostFragment).navigate(SignUpFragmentDirections.showSignInFragment())
-            R.id.settingsFragment, R.id.accountFragment ->
+            R.id.settingsFragment, R.id.accountFragment, R.id.aboutUsFragment, R.id.martasListFragment ->
                 findNavController(R.id.navHostFragment).navigateUp()
             R.id.teamFindFragment ->
                 if ((supportFragmentManager.findFragmentById(R.id.navHostFragment)!!

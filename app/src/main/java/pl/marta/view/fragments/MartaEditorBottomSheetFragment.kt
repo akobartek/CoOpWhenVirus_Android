@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_marta_editor_bottom_sheet.view.*
 import pl.marta.R
 import pl.marta.model.Marta
 import pl.marta.utils.*
+import pl.marta.view.activities.MainActivity
 import pl.marta.viewmodel.MartasViewModel
 
 class MartaEditorBottomSheetFragment(private val mMarta: Marta?) : BottomSheetDialogFragment() {
@@ -63,17 +65,22 @@ class MartaEditorBottomSheetFragment(private val mMarta: Marta?) : BottomSheetDi
             view.emailET.enable()
         }
         view.toolbarEditMartaBtn.visibility = if (mMarta != null) View.VISIBLE else View.GONE
+        view.toolbarDeleteMartaBtn.visibility = if (mMarta != null) View.VISIBLE else View.GONE
         view.toolbarSaveMartaBtn.visibility = if (mMarta != null) View.GONE else View.VISIBLE
 
         view.toolbarCancelBtn.setOnClickListener { dismiss() }
         view.toolbarEditMartaBtn.setOnClickListener {
             view.toolbarEditMartaBtn.visibility = View.GONE
+            view.toolbarDeleteMartaBtn.visibility = View.GONE
             view.toolbarSaveMartaBtn.visibility = View.VISIBLE
             view.martaNameET.enable()
             view.addressET.enable()
             view.cityET.enable()
             view.phoneET.enable()
             view.emailET.enable()
+        }
+        view.toolbarDeleteMartaBtn.setOnClickListener {
+            if (mMarta != null) showDeleteConfirmationDialog()
         }
         view.toolbarSaveMartaBtn.setOnClickListener {
             val martaName = view.martaNameET?.text.toString().trim()
@@ -87,6 +94,7 @@ class MartaEditorBottomSheetFragment(private val mMarta: Marta?) : BottomSheetDi
 
             val marta = mMarta ?: Marta()
             marta.apply {
+                this.teamId = (requireActivity() as MainActivity).getCurrentUser()!!.teamId
                 this.name = martaName
                 this.address = address
                 this.city = city
@@ -94,11 +102,30 @@ class MartaEditorBottomSheetFragment(private val mMarta: Marta?) : BottomSheetDi
                 this.email = email
             }
 
-            if (mMarta == null) mViewModel.addNewMarta(marta)
-            else mViewModel.updateMarta(marta)
-            dismiss()
+            if (mMarta == null) {
+                mViewModel.addNewMarta(marta)
+                dismiss()
+            } else {
+                mViewModel.updateMarta(marta)
+                view.toolbarEditMartaBtn.visibility = View.VISIBLE
+                view.toolbarDeleteMartaBtn.visibility = View.VISIBLE
+                view.toolbarSaveMartaBtn.visibility = View.GONE
+            }
         }
     }
+
+    private fun showDeleteConfirmationDialog() =
+        AlertDialog.Builder(context!!)
+            .setMessage(R.string.order_delete_dialog_msg)
+            .setCancelable(false)
+            .setPositiveButton(R.string.delete) { dialog, _ ->
+                dialog.dismiss()
+                mViewModel.deleteMarta(mMarta!!.id)
+                dismiss()
+            }
+            .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
 
     private fun areValuesValid(
         name: String, address: String, city: String, phone: String, email: String?

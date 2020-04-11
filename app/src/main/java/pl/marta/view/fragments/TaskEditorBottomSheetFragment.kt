@@ -48,6 +48,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
         super.onViewCreated(view, savedInstanceState)
         view.taskDescriptionInputLayout.markRequiredInRed()
         view.taskTypeInputLayout.markRequiredInRed()
+        view.taskRealizationDateInputLayout.markRequiredInRed()
 
         if (mTask == null) {
             view.toolbarTitle.text = getString(R.string.add_task)
@@ -64,7 +65,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
                     else -> R.string.other
                 }
             )
-            mRealizationDate = mTask.realizationDate.toDate()
+            mRealizationDate = mTask.realizationDate?.toDate() ?: Date()
             view.taskRealizationDateET.setText(mRealizationDate.format())
         }
 
@@ -140,11 +141,11 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
     }
 
     private val mDateListener =
-        DatePickerDialog.OnDateSetListener { _, year, month, day ->
+        DatePickerDialog.OnDateSetListener { x, year, month, day ->
             val dateString = StringBuilder()
                 .append(day).append(".").append(month + 1).append(".").append(year).toString()
             mRealizationDate =
                 SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).parse(dateString)!!
-            view?.taskRealizationDateET?.setText(dateString)
+            view?.taskRealizationDateET?.setText(mRealizationDate.format())
         }
 }

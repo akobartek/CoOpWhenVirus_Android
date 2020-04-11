@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorBackground"
                 android:hint="@string/address"
-                android:inputType="textPostalAddress"
+                android:inputType="textPostalAddress|textCapWords"
                 android:textColor="@color/colorText" />
         </com.google.android.material.textfield.TextInputLayout>
 

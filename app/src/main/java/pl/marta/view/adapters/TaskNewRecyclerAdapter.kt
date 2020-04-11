@@ -46,7 +46,7 @@ class TaskNewRecyclerAdapter(
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(task: Task, position: Int) {
             itemView.taskDescriptionTV.text = task.description
-            itemView.taskRealizationDateTV.text = task.realizationDate.toDate().format()
+            itemView.taskRealizationDateTV.text = task.realizationDate?.toDate()?.format() ?: ""
             itemView.taskTypeImage.setImageResource(task.getIconDrawableId())
 
             itemView.setOnClickListener {

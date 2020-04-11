@@ -17,4 +17,6 @@ class MartasViewModel(val app: Application) : AndroidViewModel(app) {
     fun addNewMarta(marta: Marta) = mFirebaseRepository.addNewMarta(marta, true)
 
     fun updateMarta(marta: Marta) = mFirebaseRepository.updateMarta(marta)
+
+    fun deleteMarta(martaId: String) = mFirebaseRepository.deleteMarta(martaId)
 }
