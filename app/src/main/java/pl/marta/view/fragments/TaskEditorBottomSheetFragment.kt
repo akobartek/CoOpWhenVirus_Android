@@ -141,7 +141,7 @@ class TaskEditorBottomSheetFragment(private val mTask: Task?, val saveAction: (T
     }
 
     private val mDateListener =
-        DatePickerDialog.OnDateSetListener { x, year, month, day ->
+        DatePickerDialog.OnDateSetListener { _, year, month, day ->
             val dateString = StringBuilder()
                 .append(day).append(".").append(month + 1).append(".").append(year).toString()
             mRealizationDate =
