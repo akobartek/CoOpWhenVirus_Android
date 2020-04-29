@@ -29,7 +29,7 @@
     <!-- ABOUT US STRINGS -->
     <string name="about_us">O nas</string>
     <string name="about_us_text_part1">Aplikacja zrobiona w ramach hackathonu HackTheCrisis Denmark.\n</string>
-    <string name="about_us_text_part2">Nasz zespół to tylko dwie osoby. Jesteśmy studentami Informatyki na Politechnice Wrocławskiej, chcieliśmy więc wykorzystać nasze umiejętności żeby pomóc w ciężkim czasie epidemii koronawirusa w sposób w jaki umiemy to zrobić najlepiej.\n</string>
+    <string name="about_us_text_part2">Nasz zespół to tylko dwie osoby. Jesteśmy studentami Informatyki na Politechnice Wrocławskiej, chcieliśmy więc wykorzystać nasze umiejętności żeby pomóc w tym ciężkim czasie w sposób w jaki umiemy to zrobić najlepiej.\n</string>
     <string name="about_us_text_part3">Jeśli chciałbyś nas wspomóc, możesz to zrobić klikając w przycisk poniżej:</string>
     <string name="support_btn_text">Postaw nam kawę</string>
     <string name="about_us_contact">Jeśli znalazłeś jakieś błędy lub chcesz pomóc nam usprawnić aplikację, zapraszamy do kontaktu:</string>
@@ -41,11 +41,11 @@
 
     <!-- SAFETY STRINGS -->
     <string name="safety_rules">Zasady bezpieczeństwa</string>
-    <string name="safety_header">Twoje bezpieczeństwo jest najważniejsze, aby zapobiec rozprzestrzenianiu się koronawirusa!\nPostępuj zgodnie z poniższymi zasadami:</string>
+    <string name="safety_header">Twoje bezpieczeństwo jest najważniejsze, aby zapobiec rozprzestrzenianiu się choroby!\nPostępuj zgodnie z poniższymi zasadami:</string>
     <string name="safety_rule1">Nie wychodź na zewnątrz bez wyraźnej konieczności!\n#ZostańWDomu</string>
     <string name="safety_rule2">Staraj się chronić jak najbardziej to tylko możliwe. Kiedy wychodzisz z domu, noś rękawiczki i maskę.</string>
     <string name="safety_rule3">Regularnie myj ręce mydłem i wodą lub chusteczką nasączoną środkiem na bazie alkoholu.</string>
-    <string name="safety_rule4">Unikaj dotykania oczu, nosa i ust. Dłonie dotykają wielu powierzchni i mogą zbierać wirusy.</string>
+    <string name="safety_rule4">Unikaj dotykania oczu, nosa i ust. Dłonie dotykają wielu powierzchni i mogą zbierać różne zarazki.</string>
     <string name="safety_rule5">Podczas kaszlu i kichania zakryj usta i nos zgiętym łokciem lub chusteczką.</string>
     <string name="safety_rule6">Zachowaj co najmniej 1 metr odległości między sobą a każdym, kto kaszle lub kicha, a także swoimi rozmówcami.</string>
     <string name="safety_rule7">Powierzchnie dotykowe, w tym biurka, stoły, klamki, włączniki światła, poręcze, należy regularnie przecierać wodą i detergentem lub środkiem dezynfekującym.</string>

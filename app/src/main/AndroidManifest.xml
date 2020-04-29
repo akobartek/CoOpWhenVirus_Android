@@ -19,6 +19,7 @@
         tools:targetApi="n">
         <activity
             android:name="pl.marta.view.activities.MainActivity"
+            android:configChanges="locale|orientation"
             android:launchMode="singleInstance">
 
             <meta-data
@@ -38,7 +39,7 @@
 
         <service android:name="pl.marta.services.FCMService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 

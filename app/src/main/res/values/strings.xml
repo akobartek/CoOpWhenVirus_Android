@@ -30,7 +30,7 @@
     <!-- ABOUT US STRINGS -->
     <string name="about_us">About us</string>
     <string name="about_us_text_part1">Application made as part of the hackathon HackTheCrisis Denmark.\n</string>
-    <string name="about_us_text_part2">Our team is only two people. We are IT students at the Wrocław University of Science and Technology, so we wanted to use our skills to help in a difficult time of the coronavirus epidemic in the way we can do it best.\n</string>
+    <string name="about_us_text_part2">Our team is only two people. We are IT students at the Wrocław University of Science and Technology, so we wanted to use our skills to help in this difficult times in the way we can do it best.\n</string>
     <string name="about_us_text_part3">If you would like to support us, you can do so by clicking the button below:</string>
     <string name="support_btn_text">Buy us a coffee</string>
     <string name="about_us_contact">If you have found any errors or want to help us improve the application, please contact us:</string>
@@ -43,11 +43,11 @@
 
     <!-- SAFETY STRINGS -->
     <string name="safety_rules">Safety rules</string>
-    <string name="safety_header">Your safety is the most important to prevent spreading of the coronavirus!\nPlease follow the rules below:</string>
+    <string name="safety_header">Your safety is the most important to prevent spreading of the disease!\nPlease follow the rules below:</string>
     <string name="safety_rule1">Do not go outside without explicit necessity!\n#StayAtHome</string>
     <string name="safety_rule2">Try to protect yourself as much as possible. Wear gloves and a mask when you leave the house.</string>
     <string name="safety_rule3">Regularly wash your hands with soap and water or clean them with an alcohol-based hand rub.</string>
-    <string name="safety_rule4">Avoid touching eyes, nose and mouth. Hands touch many surfaces and can pick up viruses.</string>
+    <string name="safety_rule4">Avoid touching eyes, nose and mouth. Hands touch many surfaces and can pick up germs.</string>
     <string name="safety_rule5">Cover your mouth and nose with your bent elbow or tissue when you cough or sneeze.</string>
     <string name="safety_rule6">Maintain at least 1 metre distance between yourself and anyone who is coughing or sneezing, as well as your interlocutors.</string>
     <string name="safety_rule7">Touch surfaces including desks, tables, door handles, light switches, handrails must be wiped regularly with water and detergent or a disinfectant.</string>
