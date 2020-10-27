@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- GENERAL STRINGS -->
-    <string name="map">Mapa</string>
     <string name="safety">Bezpieczeństwo</string>
     <string name="service">Służba</string>
     <string name="yes">Tak</string>
@@ -41,7 +40,7 @@
 
     <!-- SAFETY STRINGS -->
     <string name="safety_rules">Zasady bezpieczeństwa</string>
-    <string name="safety_header">Twoje bezpieczeństwo jest najważniejsze, aby zapobiec rozprzestrzenianiu się choroby!\nPostępuj zgodnie z poniższymi zasadami:</string>
+    <string name="safety_header">Twoje bezpieczeństwo jest najważniejsze!\nPostępuj zgodnie z poniższymi zasadami:</string>
     <string name="safety_rule1">Nie wychodź na zewnątrz bez wyraźnej konieczności!\n#ZostańWDomu</string>
     <string name="safety_rule2">Staraj się chronić jak najbardziej to tylko możliwe. Kiedy wychodzisz z domu, noś rękawiczki i maskę.</string>
     <string name="safety_rule3">Regularnie myj ręce mydłem i wodą lub chusteczką nasączoną środkiem na bazie alkoholu.</string>
@@ -50,7 +49,6 @@
     <string name="safety_rule6">Zachowaj co najmniej 1 metr odległości między sobą a każdym, kto kaszle lub kicha, a także swoimi rozmówcami.</string>
     <string name="safety_rule7">Powierzchnie dotykowe, w tym biurka, stoły, klamki, włączniki światła, poręcze, należy regularnie przecierać wodą i detergentem lub środkiem dezynfekującym.</string>
     <string name="safety_rule8">Jeśli masz gorączkę, kaszel i trudności w oddychaniu, zwróć się o pomoc lekarską, wcześniej dzwoniąc. Postępuj zgodnie ze wskazówkami lokalnego urzędu zdrowia.</string>
-    <string name="safety_rule9">Bądź na bieżąco z najnowszymi informacjami o COVID-19.</string>
     <string name="based_on_who">Przygotowano w oparciu o wytyczne\nŚwiatowej Organizacji Zdrowia</string>
 
     <!-- ACCOUNT STRINGS -->

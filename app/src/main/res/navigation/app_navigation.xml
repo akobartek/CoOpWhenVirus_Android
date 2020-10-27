@@ -6,41 +6,10 @@
     app:startDestination="@+id/safetyFragment">
 
     <fragment
-        android:id="@+id/mapFragment"
-        android:name="pl.marta.view.fragments.WebsiteFragment"
-        tools:layout="@layout/fragment_website">
-
-        <action
-            android:id="@+id/showSafetyFragment"
-            app:destination="@+id/safetyFragment"
-            app:enterAnim="@anim/slide_in_right" />
-        <action
-            android:id="@+id/showSignInFragment"
-            app:destination="@+id/signInFragment"
-            app:enterAnim="@anim/slide_in_right" />
-        <action
-            android:id="@+id/showTeamJoinFragment"
-            app:destination="@+id/teamJoinFragment"
-            app:enterAnim="@anim/slide_in_right" />
-        <action
-            android:id="@+id/showOrdersListFragment"
-            app:destination="@+id/ordersListFragment"
-            app:enterAnim="@anim/slide_in_right" />
-        <action
-            android:id="@+id/showTaskListFragment"
-            app:destination="@+id/taskListFragment"
-            app:enterAnim="@anim/slide_in_right" />
-    </fragment>
-
-    <fragment
         android:id="@+id/safetyFragment"
         android:name="pl.marta.view.fragments.SafetyFragment"
         tools:layout="@layout/fragment_safety">
 
-        <action
-            android:id="@+id/showMapFragment"
-            app:destination="@+id/mapFragment"
-            app:enterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/showSignInFragment"
             app:destination="@+id/signInFragment"
@@ -74,10 +43,6 @@
         android:name="pl.marta.view.fragments.SignInFragment"
         tools:layout="@layout/fragment_sign_in">
 
-        <action
-            android:id="@+id/showMapFragment"
-            app:destination="@+id/mapFragment"
-            app:enterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/showSafetyFragment"
             app:destination="@+id/safetyFragment"
@@ -117,10 +82,6 @@
         tools:layout="@layout/fragment_team_join">
 
         <action
-            android:id="@+id/showMapFragment"
-            app:destination="@+id/mapFragment"
-            app:enterAnim="@anim/slide_in_left" />
-        <action
             android:id="@+id/showSafetyFragment"
             app:destination="@+id/safetyFragment"
             app:enterAnim="@anim/slide_in_left" />
@@ -158,10 +119,6 @@
             android:name="teamId"
             app:argType="string"
             app:nullable="true" />
-        <action
-            android:id="@+id/showMapFragment"
-            app:destination="@+id/mapFragment"
-            app:enterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/showSafetyFragment"
             app:destination="@+id/safetyFragment"
@@ -228,10 +185,6 @@
             android:name="teamId"
             app:argType="string"
             app:nullable="true" />
-        <action
-            android:id="@+id/showMapFragment"
-            app:destination="@+id/mapFragment"
-            app:enterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/showSafetyFragment"
             app:destination="@+id/safetyFragment"

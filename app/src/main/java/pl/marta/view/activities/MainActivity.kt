@@ -1,15 +1,12 @@
 package pl.marta.view.activities
 
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -21,11 +18,9 @@ import pl.marta.R
 import pl.marta.model.User
 import pl.marta.services.FCMService.Companion.newOrderNotificationAction
 import pl.marta.utils.PreferencesManager
-import pl.marta.utils.isChromeCustomTabsSupported
 import pl.marta.utils.showShortToast
 import pl.marta.view.fragments.*
 import pl.marta.viewmodel.MainViewModel
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,44 +43,8 @@ class MainActivity : AppCompatActivity() {
     private val onNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_map -> {
-                    if (isChromeCustomTabsSupported()) {
-                        val urlAddress =
-                            if (Locale.getDefault().displayLanguage.toLowerCase() == "polski") "https://korona.ws/"
-                            else "https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6"
-                        CustomTabsIntent.Builder().apply {
-                            val color =
-                                if (PreferencesManager.getNightMode()) Color.parseColor("#28292e")
-                                else Color.WHITE
-                            setToolbarColor(color)
-                            setSecondaryToolbarColor(color)
-                        }.build().launchUrl(this@MainActivity, Uri.parse(urlAddress))
-                    } else {
-                        when (mCurrentFragmentId) {
-                            R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
-                                SafetyFragmentDirections.showMapFragment()
-                            )
-                            R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
-                                SignInFragmentDirections.showMapFragment()
-                            )
-                            R.id.teamJoinFragment -> findNavController(R.id.navHostFragment).navigate(
-                                TeamJoinFragmentDirections.showMapFragment()
-                            )
-                            R.id.ordersListFragment -> findNavController(R.id.navHostFragment).navigate(
-                                OrdersListFragmentDirections.showMapFragment()
-                            )
-                            R.id.taskListFragment -> findNavController(R.id.navHostFragment).navigate(
-                                TaskListFragmentDirections.showMapFragment()
-                            )
-                        }
-                    }
-                    return@OnNavigationItemSelectedListener true
-                }
                 R.id.navigation_safety -> {
                     when (mCurrentFragmentId) {
-                        R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
-                            WebsiteFragmentDirections.showSafetyFragment()
-                        )
                         R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
                             SignInFragmentDirections.showSafetyFragment()
                         )
@@ -107,9 +66,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_service -> {
                     if (mAuth.currentUser != null) navigateToCorrectServiceFragment()
                     else when (mCurrentFragmentId) {
-                        R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
-                            WebsiteFragmentDirections.showSignInFragment()
-                        )
                         R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
                             SafetyFragmentDirections.showSignInFragment()
                         )
@@ -155,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             else bottomNavView.visibility = View.VISIBLE
         }
 
-        mMainViewModel.currentUser.observe(this@MainActivity, Observer { user ->
+        mMainViewModel.currentUser.observe(this@MainActivity, { user ->
             if (mLoadingDialog.isShowing) mLoadingDialog.hide()
             if (user != null && bottomNavView.selectedItemId == R.id.navigation_service)
                 navigateToCorrectServiceFragment()
@@ -169,8 +125,6 @@ class MainActivity : AppCompatActivity() {
             super.onResume()
             if (intent.extras != null && intent.getBooleanExtra(newOrderNotificationAction, false))
                 bottomNavView.selectedItemId = R.id.navigation_service
-            else if (bottomNavView.selectedItemId == R.id.navigation_map)
-                bottomNavView.selectedItemId = R.id.navigation_safety
         } catch (t: Throwable) {
             bottomNavView.selectedItemId = R.id.navigation_safety
         }
@@ -204,9 +158,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
                     SafetyFragmentDirections.showTeamJoinFragment()
                 )
-                R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
-                    WebsiteFragmentDirections.showTeamJoinFragment()
-                )
                 R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
                     SignInFragmentDirections.showTeamJoinFragment()
                 )
@@ -219,10 +170,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.safetyFragment -> findNavController(R.id.navHostFragment).navigate(
                     if (isLeader) SafetyFragmentDirections.showOrdersListFragment(teamId)
                     else SafetyFragmentDirections.showTaskListFragment(teamId)
-                )
-                R.id.mapFragment -> findNavController(R.id.navHostFragment).navigate(
-                    if (isLeader) WebsiteFragmentDirections.showOrdersListFragment(teamId)
-                    else WebsiteFragmentDirections.showTaskListFragment(teamId)
                 )
                 R.id.signInFragment -> findNavController(R.id.navHostFragment).navigate(
                     if (isLeader) SignInFragmentDirections.showOrdersListFragment(teamId)

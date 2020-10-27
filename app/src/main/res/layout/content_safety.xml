@@ -146,21 +146,6 @@
             app:layout_constraintStart_toStartOf="@+id/safetyRule1"
             app:layout_constraintTop_toBottomOf="@+id/safetyRule7" />
 
-        <View
-            style="@style/SafetyRulesDivider"
-            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
-            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
-            app:layout_constraintTop_toBottomOf="@+id/safetyRule8" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/safetyRule9"
-            style="@style/SafetyRule"
-            android:drawableStart="@drawable/ic_safety_rule9"
-            android:text="@string/safety_rule9"
-            app:layout_constraintEnd_toEndOf="@+id/safetyRule1"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/safetyRule1"
-            app:layout_constraintTop_toBottomOf="@+id/safetyRule8" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="0dp"
@@ -173,6 +158,6 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintEnd_toEndOf="@+id/safetyHeader"
             app:layout_constraintStart_toStartOf="@+id/safetyHeader"
-            app:layout_constraintTop_toBottomOf="@+id/safetyRule9" />
+            app:layout_constraintTop_toBottomOf="@+id/safetyRule8" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

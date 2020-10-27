@@ -47,12 +47,9 @@ class TeamsRecyclerAdapter(val fragment: TeamFindFragment) :
                 return filterResults
             }
 
-            override fun publishResults(
-                charSequence: CharSequence?,
-                filterResults: FilterResults?
-            ) {
+            override fun publishResults(charSequence: CharSequence?, results: FilterResults?) {
                 @Suppress("UNCHECKED_CAST")
-                mTeamsFilteredList = filterResults?.values as List<TeamSimple>
+                mTeamsFilteredList = results?.values as List<TeamSimple>
                 notifyDataSetChanged()
             }
         }
