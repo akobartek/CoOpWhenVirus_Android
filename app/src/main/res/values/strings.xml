@@ -30,9 +30,10 @@
     <string name="about_us">About us</string>
     <string name="about_us_text_part1">Application made as part of the hackathon HackTheCrisis Denmark.\n</string>
     <string name="about_us_text_part2">Our team is only two people. We are IT students at the Wrocław University of Science and Technology, so we wanted to use our skills to help in this difficult times in the way we can do it best.\n</string>
-    <string name="about_us_text_part3">If you would like to support us, you can do so by clicking the button below:</string>
     <string name="support_btn_text">Buy us a coffee</string>
     <string name="about_us_contact">If you have found any errors or want to help us improve the application, please contact us:</string>
+    <string name="github_btn_description">Tap here to see the application code on GitHub.</string>
+    <string name="email_options_btn_description">Tap here to send us email quickly.</string>
 
     <!-- PREFERENCES STRINGS -->
     <string name="preferences">Preferences</string>

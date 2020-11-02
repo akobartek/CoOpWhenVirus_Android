@@ -29,9 +29,10 @@
     <string name="about_us">O nas</string>
     <string name="about_us_text_part1">Aplikacja zrobiona w ramach hackathonu HackTheCrisis Denmark.\n</string>
     <string name="about_us_text_part2">Nasz zespół to tylko dwie osoby. Jesteśmy studentami Informatyki na Politechnice Wrocławskiej, chcieliśmy więc wykorzystać nasze umiejętności żeby pomóc w tym ciężkim czasie w sposób w jaki umiemy to zrobić najlepiej.\n</string>
-    <string name="about_us_text_part3">Jeśli chciałbyś nas wspomóc, możesz to zrobić klikając w przycisk poniżej:</string>
     <string name="support_btn_text">Postaw nam kawę</string>
     <string name="about_us_contact">Jeśli znalazłeś jakieś błędy lub chcesz pomóc nam usprawnić aplikację, zapraszamy do kontaktu:</string>
+    <string name="github_btn_description">Kliknij tutaj żeby zobaczyć kod aplikacji na GitHubie.</string>
+    <string name="email_options_btn_description">Kliknij tutaj aby szybko wysłać nam maila.</string>
 
     <!-- PREFERENCES STRINGS -->
     <string name="preferences">Ustawienia</string>

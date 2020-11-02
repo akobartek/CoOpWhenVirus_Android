@@ -28,12 +28,9 @@ class AboutUsFragment : Fragment() {
         view.aboutUsToolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         view.aboutUsToolbar.setNavigationOnClickListener { findNavController().navigateUp() }
 
-        val text = getString(R.string.about_us_text_part1) + "\n" +
-                getString(R.string.about_us_text_part2) + "\n" + getString(R.string.about_us_text_part3)
+        val text = getString(R.string.about_us_text_part1) + "\n" + getString(R.string.about_us_text_part2)
         view.aboutUsTV.text = text
 
-        view.supportBtn.setOnClickListener { openUrl("https://ko-fi.com/akobartek") }
-        view.supportBtnIcon.setOnClickListener { view.supportBtn.performClick() }
         view.contactGithubBtn.setOnClickListener { openUrl("https://github.com/akobartek/Marta_Android") }
         view.contactEmailBtn.setOnClickListener {
             val emailIntent = Intent(Intent.ACTION_SEND)

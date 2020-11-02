@@ -27,36 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/about_us_text_part3" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/supportBtn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="60dp"
-            android:backgroundTint="@color/colorAccent"
-            android:paddingStart="52dp"
-            android:text="@string/support_btn_text"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:textColor="@color/colorBackground"
-            app:cornerRadius="16dp"
-            app:iconSize="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/aboutUsTV" />
-
-        <ImageView
-            android:id="@+id/supportBtnIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:elevation="100dp"
-            android:src="@drawable/ic_ko_fi"
-            app:layout_constraintBottom_toBottomOf="@+id/supportBtn"
-            app:layout_constraintStart_toStartOf="@+id/supportBtn"
-            app:layout_constraintTop_toTopOf="@+id/supportBtn" />
+            tools:text="@string/about_us_text_part1" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/contactUsTV"
@@ -72,7 +43,7 @@
             android:textColor="@color/colorText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/supportBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/aboutUsTV" />
 
         <ImageButton
             android:id="@+id/contactGithubBtn"
@@ -80,10 +51,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/github_btn_description"
             android:paddingBottom="28dp"
             android:src="@drawable/ic_github"
             app:layout_constraintEnd_toStartOf="@+id/contactEmailBtn"
-            app:layout_constraintStart_toStartOf="@+id/supportBtn"
+            app:layout_constraintStart_toStartOf="@+id/aboutUsTV"
             app:layout_constraintTop_toBottomOf="@+id/contactUsTV" />
 
         <ImageButton
@@ -91,9 +63,10 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:background="@drawable/ic_launcher_background_round"
+            android:contentDescription="@string/email_btn_description"
             android:src="@drawable/ic_email"
             android:tint="@color/colorBackground"
-            app:layout_constraintEnd_toEndOf="@+id/supportBtn"
+            app:layout_constraintEnd_toEndOf="@+id/aboutUsTV"
             app:layout_constraintStart_toEndOf="@+id/contactGithubBtn"
             app:layout_constraintTop_toTopOf="@+id/contactGithubBtn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
